@@ -1,5 +1,42 @@
 {
   "name": "tabnews",
   "version": "0.0.0",
-  "private": true
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "test": "tn test -s",
+    "test:run": "tn test run -s",
+    "lint": "eslint . && prettier --check .",
+    "format": "eslint --fix . && prettier --write .",
+    "commit": "cz",
+    "prepare": "husky",
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,mjs,cjs,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "19.5.0",
+    "@commitlint/config-conventional": "19.5.0",
+    "@tabnews/config": "0.0.1-beta.3",
+    "@testing-library/dom": "10.4.0",
+    "@testing-library/react": "16.0.1",
+    "commitizen": "4.3.0",
+    "cz-conventional-changelog": "3.3.0",
+    "husky": "9.1.6",
+    "lint-staged": "15.2.10"
+  },
+  "repository": "aprendendofelipe/tabnews"
 }

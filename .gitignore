@@ -1,0 +1,21 @@
+# Local Environment
+.env*.local
+
+# Dependencies
+node_modules
+pnpm-lock.yaml
+yarn.*
+
+# Logs
+*.log
+
+# Cache & Build
+.cache
+.next
+
+# OS & Editor
+.DS_Store
+.vscode
+
+# Tests
+coverage
