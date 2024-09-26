@@ -1,0 +1,31 @@
+{
+  "name": "@tabnews/helpers",
+  "version": "0.0.0",
+  "description": "TabNews helpers",
+  "license": "MIT",
+  "type": "module",
+  "main": "src/index.js",
+  "files": [
+    "src",
+    "!src/**/*.test.js"
+  ],
+  "scripts": {
+    "test": "tn test -s",
+    "test:run": "tn test run -s",
+    "lint": "eslint . && prettier --check .",
+    "format": "eslint --fix . && prettier --write ."
+  },
+  "author": "TabNews",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aprendendofelipe/tabnews",
+    "directory": "packages/helpers"
+  },
+  "keywords": [
+    "tabnews",
+    "helpers"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
