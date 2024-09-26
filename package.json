@@ -7,6 +7,7 @@
   "scripts": {
     "test": "tn test -s",
     "test:run": "tn test run -s",
+    "coverage": "tn test -s --coverage",
     "lint": "eslint . && prettier --check .",
     "format": "eslint --fix . && prettier --write .",
     "commit": "cz",
