@@ -1,0 +1,37 @@
+{
+  "name": "@tabnews/hooks",
+  "version": "0.0.0",
+  "description": "TabNews Hooks",
+  "license": "MIT",
+  "type": "module",
+  "main": "src/index.js",
+  "files": [
+    "src",
+    "!src/**/*.test.js"
+  ],
+  "scripts": {
+    "test": "tn test -s",
+    "test:run": "tn test run -s",
+    "lint": "eslint . && prettier --check .",
+    "format": "eslint --fix . && prettier --write ."
+  },
+  "dependencies": {
+    "@tabnews/helpers": "^0.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.2.0"
+  },
+  "author": "TabNews",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aprendendofelipe/tabnews",
+    "directory": "packages/hooks"
+  },
+  "keywords": [
+    "tabnews",
+    "hooks"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
