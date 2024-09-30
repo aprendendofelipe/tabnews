@@ -14,15 +14,6 @@
     "prepare": "husky",
     "pre-commit": "lint-staged"
   },
-  "lint-staged": {
-    "*.{js,mjs,cjs,jsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,md}": [
-      "prettier --write"
-    ]
-  },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
