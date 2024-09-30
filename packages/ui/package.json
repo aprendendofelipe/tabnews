@@ -1,0 +1,44 @@
+{
+  "name": "@tabnews/ui",
+  "version": "0.0.0",
+  "description": "TabNews UI",
+  "license": "MIT",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./document": "./src/_document.js"
+  },
+  "files": [
+    "src",
+    "!src/**/*.test.js"
+  ],
+  "scripts": {
+    "test": "tn test -s",
+    "test:run": "tn test run -s",
+    "lint": "eslint . && prettier --check .",
+    "format": "eslint --fix . && prettier --write ."
+  },
+  "dependencies": {
+    "@primer/react": "36.27.0",
+    "styled-components": "5.3.11"
+  },
+  "peerDependencies": {
+    "next": ">=14.2.4",
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0"
+  },
+  "author": "TabNews",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aprendendofelipe/tabnews",
+    "directory": "packages/ui"
+  },
+  "keywords": [
+    "tabnews",
+    "ui"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
