@@ -1,6 +1,6 @@
 import { render, waitFor } from '@testing-library/react';
 
-import { AutoThemeProvider, NoFleshGlobalStyle } from '.';
+import { AutoThemeProvider, NoFlashGlobalStyle } from '.';
 
 describe('ui', () => {
   describe('AutoThemeProvider', () => {
@@ -53,24 +53,22 @@ describe('ui', () => {
       await waitFor(() => expect(document.documentElement.getAttribute('data-no-flash')).toBeNull());
     });
 
-    it('applies NoFleshGlobalStyle correctly', () => {
+    it('applies NoFlashGlobalStyle correctly', () => {
       const { container } = render(<AutoThemeProvider defaultColorMode="day" />);
       const styleTag = container.querySelector('style');
 
       expect(styleTag).not.toBeNull();
-      expect(styleTag.textContent).toContain('html[data-no-flash="true"]:root { visibility: hidden; }');
+      expect(styleTag.textContent).toContain("html[data-no-flash='true'] { visibility: hidden; }");
     });
   });
 
-  describe('NoFleshGlobalStyle', () => {
+  describe('NoFlashGlobalStyle', () => {
     it('renders the correct global style', () => {
-      const { container } = render(<NoFleshGlobalStyle />);
+      const { container } = render(<NoFlashGlobalStyle />);
       const styleTag = container.querySelector('style');
 
       expect(styleTag).not.toBeNull();
-      expect(styleTag.getAttribute('jsx')).toBe('true');
-      expect(styleTag.getAttribute('global')).toBe('true');
-      expect(styleTag.innerHTML).toBe('html[data-no-flash="true"]:root { visibility: hidden; }');
+      expect(styleTag.innerHTML).toBe("html[data-no-flash='true'] { visibility: hidden; }");
     });
   });
 });

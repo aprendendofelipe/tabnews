@@ -21,13 +21,13 @@ export function AutoThemeProvider({ children, defaultColorMode, ...props }) {
 
   return (
     <ThemeProvider colorMode={colorMode} {...props}>
-      <NoFleshGlobalStyle />
+      <NoFlashGlobalStyle />
       {children}
     </ThemeProvider>
   );
 }
 
-export function NoFleshGlobalStyle() {
+export function NoFlashGlobalStyle() {
   return (
     <style
       dangerouslySetInnerHTML={{

@@ -20,7 +20,7 @@ const exportedByIndex = [
   'Label',
   'LabelGroup',
   'NavList',
-  'NoFleshGlobalStyle',
+  'NoFlashGlobalStyle',
   'Overlay',
   'Pagehead',
   'primer',
