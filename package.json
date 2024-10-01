@@ -5,6 +5,8 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "dev": "npm run dev --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present",
     "test": "tn test -s",
     "test:run": "tn test run -s",
     "coverage": "tn test -s --coverage",
@@ -25,10 +27,12 @@
     "@tabnews/config": "0.0.1-beta.3",
     "@testing-library/dom": "10.4.0",
     "@testing-library/react": "16.0.1",
+    "@vitejs/plugin-react-swc": "3.7.1",
     "commitizen": "4.3.0",
     "cz-conventional-changelog": "3.3.0",
     "husky": "9.1.6",
-    "lint-staged": "15.2.10"
+    "lint-staged": "15.2.10",
+    "vite": "5.4.8"
   },
   "repository": "aprendendofelipe/tabnews",
   "workspaces": [

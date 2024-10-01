@@ -4,7 +4,7 @@ const config = createConfig({
   test: {
     isolate: true,
     coverage: {
-      exclude: ['./*.*'],
+      exclude: ['./*.*', '**/dist/*.*'],
     },
     environment: 'jsdom',
     setupFiles: ['tests/setup.js'],

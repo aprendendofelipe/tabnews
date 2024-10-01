@@ -12,6 +12,7 @@ yarn.*
 # Cache & Build
 .cache
 .next
+dist
 
 # OS & Editor
 .DS_Store

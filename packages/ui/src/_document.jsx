@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-before-interactive-script-outside-document */
 /* eslint-disable-next-line @next/next/no-document-import-in-page */
-import NextDocument, { Head, Html, Main, NextScript } from 'next/document';
+import NextDocument, { Head, Html, Main, NextScript } from 'next/document.js';
 import Script from 'next/script';
 import { ServerStyleSheet } from 'styled-components';
 
@@ -46,5 +46,3 @@ export class Document extends Doc {
     );
   }
 }
-
-export default Document;
