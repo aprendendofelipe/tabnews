@@ -29,8 +29,10 @@ export function AutoThemeProvider({ children, defaultColorMode, ...props }) {
 
 export function NoFleshGlobalStyle() {
   return (
-    <style jsx="true" global="true">
-      {'html[data-no-flash="true"]:root { visibility: hidden; }'}
-    </style>
+    <style
+      dangerouslySetInnerHTML={{
+        __html: "html[data-no-flash='true'] { visibility: hidden; }",
+      }}
+    />
   );
 }
