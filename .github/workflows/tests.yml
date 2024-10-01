@@ -1,0 +1,57 @@
+name: Automated Tests
+
+on: pull_request
+
+concurrency:
+  group: tests-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  vitest:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node:
+          - version: 20
+        os:
+          - ubuntu-latest
+          - windows-latest
+
+    name: 'Vitest Node-${{ matrix.node.version }}, ${{ matrix.os }}'
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node.version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Check for uncommitted changes after npm install
+        run: |
+          if [[ -n $(git status --porcelain) ]]; then
+            git status --porcelain
+            echo "::error::Uncommitted changes found. Please review and commit these changes if necessary."
+            exit 1
+          else
+            echo "No uncommitted changes found"
+          fi
+
+      - name: Run Vitest
+        run: npm run test:run
+
+      - name: Check for uncommitted changes after tests
+        run: |
+          if [[ -n $(git status --porcelain) ]]; then
+            git status --porcelain
+            echo "::error::Uncommitted changes found. Please review and commit these changes if necessary."
+            exit 1
+          else
+            echo "No uncommitted changes found"
+          fi
