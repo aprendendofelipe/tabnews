@@ -8,6 +8,7 @@ export default defineConfig({
       entry: {
         index: './src/index.js',
         _document: './src/_document.jsx',
+        primer: './src/primer-react.js',
       },
       formats: ['cjs'],
     },

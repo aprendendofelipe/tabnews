@@ -7,7 +7,8 @@
   "main": "./dist/index.cjs",
   "exports": {
     ".": "./dist/index.cjs",
-    "./document": "./dist/_document.cjs"
+    "./document": "./dist/_document.cjs",
+    "./primer": "./dist/primer.cjs"
   },
   "files": [
     "dist"
