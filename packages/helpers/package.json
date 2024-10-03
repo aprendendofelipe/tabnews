@@ -11,8 +11,8 @@
     "!src/**/*.test.js"
   ],
   "scripts": {
-    "test": "tn test -s",
-    "test:run": "tn test run -s",
+    "test": "tn test",
+    "test:run": "tn test run",
     "lint": "eslint . && prettier --check .",
     "format": "eslint --fix . && prettier --write ."
   },
