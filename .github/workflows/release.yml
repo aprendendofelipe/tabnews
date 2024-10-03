@@ -1,0 +1,48 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release-please:
+    name: Release PR
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release-please
+        with:
+          token: ${{secrets.RELEASE_PLEASE_GITHUB_TOKEN}}
+
+    outputs:
+      releases_created: ${{ steps.release-please.outputs.releases_created }}
+
+  lerna-publish:
+    name: Publish to NPM
+    runs-on: ubuntu-latest
+    needs: release-please
+    if: ${{ needs.release-please.outputs.releases_created }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      # Release Please has already incremented versions and published tags,
+      # so we just need to publish all unpublished versions to NPM here.
+      - name: Publish to NPM
+        run: npx lerna publish from-package --no-push --no-private --yes
+        timeout-minutes: 2
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
