@@ -15,6 +15,7 @@ jobs:
           - version: 20
         os:
           - ubuntu-latest
+          - windows-latest
 
     name: 'Vitest Node-${{ matrix.node.version }}, ${{ matrix.os }}'
     timeout-minutes: 10
@@ -34,23 +35,53 @@ jobs:
 
       - name: Check for uncommitted changes after npm install
         run: |
-          if [[ -n $(git status --porcelain) ]]; then
+          if [ -n "$(git status --porcelain)" ]; then
             git status --porcelain
-            echo "::error::Uncommitted changes found. Please review and commit these changes if necessary."
+            echo "Uncommitted changes found. Please review and commit these changes if necessary."
             exit 1
           else
             echo "No uncommitted changes found"
           fi
+        shell: bash
+        if: runner.os != 'Windows'
+
+      - name: Check for uncommitted changes after npm install (Windows)
+        run: |
+          $status = git status --porcelain
+          if ($status) {
+            git status --porcelain
+            echo "Uncommitted changes found. Please review and commit these changes if necessary."
+            exit 1
+          } else {
+            echo "No uncommitted changes found"
+          }
+        shell: pwsh
+        if: runner.os == 'Windows'
 
       - name: Run Vitest
         run: npm run test:run
 
       - name: Check for uncommitted changes after tests
         run: |
-          if [[ -n $(git status --porcelain) ]]; then
+          if [ -n "$(git status --porcelain)" ]; then
             git status --porcelain
-            echo "::error::Uncommitted changes found. Please review and commit these changes if necessary."
+            echo "Uncommitted changes found. Please review and commit these changes if necessary."
             exit 1
           else
             echo "No uncommitted changes found"
           fi
+        shell: bash
+        if: runner.os != 'Windows'
+
+      - name: Check for uncommitted changes after tests (Windows)
+        run: |
+          $status = git status --porcelain
+          if ($status) {
+            git status --porcelain
+            echo "Uncommitted changes found. Please review and commit these changes if necessary."
+            exit 1
+          } else {
+            echo "No uncommitted changes found"
+          }
+        shell: pwsh
+        if: runner.os == 'Windows'

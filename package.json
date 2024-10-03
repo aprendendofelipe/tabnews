@@ -7,9 +7,9 @@
   "scripts": {
     "dev": "npm run dev --workspaces --if-present",
     "build": "npm run build --workspaces --if-present",
-    "test": "tn test -s",
-    "test:run": "tn test run -s",
-    "coverage": "tn test -s --coverage",
+    "test": "tn test",
+    "test:run": "tn test run",
+    "coverage": "tn test --coverage",
     "lint": "eslint . && prettier --check .",
     "format": "eslint --fix . && prettier --write .",
     "commit": "cz",
@@ -24,7 +24,7 @@
   "devDependencies": {
     "@commitlint/cli": "19.5.0",
     "@commitlint/config-conventional": "19.5.0",
-    "@tabnews/config": "0.0.1-beta.3",
+    "@tabnews/config": "0.1.0",
     "@testing-library/dom": "10.4.0",
     "@testing-library/react": "16.0.1",
     "@vitejs/plugin-react-swc": "3.7.1",
