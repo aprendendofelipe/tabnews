@@ -13,12 +13,14 @@ export default defineConfig({
       formats: ['cjs'],
     },
     rollupOptions: {
-      external: ['@primer/react', 'styled-components', 'react', 'react-dom', 'next/document.js'],
+      external: [/^react/, /^next\//, /^@primer\//, /^styled-components/],
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
         },
+        externalLiveBindings: false,
+        reexportProtoFromExternal: false,
       },
     },
   },
