@@ -1,0 +1,7 @@
+{
+  "packages": {
+    "packages/ui": {}
+  },
+  "plugins": ["node-workspace"],
+  "always-link-local": true
+}
