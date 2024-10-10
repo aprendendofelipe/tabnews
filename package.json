@@ -10,7 +10,7 @@
     "test": "tn test",
     "test:run": "tn test run",
     "coverage": "tn test --coverage",
-    "lint": "eslint . && prettier --check .",
+    "lint": "eslint . --max-warnings 0 && prettier --check .",
     "format": "eslint --fix . && prettier --write .",
     "commit": "cz",
     "prepare": "husky",
@@ -24,7 +24,7 @@
   "devDependencies": {
     "@commitlint/cli": "19.5.0",
     "@commitlint/config-conventional": "19.5.0",
-    "@tabnews/config": "0.1.0",
+    "@tabnews/config": "0.2.0",
     "@testing-library/dom": "10.4.0",
     "@testing-library/react": "16.0.1",
     "@vitejs/plugin-react-swc": "3.7.1",
