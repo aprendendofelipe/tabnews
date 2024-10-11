@@ -2,7 +2,6 @@
   "name": "@tabnews/hooks",
   "version": "0.0.0",
   "description": "TabNews Hooks",
-  "private": true,
   "license": "MIT",
   "type": "module",
   "main": "src/index.js",
