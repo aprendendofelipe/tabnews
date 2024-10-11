@@ -2,7 +2,6 @@
   "name": "@tabnews/helpers",
   "version": "0.0.0",
   "description": "TabNews helpers",
-  "private": true,
   "license": "MIT",
   "type": "module",
   "main": "src/index.js",
