@@ -1,0 +1,40 @@
+{
+  "name": "@tabnews/forms",
+  "version": "0.0.0",
+  "description": "TabNews useForm hook and form validators",
+  "license": "MIT",
+  "type": "module",
+  "main": "src/index.js",
+  "files": [
+    "src",
+    "!src/**/*.test.js"
+  ],
+  "scripts": {
+    "test": "tn test",
+    "test:run": "tn test run",
+    "lint": "eslint . && prettier --check .",
+    "format": "eslint --fix . && prettier --write ."
+  },
+  "dependencies": {
+    "@tabnews/helpers": "^0.0.0",
+    "@tabnews/hooks": "^0.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.2.0"
+  },
+  "author": "TabNews",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aprendendofelipe/tabnews",
+    "directory": "packages/forms"
+  },
+  "keywords": [
+    "tabnews",
+    "form",
+    "hook",
+    "validator"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
