@@ -44,6 +44,16 @@ describe('hooks', () => {
       });
     });
 
+    it('should not update processors when passed an empty object', () => {
+      const { result } = renderHook(() => useConfig(initialConfig, defaultProcessors));
+
+      act(() => result.current.updateProcessors({}));
+      expect(result.current.processors).toStrictEqual(expectedConfig.processors);
+
+      act(() => result.current.updateProcessors());
+      expect(result.current.processors).toStrictEqual(expectedConfig.processors);
+    });
+
     it('should update state', () => {
       const { result } = renderHook(() => useConfig(initialConfig, defaultProcessors));
 
@@ -55,6 +65,16 @@ describe('hooks', () => {
         ...expectedConfig.state,
         f1: { s1: 'Initial s1', s2: 'state2' },
       });
+    });
+
+    it('should not update state when passed an empty object', () => {
+      const { result } = renderHook(() => useConfig(initialConfig, defaultProcessors));
+
+      act(() => result.current.updateState({}));
+      expect(result.current.state).toStrictEqual(expectedConfig.state);
+
+      act(() => result.current.updateState());
+      expect(result.current.state).toStrictEqual(expectedConfig.state);
     });
 
     it('should memoize split function', () => {
