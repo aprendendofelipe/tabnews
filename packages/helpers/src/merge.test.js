@@ -56,6 +56,8 @@ describe('helpers', () => {
       const result = deepMerge(target, source);
 
       expect(result).toStrictEqual({ a: 1, b: 2, c: undefined });
+      expect(deepMerge(target, {})).toStrictEqual(target);
+      expect(deepMerge(target, undefined)).toStrictEqual(target);
     });
 
     it('should not modify source or target objects directly', () => {
