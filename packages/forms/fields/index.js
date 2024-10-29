@@ -1,0 +1,1 @@
+export { cep } from './cep';
