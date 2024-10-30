@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
-import { FormField } from '.';
+import { FormField, Suggestion } from '.';
 
 describe('ui', () => {
   describe('FormField', () => {
@@ -149,6 +149,47 @@ describe('ui', () => {
           render(<FormField name="test" checked />);
           const checkbox = screen.getByRole('checkbox');
           expect(checkbox).toHaveAttribute('aria-invalid', 'false');
+        });
+      });
+
+      describe('Suggestion', () => {
+        it('renders nothing when suggestion is not provided', () => {
+          const { container } = render(<Suggestion />);
+          expect(container).toBeEmptyDOMElement();
+        });
+
+        it('renders nothing when suggestion value is not provided', () => {
+          const { container } = render(<Suggestion suggestion={{}} />);
+          expect(container).toBeEmptyDOMElement();
+        });
+
+        it('renders suggestion with default label', () => {
+          render(<Suggestion suggestion={{ value: 'test', onClick: vi.fn() }} />);
+          expect(screen.getByText('Você quis dizer:')).toBeInTheDocument();
+        });
+
+        it('renders suggestion with custom label', () => {
+          render(<Suggestion suggestion={{ value: 'test', label: 'Did you mean:', onClick: vi.fn() }} />);
+          expect(screen.getByText('Did you mean:')).toBeInTheDocument();
+        });
+
+        it('renders suggestion button with correct text', () => {
+          render(<Suggestion suggestion={{ value: 'test', pre: 'pre', mid: 'mid', post: 'post', onClick: vi.fn() }} />);
+          expect(screen.getByText('pre')).toBeInTheDocument();
+          expect(screen.getByText('mid')).toBeInTheDocument();
+          expect(screen.getByText('post')).toBeInTheDocument();
+        });
+
+        it('calls onClick when suggestion button is clicked', () => {
+          const handleClick = vi.fn();
+          render(<Suggestion suggestion={{ value: 'test', onClick: handleClick }} />);
+          fireEvent.click(screen.getByRole('button'));
+          expect(handleClick).toHaveBeenCalledTimes(1);
+        });
+
+        it('should not render error when suggestion is displayed', () => {
+          render(<FormField name="test" error="This is an error" suggestion={{ value: 'test', onClick: vi.fn() }} />);
+          expect(screen.queryByText('This is an error')).not.toBeInTheDocument();
         });
       });
     });
