@@ -5,8 +5,10 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "npm run dev --workspaces --if-present",
-    "build": "npm run build --workspaces --if-present",
+    "dev": "npx lerna run dev --parallel",
+    "build": "npm run build --workspace packages/ui",
+    "build:examples:form": "npm run build && npm run build --workspace examples/form",
+    "start:examples:form": "npm run start --workspace examples/form",
     "test": "tn test",
     "test:run": "tn test run",
     "coverage": "tn test --coverage",
@@ -32,11 +34,13 @@
     "commitizen": "4.3.0",
     "cz-conventional-changelog": "3.3.0",
     "husky": "9.1.6",
+    "lerna": "8.1.8",
     "lint-staged": "15.2.10",
     "vite": "5.4.8"
   },
   "repository": "aprendendofelipe/tabnews",
   "workspaces": [
+    "examples/*",
     "packages/*"
   ]
 }
