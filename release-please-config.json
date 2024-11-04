@@ -1,5 +1,8 @@
 {
   "packages": {
+    "packages/forms": {},
+    "packages/helpers": {},
+    "packages/hooks": {},
     "packages/ui": {}
   },
   "plugins": ["node-workspace"],
