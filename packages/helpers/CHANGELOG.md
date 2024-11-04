@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/aprendendofelipe/tabnews/compare/helpers-v0.1.0...helpers-v0.1.1) (2024-11-04)
+
+
+### Bug Fixes
+
+* **monorepo:** resolve structure issues in form and helper packages ([d04f85c](https://github.com/aprendendofelipe/tabnews/commit/d04f85cd5f0ef326def898d277d1135f3ffd9594))
+
 ## 0.1.0 (2024-11-04)
 
 
