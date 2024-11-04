@@ -1,4 +1,4 @@
-import { isObject } from './is';
+import { isObject } from './is.js';
 
 /**
  * Splits the configuration object into processors and state objects.
