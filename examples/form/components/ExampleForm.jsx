@@ -1,6 +1,6 @@
 import { useForm } from '@tabnews/forms';
-import { Box, Button, Flash, FormField, Heading, Text } from '@tabnews/ui';
-import { Dialog, Link, TabNav } from '@tabnews/ui/primer';
+import { Box, Button, Flash, FormField, Heading, TabNav, Text } from '@tabnews/ui';
+import { Dialog, Link } from '@tabnews/ui/primer';
 import { FaCreditCard, FaPix } from 'react-icons/fa6';
 
 export function ExampleForm({ fields, product, store }) {
@@ -231,5 +231,3 @@ const QRCodePlaceholder = () => (
     </svg>
   </Box>
 );
-
-export default QRCodePlaceholder;

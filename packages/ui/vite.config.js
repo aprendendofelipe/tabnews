@@ -10,7 +10,8 @@ export default defineConfig({
         _document: './src/_document.jsx',
         primer: './src/primer-react.js',
       },
-      formats: ['cjs'],
+      formats: ['es', 'cjs'],
+      fileName: (format, entryName) => `${entryName}.${format === 'es' ? 'js' : 'cjs'}`,
     },
     rollupOptions: {
       external: [/^react/, /^next\//, /^@primer\//, /^styled-components/],
