@@ -18,13 +18,16 @@ export {
   LabelGroup,
   NavList,
   Overlay,
-  Pagehead,
   SegmentedControl,
   Select,
   Spinner,
+  TabNav,
   Text,
   TextInput,
+  Tooltip as TooltipV1,
   Truncate,
   useConfirm,
   useTheme,
 } from '@primer/react';
+export { Dialog } from '@primer/react/experimental';
+export { Tooltip } from '@primer/react/next';

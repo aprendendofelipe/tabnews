@@ -4,11 +4,19 @@
   "description": "TabNews UI",
   "license": "MIT",
   "type": "module",
-  "main": "./dist/index.cjs",
   "exports": {
-    ".": "./dist/index.cjs",
-    "./document": "./dist/_document.cjs",
-    "./primer": "./dist/primer.cjs"
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./document": {
+      "import": "./dist/_document.js",
+      "require": "./dist/_document.cjs"
+    },
+    "./primer": {
+      "import": "./dist/primer.js",
+      "require": "./dist/primer.cjs"
+    }
   },
   "files": [
     "dist"
