@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.1.1](https://github.com/aprendendofelipe/tabnews/compare/hooks-v0.1.0...hooks-v0.1.1) (2024-11-04)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @tabnews/helpers bumped from ^0.1.0 to ^0.1.1
+
 ## 0.1.0 (2024-11-04)
 
 
