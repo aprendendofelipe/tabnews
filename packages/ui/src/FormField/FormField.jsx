@@ -1,4 +1,6 @@
-import { Box, Button, Checkbox, FormControl, Select, Text, TextInput } from '@primer/react';
+import { AlertFillIcon } from '@primer/octicons-react';
+
+import { Button, Checkbox, FormControl, Select, Text, TextInput, Tooltip } from '..';
 
 const defaultProps = {
   size: 'large',
@@ -59,20 +61,66 @@ export function Suggestion({ suggestion }) {
   if (!suggestion?.value) return null;
 
   return (
-    <FormControl.Validation variant="error" sx={{ alignItems: 'center', color: 'attention.fg' }}>
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Text>{suggestion.label || 'Você quis dizer:'}</Text>
+    <Text
+      sx={{
+        display: 'inline-flex',
+        flexWrap: 'wrap',
+        wordBreak: 'break-word',
+        fontSize: '12px',
+        lineHeight: '14px',
+        fontWeight: 'bold',
+        columnGap: 1,
+        mt: 0,
+        alignItems: 'center',
+        color: 'attention.fg',
+      }}>
+      <AlertFillIcon size={12} />
+      <Text>{suggestion.label ?? 'Você quis dizer'}</Text>
 
-        <Button
-          variant="invisible"
-          size="small"
-          sx={{ height: 16, p: 1, color: 'success.fg' }}
-          onClick={suggestion.onClick}>
-          <Text>{suggestion.pre}</Text>
-          <u>{suggestion.mid}</u>
-          <Text>{suggestion.post}</Text>
-        </Button>
-      </Box>
-    </FormControl.Validation>
+      <TooltippedButton
+        tooltip={suggestion.tooltip || 'Aceitar sugestão'}
+        onClick={suggestion.onClick}
+        color="success.fg">
+        <Text>{suggestion.pre}</Text>
+        <Text sx={{ textDecoration: 'underline' }}>{suggestion.mid}</Text>
+        <Text>{suggestion.post}</Text>
+      </TooltippedButton>
+
+      <Text>{suggestion.labelEnd ?? '?'}</Text>
+
+      {suggestion.ignoreClick && (
+        <TooltippedButton
+          tooltip={suggestion.ignoreTooltip || 'Ignorar sugestão'}
+          onClick={suggestion.ignoreClick}
+          sx={{ flex: 1 }}>
+          {suggestion.ignoreLabel || 'Ignorar'}
+        </TooltippedButton>
+      )}
+    </Text>
+  );
+}
+
+function TooltippedButton({ children, color, direction = 'nw', sx, tooltip, ...props }) {
+  return (
+    <Tooltip text={tooltip} direction={direction}>
+      <Button
+        variant="invisible"
+        size="small"
+        labelWrap={true}
+        sx={{
+          color,
+          my: '-4px',
+          px: 0,
+          textAlign: 'start',
+          '> *': { justifyContent: 'end' },
+          ':hover': {
+            bg: 'transparent',
+          },
+          ...sx,
+        }}
+        {...props}>
+        {children}
+      </Button>
+    </Tooltip>
   );
 }

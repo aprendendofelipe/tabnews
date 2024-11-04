@@ -163,14 +163,26 @@ describe('ui', () => {
           expect(container).toBeEmptyDOMElement();
         });
 
-        it('renders suggestion with default label', () => {
-          render(<Suggestion suggestion={{ value: 'test', onClick: vi.fn() }} />);
-          expect(screen.getByText('Você quis dizer:')).toBeInTheDocument();
+        it('renders nothing when suggestion is null', () => {
+          const { container } = render(<Suggestion suggestion={null} />);
+          expect(container).toBeEmptyDOMElement();
+        });
+
+        it('renders suggestion with default texts', () => {
+          render(<Suggestion suggestion={{ value: 'test', onClick: vi.fn(), ignoreClick: vi.fn() }} />);
+          expect(screen.getByText('Você quis dizer')).toBeInTheDocument();
+          expect(screen.getByText('?')).toBeInTheDocument();
+          expect(screen.getByText('Aceitar sugestão')).toBeInTheDocument();
+          expect(screen.getByText('Ignorar')).toBeInTheDocument();
+          expect(screen.getByText('Ignorar sugestão')).toBeInTheDocument();
         });
 
         it('renders suggestion with custom label', () => {
-          render(<Suggestion suggestion={{ value: 'test', label: 'Did you mean:', onClick: vi.fn() }} />);
+          render(
+            <Suggestion suggestion={{ value: 'test', label: 'Did you mean:', labelEnd: '?!?', onClick: vi.fn() }} />,
+          );
           expect(screen.getByText('Did you mean:')).toBeInTheDocument();
+          expect(screen.getByText('?!?')).toBeInTheDocument();
         });
 
         it('renders suggestion button with correct text', () => {
@@ -180,6 +192,45 @@ describe('ui', () => {
           expect(screen.getByText('post')).toBeInTheDocument();
         });
 
+        it('renders ignore button when ignore option is present', () => {
+          const suggestion = {
+            value: true,
+            ignoreTooltip: 'Ignore suggestion',
+            ignoreClick: vi.fn(),
+            ignoreLabel: 'Ignore',
+          };
+          render(<Suggestion suggestion={suggestion} />);
+
+          expect(screen.getByText('Ignore')).toBeInTheDocument();
+          expect(screen.getByText('Ignore suggestion')).toBeInTheDocument();
+        });
+
+        it('renders suggestion with all options', () => {
+          const suggestion = {
+            value: 'test',
+            label: 'Did you mean',
+            pre: 'pre',
+            mid: 'mid',
+            post: 'post',
+            labelEnd: '???',
+            tooltip: 'Accept suggestion',
+            onClick: vi.fn(),
+            ignoreLabel: 'Ignore',
+            ignoreTooltip: 'Ignore suggestion',
+            ignoreClick: vi.fn(),
+          };
+          render(<Suggestion suggestion={suggestion} />);
+
+          expect(screen.getByText('Did you mean')).toBeInTheDocument();
+          expect(screen.getByText('pre')).toBeInTheDocument();
+          expect(screen.getByText('mid')).toBeInTheDocument();
+          expect(screen.getByText('post')).toBeInTheDocument();
+          expect(screen.getByText('???')).toBeInTheDocument();
+          expect(screen.getByText('Accept suggestion')).toBeInTheDocument();
+          expect(screen.getByText('Ignore')).toBeInTheDocument();
+          expect(screen.getByText('Ignore suggestion')).toBeInTheDocument();
+        });
+
         it('calls onClick when suggestion button is clicked', () => {
           const handleClick = vi.fn();
           render(<Suggestion suggestion={{ value: 'test', onClick: handleClick }} />);
@@ -187,9 +238,27 @@ describe('ui', () => {
           expect(handleClick).toHaveBeenCalledTimes(1);
         });
 
+        it('calls ignoreClick when ignore button is clicked', () => {
+          const ignoreClick = vi.fn();
+          const suggestion = { value: true, ignoreClick };
+          render(<Suggestion suggestion={suggestion} />);
+          fireEvent.click(screen.getByText('Ignorar'));
+          expect(ignoreClick).toHaveBeenCalled();
+        });
+
         it('should not render error when suggestion is displayed', () => {
           render(<FormField name="test" error="This is an error" suggestion={{ value: 'test', onClick: vi.fn() }} />);
           expect(screen.queryByText('This is an error')).not.toBeInTheDocument();
+        });
+
+        it('should render without label', () => {
+          render(<Suggestion suggestion={{ value: 'test', label: '', onClick: vi.fn() }} />);
+          expect(screen.queryByText('Você quis dizer')).not.toBeInTheDocument();
+        });
+
+        it('should render without labelEnd', () => {
+          render(<Suggestion suggestion={{ value: 'test', labelEnd: '', onClick: vi.fn() }} />);
+          expect(screen.queryByText('?')).not.toBeInTheDocument();
         });
       });
     });
