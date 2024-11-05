@@ -1,4 +1,15 @@
-import { cep, email, emailConfirmation, phone, state } from '@tabnews/forms';
+import {
+  cep,
+  city,
+  complement,
+  email,
+  emailConfirmation,
+  neighborhood,
+  number,
+  phone,
+  state,
+  street,
+} from '@tabnews/forms';
 import { returnNull } from '@tabnews/helpers';
 import { validate as isCnpjValid } from 'validation-br/dist/cnpj';
 import { validate as isCpfValid } from 'validation-br/dist/cpf';
@@ -75,40 +86,6 @@ const documentField = {
     };
   },
   validateOnBlurAndSubmit: (doc) => (['CPF', 'CNPJ'].includes(doc.type) ? null : 'Documento inválido.'),
-};
-
-const cityField = {
-  value: '',
-  label: 'Cidade',
-  placeholder: 'Onde você mora?',
-  validateOnBlurAndSubmit: (city) => (city.length < 3 ? 'Informe uma cidade válida.' : null),
-};
-
-const streetField = {
-  value: '',
-  label: 'Endereço',
-  placeholder: 'Rua / Avenida / Praça',
-  validateOnBlurAndSubmit: (street) => (street.length < 3 ? 'Informe um endereço válido.' : null),
-};
-
-const numberField = {
-  value: '',
-  label: 'Número',
-  placeholder: '000',
-  validateOnBlurAndSubmit: (number) => (number.length ? null : 'Informe um número válido.'),
-};
-
-const complementField = {
-  value: '',
-  label: 'Complemento (opcional)',
-  placeholder: 'Apartamento / Bloco / Fundos',
-};
-
-const neighborhoodField = {
-  value: '',
-  label: 'Bairro',
-  placeholder: 'Qual é o seu bairro?',
-  validateOnBlurAndSubmit: (neighborhood) => (neighborhood ? null : 'Informe um bairro válido.'),
 };
 
 const cardNumberField = {
@@ -195,11 +172,11 @@ export const fields = {
   phone,
   cep,
   state,
-  city: cityField,
-  street: streetField,
-  number: numberField,
-  complement: complementField,
-  neighborhood: neighborhoodField,
+  city,
+  street,
+  number,
+  complement,
+  neighborhood,
   payment: defaultPayment,
   cardNumber: cardNumberField,
   holderName: holderNameField,

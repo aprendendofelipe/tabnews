@@ -4,8 +4,10 @@ let abortController = null;
 export const cep = {
   label: 'CEP',
   value: '',
-  maxLength: 9,
+  maxLength: 10, // to work autofill with 12.456-890
   placeholder: '00000-000',
+  inputMode: 'numeric',
+  autoComplete: 'postal-code',
   format,
   prepare,
   validateOnBlurAndSubmit,

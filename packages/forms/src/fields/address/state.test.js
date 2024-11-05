@@ -1,7 +1,18 @@
-import { state } from './state';
+import { state } from '.';
 
 describe('forms', () => {
   describe('state field', () => {
+    it('should have the correct shape', () => {
+      expect(state).toStrictEqual({
+        value: '',
+        label: 'Estado',
+        autoComplete: 'address-level1',
+        validateOnBlurAndSubmit: expect.any(Function),
+        onValidChange: expect.any(Function),
+        options: expect.any(Array),
+      });
+    });
+
     describe('validateOnBlurAndSubmit', () => {
       it('should return null if state is provided', () => {
         expect(state.validateOnBlurAndSubmit('SP')).toBeNull();
@@ -38,6 +49,7 @@ describe('forms', () => {
       it('should contain specific state options', () => {
         expect(state.options).toStrictEqual(
           expect.arrayContaining([
+            { value: '', label: 'Selecione', disabled: true },
             { value: 'SP', label: 'São Paulo (SP)' },
             { value: 'RJ', label: 'Rio de Janeiro (RJ)' },
             { value: 'MG', label: 'Minas Gerais (MG)' },

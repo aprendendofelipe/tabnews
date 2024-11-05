@@ -1,6 +1,7 @@
 export const state = {
   label: 'Estado',
   value: '',
+  autoComplete: 'address-level1',
   validateOnBlurAndSubmit: (state) => (state ? null : 'Selecione'),
   onValidChange: ({ value, updateFields }) => updateFields({ state: { isValid: !!value } }),
   options: [

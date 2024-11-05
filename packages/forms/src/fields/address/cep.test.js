@@ -7,8 +7,10 @@ describe('forms', () => {
       expect(cep).toStrictEqual({
         label: 'CEP',
         value: '',
-        maxLength: 9,
+        maxLength: 10,
         placeholder: '00000-000',
+        inputMode: 'numeric',
+        autoComplete: 'postal-code',
         format,
         prepare,
         validateOnBlurAndSubmit,
