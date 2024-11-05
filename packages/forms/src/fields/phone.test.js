@@ -1,7 +1,29 @@
-import { extractPhoneNumber, maskPhone, validatePhoneCodes, validatePhoneNumber, validatePhoneObject } from './phone';
+import { phone } from '.';
+import {
+  extractPhoneNumber,
+  maskPhone,
+  validateOnChange,
+  validatePhoneCodes,
+  validatePhoneNumber,
+  validatePhoneObject,
+} from './phone';
 
 describe('forms', () => {
   describe('phone field', () => {
+    it('should have the correct shape', () => {
+      expect(phone).toStrictEqual({
+        label: 'Celular',
+        value: '',
+        placeholder: 'Informe seu telefone',
+        type: 'tel',
+        autoComplete: 'tel',
+        format: maskPhone,
+        prepare: extractPhoneNumber,
+        validateOnChange,
+        validateOnBlurAndSubmit: validatePhoneObject,
+      });
+    });
+
     describe('maskPhone', () => {
       it('should remove/replace invalid characters', () => {
         const result = maskPhone('+abc1(2+3)!4@#5-6$7 %8^9&0*><?');
@@ -122,8 +144,8 @@ describe('forms', () => {
     });
 
     describe('validatePhoneCodes', () => {
-      it('should return empty string for valid codes', () => {
-        expect(validatePhoneCodes({ area_code: '1', country_code: '4' })).toBe('');
+      it('should return null for valid codes', () => {
+        expect(validatePhoneCodes({ area_code: '1', country_code: '4' })).toBeNull();
       });
 
       it('should return error message for invalid area code', () => {
@@ -144,8 +166,8 @@ describe('forms', () => {
     });
 
     describe('validatePhoneNumber', () => {
-      it('should return empty string for valid phone number', () => {
-        expect(validatePhoneNumber({ number: '123456' })).toBe('');
+      it('should return null for valid phone number', () => {
+        expect(validatePhoneNumber({ number: '123456' })).toBeNull();
       });
 
       it('should return error message for short phone number', () => {
@@ -154,8 +176,8 @@ describe('forms', () => {
     });
 
     describe('validatePhoneObject', () => {
-      it('should return empty string for valid phone number', () => {
-        expect(validatePhoneObject({ area_code: '1', country_code: '4', number: '123456' })).toBe('');
+      it('should return null for valid phone number', () => {
+        expect(validatePhoneObject({ area_code: '1', country_code: '4', number: '123456' })).toBeNull();
       });
 
       it('should return error message for invalid area code', () => {
@@ -176,6 +198,25 @@ describe('forms', () => {
 
       it('should return error message for short phone number', () => {
         expect(validatePhoneObject({ area_code: '1', country_code: '4', number: '12345' })).toBe('Número muito curto.');
+      });
+    });
+
+    describe('validateOnChange', () => {
+      it('should return null for valid phone number', () => {
+        expect(validateOnChange('+1 (212) 555-1212')).toBeNull();
+      });
+
+      it('should return error message for invalid area code', () => {
+        const errorMessage = 'Código de área inválido. Insira o DDD entre parênteses.';
+
+        expect(validateOnChange('+1 () 555')).toBe(errorMessage);
+        expect(validateOnChange('+1 555')).toBe(errorMessage);
+      });
+
+      it('should return error message for invalid country code', () => {
+        const errorMessage = 'Código do país inválido.';
+
+        expect(validateOnChange('+9876(2)')).toBe(errorMessage);
       });
     });
   });

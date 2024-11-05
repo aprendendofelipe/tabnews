@@ -5,6 +5,7 @@ export const phone = {
   label: 'Celular',
   placeholder: 'Informe seu telefone',
   type: 'tel',
+  autoComplete: 'tel',
   format: maskPhone,
   prepare: extractPhoneNumber,
   validateOnChange,
@@ -86,12 +87,12 @@ export function validatePhoneCodes(phoneObject) {
     return 'Código do país inválido.';
   }
 
-  return '';
+  return null;
 }
 
 export function validatePhoneNumber(phoneObject) {
   if (/^\d{6,}$/.test(phoneObject.number)) {
-    return '';
+    return null;
   }
 
   return 'Número muito curto.';
@@ -99,7 +100,6 @@ export function validatePhoneNumber(phoneObject) {
 
 export function validateOnChange(input) {
   const phoneObject = extractPhoneNumber(input);
-  // if (phoneObject.number.length < 4) return null;
 
   return validatePhoneCodes(phoneObject);
 }
