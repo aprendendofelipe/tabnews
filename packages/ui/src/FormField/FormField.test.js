@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { userEvent } from '@testing-library/user-event';
 
 import { FormField, Suggestion } from '.';
 
@@ -51,10 +52,112 @@ describe('ui', () => {
       expect(screen.getByText('Test Error')).toBeInTheDocument();
     });
 
+    describe('PasswordInput', () => {
+      const passwordTestProps = {
+        name: 'test-password',
+        label: 'Test Label',
+        type: 'password',
+      };
+
+      it('renders a password input with the correct type', () => {
+        render(<FormField {...passwordTestProps} />);
+        const input = screen.getByLabelText('Test Label');
+        expect(input).toHaveAttribute('type', 'password');
+      });
+
+      it('toggles password visibility when the visibility button is clicked', async () => {
+        const user = userEvent.setup();
+        render(<FormField {...passwordTestProps} label="Password" />);
+        const button = screen.getByLabelText('Visualizar Password');
+        const passwordInput = screen.getByLabelText('Password');
+        expect(passwordInput.type).toBe('password');
+
+        await user.type(passwordInput, 'password123');
+
+        fireEvent.click(button);
+
+        await waitFor(() => {
+          expect(passwordInput).toHaveFocus();
+        });
+
+        expect(passwordInput.selectionStart).toBe(passwordInput.value.length);
+        expect(passwordInput.selectionEnd).toBe(passwordInput.value.length);
+
+        expect(passwordInput.type).toBe('text');
+
+        fireEvent.click(button);
+
+        await waitFor(() => {
+          expect(passwordInput).toHaveFocus();
+        });
+
+        expect(passwordInput.type).toBe('password');
+        expect(passwordInput.selectionStart).toBe(passwordInput.value.length);
+        expect(passwordInput.selectionEnd).toBe(passwordInput.value.length);
+      });
+
+      it('displays a caps lock warning message when caps lock is on', async () => {
+        const user = userEvent.setup();
+        render(<FormField {...passwordTestProps} />);
+        const passwordInput = screen.getByLabelText('Test Label');
+        expect(screen.queryByText('Caps Lock está ativado.')).not.toBeInTheDocument();
+
+        await user.type(passwordInput, '{capslock} now is on');
+        expect(screen.queryByText('Caps Lock está ativado.')).toBeInTheDocument();
+      });
+
+      it('hides the caps lock warning message when caps lock is off', async () => {
+        const user = userEvent.setup();
+        render(<FormField {...passwordTestProps} />);
+        const passwordInput = screen.getByLabelText('Test Label');
+
+        await user.type(passwordInput, '{capslock} now is on');
+        const capsLockMessage = screen.getByText('Caps Lock está ativado.');
+        expect(capsLockMessage).toBeInTheDocument();
+
+        await user.type(passwordInput, '{capslock} now is off');
+        expect(capsLockMessage).not.toBeInTheDocument();
+      });
+
+      it('calls onKeyDown prop when a key is pressed', async () => {
+        const user = userEvent.setup();
+        const onKeyDown = vi.fn();
+        render(<FormField {...passwordTestProps} onKeyDown={onKeyDown} />);
+        const passwordInput = screen.getByLabelText('Test Label');
+
+        user.type(passwordInput, 'a');
+
+        await waitFor(() => {
+          expect(onKeyDown).toHaveBeenCalled();
+        });
+      });
+
+      it('calls onKeyUp prop when a key is pressed', async () => {
+        const user = userEvent.setup();
+        const onKeyUp = vi.fn();
+        render(<FormField {...passwordTestProps} onKeyUp={onKeyUp} />);
+        const passwordInput = screen.getByLabelText('Test Label');
+
+        user.type(passwordInput, 'a');
+
+        await waitFor(() => {
+          expect(onKeyUp).toHaveBeenCalled();
+        });
+      });
+
+      it('calls onBlur prop when the input loses focus', () => {
+        const onBlur = vi.fn();
+        render(<FormField {...passwordTestProps} onBlur={onBlur} />);
+        const input = screen.getByLabelText('Test Label');
+        fireEvent.blur(input);
+        expect(onBlur).toHaveBeenCalled();
+      });
+    });
+
     describe('validationStatus', () => {
       describe('TextInput', () => {
-        const errorStyle = '.dDNCxm';
-        const successStyle = '.bUhYKy';
+        const errorStyle = '.ijuZEL';
+        const successStyle = '.kLIpNb';
 
         it('should set validationStatus to "error" when error prop is provided', () => {
           const { container } = render(<FormField name="test" error="This is an error" />);
