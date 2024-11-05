@@ -1,4 +1,5 @@
-import { AlertFillIcon } from '@primer/octicons-react';
+import { AlertFillIcon, EyeClosedIcon, EyeIcon } from '@primer/octicons-react';
+import { useRef, useState } from 'react';
 
 import { Button, Checkbox, FormControl, Select, Text, TextInput, Tooltip } from '..';
 
@@ -13,13 +14,22 @@ const textInputProps = {
   autoCorrect: 'off',
   autoCapitalize: 'off',
   spellCheck: false,
-  sx: { px: 2, '&:focus-within': { backgroundColor: 'canvas.default' } },
+  sx: {
+    px: 2,
+    '&:focus-within': {
+      backgroundColor: 'canvas.default',
+    },
+    '> input': {
+      px: 1,
+    },
+  },
 };
 
 export function FormField({
   caption,
   checked,
   error,
+  inputMode,
   isValid,
   label,
   name,
@@ -27,9 +37,73 @@ export function FormField({
   required,
   suggestion,
   sx,
+  type,
   ...props
 }) {
-  const validationStatus = error ? 'error' : isValid ? 'success' : null;
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [capsLockWarningMessage, setCapsLockWarningMessage] = useState(null);
+  const ref = useRef();
+
+  const inputProps = {
+    validationStatus: error ? 'error' : isValid ? 'success' : null,
+    inputMode,
+    ref,
+    ...props,
+  };
+
+  if (type === 'password') {
+    function focusAfterEnd() {
+      setTimeout(() => {
+        const input = ref.current;
+        const len = input.value.length;
+        input.focus();
+        input.setSelectionRange(len, len);
+      });
+    }
+
+    function detectCapsLock(event) {
+      if (inputMode !== 'numeric' && event.getModifierState('CapsLock')) {
+        setCapsLockWarningMessage('Caps Lock está ativado.');
+      } else {
+        setCapsLockWarningMessage(null);
+      }
+    }
+
+    function handlePasswordVisible(event) {
+      event.preventDefault();
+      setIsPasswordVisible(!isPasswordVisible);
+      focusAfterEnd();
+      detectCapsLock(event);
+    }
+
+    inputProps.type = isPasswordVisible ? 'text' : 'password';
+
+    inputProps.trailingVisual = inputProps.trailingVisual || (
+      <TextInput.Action
+        aria-label={isPasswordVisible ? `Ocultar ${label}` : `Visualizar ${label}`}
+        tooltipDirection="nw"
+        onClick={handlePasswordVisible}
+        icon={isPasswordVisible ? EyeClosedIcon : EyeIcon}
+      />
+    );
+
+    inputProps.onKeyUp = (e) => {
+      detectCapsLock(e);
+      props.onKeyUp && props.onKeyUp(e);
+    };
+
+    inputProps.onKeyDown = (e) => {
+      detectCapsLock(e);
+      props.onKeyDown && props.onKeyDown(e);
+    };
+
+    inputProps.onBlur = (e) => {
+      setCapsLockWarningMessage(null);
+      props.onBlur && props.onBlur(e);
+    };
+
+    inputProps.sx = { ...textInputProps.sx, pr: 0 };
+  }
 
   return (
     <FormControl id={name} required={required} sx={{ minHeight: '86px', ...sx }}>
@@ -37,13 +111,12 @@ export function FormField({
       {caption && <FormControl.Caption>{caption}</FormControl.Caption>}
       {error && !suggestion?.value && <FormControl.Validation variant="error">{error}</FormControl.Validation>}
       <Suggestion suggestion={suggestion} />
+      <WarningMessage message={capsLockWarningMessage} />
 
-      {!options && typeof checked === 'undefined' && (
-        <TextInput validationStatus={validationStatus} {...textInputProps} {...props} />
-      )}
+      {!options && typeof checked === 'undefined' && <TextInput type={type} {...textInputProps} {...inputProps} />}
 
       {options && (
-        <Select validationStatus={validationStatus} {...defaultProps} {...props}>
+        <Select {...defaultProps} {...inputProps}>
           {options.map((option) => (
             <Select.Option key={option.value} {...option}>
               {option.label}
@@ -52,7 +125,9 @@ export function FormField({
         </Select>
       )}
 
-      {typeof checked !== 'undefined' && <Checkbox validationStatus={validationStatus} checked={checked} {...props} />}
+      {typeof checked !== 'undefined' && <Checkbox checked={checked} {...inputProps} />}
+
+      <style jsx="true">{'::-ms-reveal {display: none}'}</style>
     </FormControl>
   );
 }
@@ -122,5 +197,22 @@ function TooltippedButton({ children, color, direction = 'nw', sx, tooltip, ...p
         {children}
       </Button>
     </Tooltip>
+  );
+}
+
+function WarningMessage({ message }) {
+  if (!message) return null;
+
+  return (
+    <Text
+      sx={{
+        wordBreak: 'break-word',
+        fontSize: '12px',
+        lineHeight: '14px',
+        fontWeight: 'bold',
+        color: 'attention.fg',
+      }}>
+      <AlertFillIcon size={12} /> {message}
+    </Text>
   );
 }
