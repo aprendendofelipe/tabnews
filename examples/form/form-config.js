@@ -1,4 +1,5 @@
 import {
+  brDocs,
   card,
   cep,
   city,
@@ -12,8 +13,6 @@ import {
   street,
 } from '@tabnews/forms';
 import { returnNull } from '@tabnews/helpers';
-import { validate as isCnpjValid } from 'validation-br/dist/cnpj';
-import { validate as isCpfValid } from 'validation-br/dist/cpf';
 
 export const product = {
   cta: 'Encontrou aquele Produto Top que você queria',
@@ -62,33 +61,6 @@ const fullNameField = {
   },
 };
 
-const documentField = {
-  value: '',
-  label: 'CPF/CNPJ',
-  placeholder: 'Informe seu CPF ou CNPJ',
-  prepare: (document) => {
-    if (isCpfValid(document)) {
-      return {
-        type: 'CPF',
-        number: document.replace(/\D/g, '').padStart(11, '0'),
-      };
-    }
-
-    if (isCnpjValid(document)) {
-      return {
-        type: 'CNPJ',
-        number: document.replace(/[^a-zA-Z0-9]/g, '').padStart(14, '0'),
-      };
-    }
-
-    return {
-      type: 'PASSAPORTE',
-      number: document,
-    };
-  },
-  validateOnBlurAndSubmit: (doc) => (['CPF', 'CNPJ'].includes(doc.type) ? null : 'Documento inválido.'),
-};
-
 const installmentField = {
   value: defaultPayment.value,
   label: 'Selecione o número de parcelas',
@@ -100,7 +72,7 @@ export const fields = {
   fullName: fullNameField,
   email,
   emailConfirmation,
-  document: documentField,
+  document: brDocs,
   phone,
   cep,
   state,
