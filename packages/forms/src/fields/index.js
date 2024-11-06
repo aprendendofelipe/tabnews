@@ -3,4 +3,5 @@ export { card } from './card';
 export { brDocs } from './docs';
 export { email, emailConfirmation } from './email';
 export { fullName, username } from './name';
+export { password, passwordConfirmable, passwordConfirmation } from './password';
 export { phone } from './phone';
