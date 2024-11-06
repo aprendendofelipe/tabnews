@@ -14,7 +14,6 @@ describe('useForm', () => {
     },
     email: {
       value: 'email@example.com',
-      validateOnChange: (value) => (value.length < 5 ? 'Too short' : null),
       customProp: 'custom',
     },
     password: {
@@ -116,6 +115,24 @@ describe('useForm', () => {
 
       const { state } = result.current;
       expect(state.username.value).toBe('def');
+    });
+
+    it('should update value on handle check', () => {
+      const { result } = renderHook(() => useForm({ box: { checked: false } }));
+
+      act(() => {
+        const { onChange } = result.current.getFieldProps('box');
+        onChange({ target: { type: 'checkbox', checked: true } });
+      });
+
+      expect(result.current.state.box.checked).toBe(true);
+
+      act(() => {
+        const { onChange } = result.current.getFieldProps('box');
+        onChange({ target: { type: 'checkbox', checked: false } });
+      });
+
+      expect(result.current.state.box.checked).toBe(false);
     });
 
     it('should format field value on change', () => {
@@ -297,7 +314,7 @@ describe('useForm', () => {
         updateFields({
           username: { value: 'newUser' },
           email: {
-            validateOnBlurAndSubmit: (value) => (!value.includes('@') ? 'Invalid email' : null),
+            validateOnBlurAndSubmit: () => 'Invalid email',
           },
         });
       });
@@ -458,6 +475,31 @@ describe('useForm', () => {
         cep: '',
         city: '',
         value_undefined: undefined,
+      });
+    });
+
+    it('should use checkbox value on form submission', () => {
+      const onSubmit = vi.fn();
+      const { result } = renderHook(() =>
+        useForm({
+          box1: { checked: true },
+          box2: { checked: false },
+        }),
+      );
+      const { getFieldProps } = result.current;
+
+      act(() => {
+        getFieldProps('box1').onChange({ target: { type: 'checkbox', checked: false } });
+        getFieldProps('box2').onChange({ target: { type: 'checkbox', checked: true } });
+      });
+
+      const { handleSubmit } = result.current;
+
+      act(() => handleSubmit(onSubmit)({ preventDefault: () => {} }));
+
+      expect(onSubmit).toHaveBeenCalledWith({
+        box1: false,
+        box2: true,
       });
     });
 
