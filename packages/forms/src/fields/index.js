@@ -2,4 +2,5 @@ export { cep, city, complement, neighborhood, number, state, street } from './ad
 export { card } from './card';
 export { brDocs } from './docs';
 export { email, emailConfirmation } from './email';
+export { fullName, username } from './name';
 export { phone } from './phone';
