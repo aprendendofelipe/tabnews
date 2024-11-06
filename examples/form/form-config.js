@@ -6,6 +6,7 @@ import {
   complement,
   email,
   emailConfirmation,
+  fullName,
   neighborhood,
   number,
   phone,
@@ -46,21 +47,6 @@ const defaultPayment = {
   update: updatePayment,
 };
 
-const fullNameField = {
-  value: '',
-  label: 'Nome completo',
-  placeholder: 'Informe seu nome completo',
-  validateOnBlurAndSubmit: (name) => {
-    const parts = name.trim().split(/\s+/);
-
-    if (parts.length < 2 || parts.some((part) => part.length < 2)) {
-      return 'Nome completo inválido.';
-    }
-
-    return null;
-  },
-};
-
 const installmentField = {
   value: defaultPayment.value,
   label: 'Selecione o número de parcelas',
@@ -69,7 +55,7 @@ const installmentField = {
 };
 
 export const fields = {
-  fullName: fullNameField,
+  fullName,
   email,
   emailConfirmation,
   document: brDocs,
