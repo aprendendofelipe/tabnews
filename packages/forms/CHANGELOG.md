@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.2.1](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.2.0...forms-v0.2.1) (2024-11-07)
+
+
+### Bug Fixes
+
+* update import paths to include file extensions ([566a28f](https://github.com/aprendendofelipe/tabnews/commit/566a28f1cc9a760c521c86752a79564ac56533de))
+* **useForm:** update form handling for missing configuration ([1f3ce99](https://github.com/aprendendofelipe/tabnews/commit/1f3ce99382f6bd8c0217861521faf35d855e7980))
+* **validation-br:** import from @tabnews/forms ([200169d](https://github.com/aprendendofelipe/tabnews/commit/200169dd05b2567a5aa7b622b0f405e421aded05))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @tabnews/helpers bumped from ^0.1.1 to ^0.1.2
+    * @tabnews/hooks bumped from ^0.1.1 to ^0.1.2
+
 ## [0.2.0](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.1.1...forms-v0.2.0) (2024-11-07)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.3.0...ui-v0.3.1) (2024-11-07)
+
+
+### Bug Fixes
+
+* update import paths to include file extensions ([566a28f](https://github.com/aprendendofelipe/tabnews/commit/566a28f1cc9a760c521c86752a79564ac56533de))
+
 ## [0.3.0](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.2.0...ui-v0.3.0) (2024-11-07)
 
 

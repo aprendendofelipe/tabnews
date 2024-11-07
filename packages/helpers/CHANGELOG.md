@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/aprendendofelipe/tabnews/compare/helpers-v0.1.1...helpers-v0.1.2) (2024-11-07)
+
+
+### Bug Fixes
+
+* update import paths to include file extensions ([566a28f](https://github.com/aprendendofelipe/tabnews/commit/566a28f1cc9a760c521c86752a79564ac56533de))
+
 ## [0.1.1](https://github.com/aprendendofelipe/tabnews/compare/helpers-v0.1.0...helpers-v0.1.1) (2024-11-04)
 
 
