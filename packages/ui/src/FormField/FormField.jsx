@@ -29,6 +29,7 @@ export function FormField({
   caption,
   checked,
   error,
+  hidden,
   inputMode,
   isValid,
   label,
@@ -43,6 +44,8 @@ export function FormField({
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [capsLockWarningMessage, setCapsLockWarningMessage] = useState(null);
   const ref = useRef();
+
+  if (hidden) return null;
 
   const inputProps = {
     validationStatus: error ? 'error' : isValid ? 'success' : null,

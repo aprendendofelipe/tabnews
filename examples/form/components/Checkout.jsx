@@ -6,13 +6,13 @@ import { FaCreditCard, FaPix } from 'react-icons/fa6';
 import { SubmittedFields } from '.';
 
 export function Checkout({ fields, product, store }) {
-  const { state, getFieldProps, handleSubmit, updateState, updateFields } = useForm(fields);
+  const { state, getFieldProps, handleSubmit, updateState } = useForm(fields);
   const { dialog, installment, payment, termsAccepted } = state;
 
   function setPaymentMethod(method) {
     payment.update({
       state: { installment },
-      updateFields,
+      updateState,
       value: method === 'pix' ? 'pix' : installment.value,
     });
   }

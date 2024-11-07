@@ -52,6 +52,11 @@ describe('ui', () => {
       expect(screen.getByText('Test Error')).toBeInTheDocument();
     });
 
+    it('renders nothing when hidden true is provided', () => {
+      const { container } = render(<FormField name="test-hidden" label="Test Hidden Label" hidden />);
+      expect(container).toBeEmptyDOMElement();
+    });
+
     describe('PasswordInput', () => {
       const passwordTestProps = {
         name: 'test-password',
