@@ -606,5 +606,104 @@ describe('useForm', () => {
 
       expect(onSubmit).not.toHaveBeenCalled();
     });
+
+    it('should skip disabled fields during submission with "submitDisabled: false"', () => {
+      const onSubmit = vi.fn();
+      const { result } = renderHook(() =>
+        useForm(
+          {
+            ...initialConfig,
+            username: { ...initialConfig.username, disabled: true },
+          },
+          {
+            submitDisabled: false,
+          },
+        ),
+      );
+      const { getFieldProps } = result.current;
+
+      act(() => {
+        getFieldProps('username').onChange({ target: { value: 'ab' } });
+        getFieldProps('email').onChange({ target: { value: 'valid@example.com' } });
+        getFieldProps('password').onChange({ target: { value: 'validPass' } });
+      });
+
+      const { handleSubmit } = result.current;
+
+      act(() => handleSubmit(onSubmit)({ preventDefault: () => {} }));
+
+      expect(onSubmit).toHaveBeenCalledWith({
+        email: 'valid@example.com',
+        password: 'validPass',
+        cep: '',
+        city: '',
+        value_undefined: undefined,
+      });
+      expect(result.current.state.username.value).toBe('ab');
+    });
+
+    it('should skip hidden fields during submission', () => {
+      const onSubmit = vi.fn();
+      const { result } = renderHook(() =>
+        useForm({
+          ...initialConfig,
+          username: { ...initialConfig.username, hidden: true },
+        }),
+      );
+      const { getFieldProps } = result.current;
+
+      act(() => {
+        getFieldProps('email').onChange({ target: { value: 'valid@example.com' } });
+        getFieldProps('password').onChange({ target: { value: 'validPass' } });
+      });
+
+      const { handleSubmit } = result.current;
+
+      act(() => handleSubmit(onSubmit)({ preventDefault: () => {} }));
+
+      expect(onSubmit).toHaveBeenCalledWith({
+        email: 'valid@example.com',
+        password: 'validPass',
+        cep: '',
+        city: '',
+        value_undefined: undefined,
+      });
+      expect(result.current.state.username.value).toBe('');
+    });
+
+    it('should not skip hidden fields during submission with "submitHidden: true"', () => {
+      const onSubmit = vi.fn();
+      const { result } = renderHook(() =>
+        useForm(
+          {
+            ...initialConfig,
+            username: { ...initialConfig.username, hidden: true },
+          },
+          {
+            submitHidden: true,
+          },
+        ),
+      );
+      const { getFieldProps } = result.current;
+
+      act(() => {
+        getFieldProps('username').onChange({ target: { value: 'abcdef' } });
+        getFieldProps('email').onChange({ target: { value: 'valid@example.com' } });
+        getFieldProps('password').onChange({ target: { value: 'validPass' } });
+      });
+
+      const { handleSubmit } = result.current;
+
+      act(() => handleSubmit(onSubmit)({ preventDefault: () => {} }));
+
+      expect(onSubmit).toHaveBeenCalledWith({
+        username: 'abcdef',
+        email: 'valid@example.com',
+        password: 'validPass',
+        cep: '',
+        city: '',
+        value_undefined: undefined,
+      });
+    });
   });
 });

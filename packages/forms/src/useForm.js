@@ -10,7 +10,7 @@ const defaultProcessors = {
   validateOnChange: returnNull,
 };
 
-export function useForm(initialConfig) {
+export function useForm(initialConfig, { submitDisabled = true, submitHidden = false } = {}) {
   const { processors, split, state, updateProcessors, updateState } = useConfig(initialConfig, defaultProcessors);
 
   const updateFields = useCallback(
@@ -32,7 +32,15 @@ export function useForm(initialConfig) {
       for (const [fieldName, fieldState] of Object.entries(state)) {
         const { validateOnBlurAndSubmit, prepare } = processors[fieldName];
 
-        const preparedValue = prepare(fieldState.value);
+        if (!submitDisabled && fieldState.disabled === true) {
+          continue;
+        }
+
+        if (!submitHidden && fieldState.hidden === true) {
+          continue;
+        }
+
+        const preparedValue = fieldState.checked !== undefined ? fieldState.checked : prepare(fieldState.value);
         preparedFields[fieldName] = preparedValue;
 
         const error = validateOnBlurAndSubmit(preparedValue);
@@ -48,7 +56,7 @@ export function useForm(initialConfig) {
         onSubmit(preparedFields);
       }
     },
-    [processors, state, updateState],
+    [processors, state, submitDisabled, submitHidden, updateState],
   );
 
   const getFieldProps = useCallback(
