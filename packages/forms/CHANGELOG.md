@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.2.0](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.1.1...forms-v0.2.0) (2024-11-07)
+
+
+### Features
+
+* **forms:** add address fields with validation and autocomplete support ([3476503](https://github.com/aprendendofelipe/tabnews/commit/34765034e480f3c0aba8e85d4ab9479f3bc2fec2))
+* **forms:** add autoComplete attribute to phone field and enhance tests ([ff49a50](https://github.com/aprendendofelipe/tabnews/commit/ff49a50127d2b52a1b80a2e842e254c0d746ae03))
+* **forms:** add card fields with validation ([bfa51a9](https://github.com/aprendendofelipe/tabnews/commit/bfa51a9a8eeb0f98fc9f922319d9117600005f79))
+* **forms:** add full name and username fields with validation ([0394901](https://github.com/aprendendofelipe/tabnews/commit/0394901ad75241edc933be2dab9153d2e60c7f5c))
+* **forms:** add password fields with validation and confirmation logic ([2fab432](https://github.com/aprendendofelipe/tabnews/commit/2fab432e165885e508b3bdfc0a663ab38a09bb32))
+* **forms:** enhance email field confirmation ([a7c193c](https://github.com/aprendendofelipe/tabnews/commit/a7c193cb7bbcf02557bc2735841a662c639e30d8))
+* **forms:** implement CPF/CNPJ document handling with validation ([7ddd9dd](https://github.com/aprendendofelipe/tabnews/commit/7ddd9dd703c22c4c049e2325632e35b598d04cb6))
+* **useForm:** add submitDisabled and submitHidden options ([39a955a](https://github.com/aprendendofelipe/tabnews/commit/39a955ae87d3eabe80aa376b92d3d90fddeed9d6))
+* **useForm:** add tests for checkbox ([64cc390](https://github.com/aprendendofelipe/tabnews/commit/64cc390163e06af510a1d11c1fbc8ccb6c330bc8))
+
 ## [0.1.1](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.1.0...forms-v0.1.1) (2024-11-04)
 
 

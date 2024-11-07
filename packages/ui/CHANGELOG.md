@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.0](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.2.0...ui-v0.3.0) (2024-11-07)
+
+
+### Features
+
+* **FormField:** add hidden prop to conditionally render field ([db312db](https://github.com/aprendendofelipe/tabnews/commit/db312db5b8a12a0aa5f950a432569335bd87918e))
+* **ui:** add suggestion component enhancements with tooltip and ignore button ([de910c1](https://github.com/aprendendofelipe/tabnews/commit/de910c1f44d5f901bca1af51ca3b5cc69685f8eb))
+* **ui:** enhance FormField with password visibility toggle and caps lock warning ([e0aa04b](https://github.com/aprendendofelipe/tabnews/commit/e0aa04b26ccd4503db7eec5ab8b15962d3be1553))
+
 ## [0.2.0](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.1.0...ui-v0.2.0) (2024-11-04)
 
 
