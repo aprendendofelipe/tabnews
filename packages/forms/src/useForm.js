@@ -29,8 +29,9 @@ export function useForm(initialConfig, { submitDisabled = true, submitHidden = f
       const errors = {};
       let hasErrors = false;
 
-      for (const [fieldName, fieldState] of Object.entries(state)) {
-        const { validateOnBlurAndSubmit, prepare } = processors[fieldName];
+      for (const [fieldName, processor] of Object.entries(processors)) {
+        const { validateOnBlurAndSubmit, prepare } = processor;
+        const fieldState = state[fieldName];
 
         if (!submitDisabled && fieldState.disabled === true) {
           continue;
@@ -61,6 +62,14 @@ export function useForm(initialConfig, { submitDisabled = true, submitHidden = f
 
   const getFieldProps = useCallback(
     (name) => {
+      if (!processors[name]) {
+        if (process.env.NODE_ENV !== 'production') {
+          throw new Error(`Field "${name}" not found in config.`);
+        } else {
+          return { hidden: true };
+        }
+      }
+
       const fieldState = state[name];
       const { format, prepare, onValidChange, validateOnBlurAndSubmit, validateOnChange } = processors[name];
       let onBlurError = null;

@@ -39,7 +39,7 @@ export function Checkout({ fields, product, store }) {
 
       <FormField {...getFieldProps('fullName')} />
       <ResponsiveFormRow>
-        <FormField {...getFieldProps('email')} sx={{ flex: 1, minWidth: '240px' }} />
+        <FormField {...getFieldProps('emailConfirmable')} sx={{ flex: 1, minWidth: '240px' }} />
         <FormField {...getFieldProps('emailConfirmation')} sx={{ flex: 1, minWidth: '240px' }} />
       </ResponsiveFormRow>
       <ResponsiveFormRow>

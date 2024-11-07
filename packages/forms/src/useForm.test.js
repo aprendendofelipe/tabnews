@@ -84,6 +84,23 @@ describe('useForm', () => {
       const empty = renderHook(() => useForm({})).result.current;
       expect(empty).toStrictEqual(expectedResult);
     });
+
+    describe('Missing configuration', () => {
+      it('should throw new Error("Field not found in config.")', () => {
+        const { result } = renderHook(() => useForm(initialConfig));
+        expect(() => result.current.getFieldProps('notFound')).toThrowError('Field "notFound" not found in config.');
+      });
+
+      it('should return hidden field', () => {
+        const originalEnv = process.env.NODE_ENV;
+        process.env.NODE_ENV = 'production';
+        const { result } = renderHook(() => useForm(initialConfig));
+        const hiddenField = result.current.getFieldProps('notFound');
+        process.env.NODE_ENV = originalEnv;
+
+        expect(hiddenField).toStrictEqual({ hidden: true });
+      });
+    });
   });
 
   describe('update state', () => {

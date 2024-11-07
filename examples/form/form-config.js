@@ -60,7 +60,7 @@ const installmentField = {
 
 export const checkoutFields = {
   fullName,
-  email,
+  emailConfirmable,
   emailConfirmation,
   document: brDocs,
   phone,
