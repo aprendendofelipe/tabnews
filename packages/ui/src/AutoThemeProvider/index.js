@@ -1,1 +1,1 @@
-export * from './AutoThemeProvider';
+export * from './AutoThemeProvider.jsx';

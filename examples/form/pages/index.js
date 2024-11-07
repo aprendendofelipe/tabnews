@@ -1,5 +1,5 @@
-import { Checkout, Layout } from '../components';
-import { checkoutFields, product, store } from '../form-config';
+import { Checkout, Layout } from '../components/index.js';
+import { checkoutFields, product, store } from '../form-config.js';
 
 export default function Home() {
   return (

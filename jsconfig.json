@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
-    "module": "preserve",
-    "moduleResolution": "bundler",
+    "module": "NodeNext",
     "baseUrl": ".",
     "types": ["vitest/globals", "@testing-library/jest-dom"]
   }

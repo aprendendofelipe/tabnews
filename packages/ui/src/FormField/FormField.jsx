@@ -1,7 +1,7 @@
 import { AlertFillIcon, EyeClosedIcon, EyeIcon } from '@primer/octicons-react';
 import { useRef, useState } from 'react';
 
-import { Button, Checkbox, FormControl, Select, Text, TextInput, Tooltip } from '..';
+import { Button, Checkbox, FormControl, Select, Text, TextInput, Tooltip } from '../index.js';
 
 const defaultProps = {
   size: 'large',

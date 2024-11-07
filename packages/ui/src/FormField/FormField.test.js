@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
-import { FormField, Suggestion } from '.';
+import { FormField, Suggestion } from './index.js';
 
 describe('ui', () => {
   describe('FormField', () => {

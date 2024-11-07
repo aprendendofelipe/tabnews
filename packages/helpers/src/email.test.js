@@ -1,4 +1,4 @@
-import { isValidEmail, suggestEmail } from '.';
+import { isValidEmail, suggestEmail } from './index.js';
 
 describe('helpers', () => {
   describe('suggestEmail', () => {

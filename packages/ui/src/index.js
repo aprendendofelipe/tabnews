@@ -1,6 +1,6 @@
-export * from './AutoThemeProvider';
-export * from './FormField';
-export * from './ThemeProvider';
+export * from './AutoThemeProvider/index.js';
+export * from './FormField/index.js';
+export * from './ThemeProvider/index.js';
 export {
   ActionList,
   ActionMenu,

@@ -1,2 +1,2 @@
-export * from './useConfig';
-export * from './useMergedState';
+export * from './useConfig/index.js';
+export * from './useMergedState/index.js';

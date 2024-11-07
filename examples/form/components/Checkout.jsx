@@ -3,7 +3,7 @@ import { Box, Button, Flash, FormField, Heading, TabNav, Text } from '@tabnews/u
 import { Link } from '@tabnews/ui/primer';
 import { FaCreditCard, FaPix } from 'react-icons/fa6';
 
-import { SubmittedFields } from '.';
+import { SubmittedFields } from './index.js';
 
 export function Checkout({ fields, product, store }) {
   const { state, getFieldProps, handleSubmit, updateState } = useForm(fields);

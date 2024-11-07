@@ -1,4 +1,4 @@
-import { cardNumber, cvv, holderName, month, year } from './card';
+import { cardNumber, cvv, holderName, month, year } from './card.js';
 
 describe('forms', () => {
   describe('cardNumber field', () => {

@@ -1,4 +1,4 @@
-import { phone } from '.';
+import { phone } from './index.js';
 import {
   extractPhoneNumber,
   maskPhone,
@@ -6,7 +6,7 @@ import {
   validatePhoneCodes,
   validatePhoneNumber,
   validatePhoneObject,
-} from './phone';
+} from './phone.js';
 
 describe('forms', () => {
   describe('phone field', () => {

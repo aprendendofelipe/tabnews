@@ -1,4 +1,4 @@
-import { complement } from '.';
+import { complement } from './index.js';
 
 describe('forms', () => {
   describe('complement field', () => {

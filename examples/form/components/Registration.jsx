@@ -2,7 +2,7 @@ import { useForm } from '@tabnews/forms';
 import { Box, Button, Flash, FormField, Heading, Text } from '@tabnews/ui';
 import { Link } from '@tabnews/ui/primer';
 
-import { SubmittedFields } from '.';
+import { SubmittedFields } from './index.js';
 
 export function Registration({ fields, store }) {
   const { state, getFieldProps, handleSubmit, updateState } = useForm(fields);

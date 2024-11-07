@@ -1,6 +1,5 @@
 import { isValidEmail, suggestEmail } from '@tabnews/helpers';
 
-import { email, emailConfirmable, emailConfirmation } from '.';
 import {
   confirmEmail,
   createConfirmation,
@@ -8,7 +7,8 @@ import {
   createSuggestionObject,
   format,
   validateEmail,
-} from './email';
+} from './email.js';
+import { email, emailConfirmable, emailConfirmation } from './index.js';
 
 vi.mock('@tabnews/helpers', () => ({
   isValidEmail: vi.fn(),

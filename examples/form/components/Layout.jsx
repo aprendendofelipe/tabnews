@@ -1,7 +1,7 @@
 import { Box } from '@tabnews/ui';
 import { Header } from '@tabnews/ui/primer';
 
-import { ThemeSwitcher } from '.';
+import { ThemeSwitcher } from './index.js';
 
 export function Layout({ children, containerWidth }) {
   return (

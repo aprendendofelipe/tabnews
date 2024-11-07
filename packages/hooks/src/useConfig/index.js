@@ -1,1 +1,1 @@
-export * from './useConfig';
+export * from './useConfig.js';

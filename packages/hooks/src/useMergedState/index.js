@@ -1,1 +1,1 @@
-export * from './useMergedState';
+export * from './useMergedState.js';

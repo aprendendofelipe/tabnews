@@ -1,4 +1,4 @@
-import { state } from '.';
+import { state } from './index.js';
 
 describe('forms', () => {
   describe('state field', () => {
