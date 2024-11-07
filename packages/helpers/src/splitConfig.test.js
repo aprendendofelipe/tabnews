@@ -1,4 +1,4 @@
-import { splitConfig } from './splitConfig';
+import { splitConfig } from './index.js';
 
 describe('helpers', () => {
   describe('splitConfig', () => {

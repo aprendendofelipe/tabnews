@@ -1,4 +1,4 @@
-import { city } from '.';
+import { city } from './index.js';
 
 describe('forms', () => {
   describe('city field', () => {

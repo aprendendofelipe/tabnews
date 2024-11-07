@@ -1,5 +1,5 @@
-import { cep } from '.';
-import { format, getAddress, onValidChange, prepare, validateOnBlurAndSubmit } from './cep';
+import { format, getAddress, onValidChange, prepare, validateOnBlurAndSubmit } from './cep.js';
+import { cep } from './index.js';
 
 describe('forms', () => {
   describe('cep field', () => {

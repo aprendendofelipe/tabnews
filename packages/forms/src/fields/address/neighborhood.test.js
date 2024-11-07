@@ -1,4 +1,4 @@
-import { neighborhood } from '.';
+import { neighborhood } from './index.js';
 
 describe('forms', () => {
   describe('neighborhood field', () => {

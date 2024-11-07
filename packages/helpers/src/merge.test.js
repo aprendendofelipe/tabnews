@@ -1,4 +1,4 @@
-import { deepMerge } from '.';
+import { deepMerge } from './index.js';
 
 describe('helpers', () => {
   describe('deepMerge', () => {

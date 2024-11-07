@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
 
-import { ThemeProvider } from '../ThemeProvider';
+import { ThemeProvider } from '../ThemeProvider/index.js';
 
 // script to be called before interactive in _document.js
 // if (['auto','night'].includes(localStorage.getItem('colorMode')))

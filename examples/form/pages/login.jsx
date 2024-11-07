@@ -1,5 +1,5 @@
-import { Layout, Login } from '../components';
-import { loginFields, store } from '../form-config';
+import { Layout, Login } from '../components/index.js';
+import { loginFields, store } from '../form-config.js';
 
 export default function LoginPage() {
   return (

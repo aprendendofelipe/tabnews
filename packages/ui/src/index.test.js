@@ -1,6 +1,6 @@
 /* eslint-disable import/namespace */
-import * as ui from '.';
-import * as document from './_document';
+import * as document from './_document.jsx';
+import * as ui from './index.js';
 
 const exportedByIndex = [
   'ActionList',

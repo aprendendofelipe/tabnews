@@ -1,6 +1,6 @@
 import { render, waitFor } from '@testing-library/react';
 
-import { AutoThemeProvider, NoFlashGlobalStyle } from '.';
+import { AutoThemeProvider, NoFlashGlobalStyle } from './index.js';
 
 describe('ui', () => {
   describe('AutoThemeProvider', () => {

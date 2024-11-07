@@ -1,5 +1,5 @@
-import { Layout, Registration } from '../components';
-import { registrationFields, store } from '../form-config';
+import { Layout, Registration } from '../components/index.js';
+import { registrationFields, store } from '../form-config.js';
 
 export default function RegistrationPage() {
   return (

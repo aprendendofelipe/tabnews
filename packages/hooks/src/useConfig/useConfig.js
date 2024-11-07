@@ -1,7 +1,7 @@
 import { splitConfig } from '@tabnews/helpers';
 import { useCallback, useMemo } from 'react';
 
-import { useMergedState } from '../useMergedState';
+import { useMergedState } from '../useMergedState/index.js';
 
 /**
  * Custom hook to manage configuration and state processing.

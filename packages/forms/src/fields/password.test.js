@@ -1,5 +1,5 @@
-import { password, passwordConfirmable, passwordConfirmation } from '.';
-import { createConfirmation } from './password';
+import { password, passwordConfirmable, passwordConfirmation } from './index.js';
+import { createConfirmation } from './password.js';
 
 describe('forms', () => {
   describe('password fields', () => {
