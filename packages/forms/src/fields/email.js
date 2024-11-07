@@ -5,21 +5,25 @@ export const email = {
   label: 'Seu Email',
   placeholder: 'Digite seu email',
   type: 'email',
+  autoComplete: 'email',
   format,
   prepare: format,
+  onValidChange: confirmEmail('email'),
+  validateOnBlurAndSubmit: createIgnorableValidator(),
+};
+
+export const emailConfirmable = {
+  ...email,
+  onValidChange: confirmEmail('emailConfirmable', 'emailConfirmation'),
   validateOnBlurAndSubmit: validateEmail,
-  onValidChange: confirmEmail('email', 'emailConfirmation'),
 };
 
 export const emailConfirmation = {
-  value: '',
+  ...email,
   label: 'Confirme seu Email',
   placeholder: 'Digite novamente seu email',
-  type: 'email',
-  format,
-  prepare: format,
+  onValidChange: confirmEmail('emailConfirmation', 'emailConfirmable'),
   validateOnBlurAndSubmit: validateEmail,
-  onValidChange: confirmEmail('emailConfirmation', 'email'),
 };
 
 export function format(email) {
@@ -30,44 +34,87 @@ export function validateEmail(email) {
   return isValidEmail(email) ? null : 'Email inválido.';
 }
 
-export function confirmEmail(field, confirmationField) {
-  return ({ updateFields, value }) => {
-    const suggestion = createSuggestionObject(value, updateFields, confirmationField);
-    const validateOnBlurAndSubmit = createConfirmation(value);
+export function createIgnorableValidator(ignoredSuggestion) {
+  return (inputValue) => {
+    const error = validateEmail(inputValue);
 
-    updateFields({
-      [field]: { suggestion },
-      [confirmationField]: { validateOnBlurAndSubmit, error: null },
-    });
+    if (error) {
+      return error;
+    }
+
+    const suggestion = suggestEmail(inputValue);
+
+    if (!suggestion || suggestion === ignoredSuggestion) {
+      return null;
+    }
+
+    return 'Verifique a sugestão.';
   };
 }
 
-export function createSuggestionObject(value, updateFields, confirmationField) {
-  if (confirmationField === 'email') return null;
+export function confirmEmail(field, confirmationField) {
+  return ({ state, updateFields, value }) => {
+    const suggestion = createSuggestionObject(state, value, updateFields, field, confirmationField);
+    const updatedFields = {
+      [field]: { suggestion },
+    };
+
+    if (confirmationField) {
+      const validateOnBlurAndSubmit = createConfirmation(value);
+      updatedFields[confirmationField] = { validateOnBlurAndSubmit, error: null };
+    }
+
+    updateFields(updatedFields);
+  };
+}
+
+export function createSuggestionObject(state, value, updateFields, field, confirmationField) {
+  if (field === 'emailConfirmation') return null;
 
   const suggestion = suggestEmail(value);
   if (!suggestion) return null;
 
+  if (suggestion === state[field].suggestion?.ignored) {
+    return {
+      ignored: suggestion,
+      value: null,
+    };
+  }
+
   const [username, domain] = suggestion.split('@');
+
+  const updatedFieldsOnClick = {
+    [field]: {
+      value: suggestion,
+      suggestion: null,
+      error: null,
+    },
+  };
+
+  if (confirmationField) {
+    updatedFieldsOnClick[confirmationField] = {
+      error: null,
+      validateOnBlurAndSubmit: createConfirmation(suggestion),
+    };
+  }
+
+  const updatedFieldsOnIgnore = {
+    [field]: {
+      suggestion: {
+        ignored: suggestion,
+        value: null,
+      },
+      error: null,
+      validateOnBlurAndSubmit: createIgnorableValidator(suggestion),
+    },
+  };
 
   return {
     value: suggestion,
     pre: `${username}@`,
     mid: domain,
-    onClick: (e) => {
-      e.preventDefault();
-      updateFields({
-        email: {
-          value: suggestion,
-          suggestion: null,
-          error: null,
-        },
-        [confirmationField]: {
-          validateOnBlurAndSubmit: createConfirmation(suggestion),
-          error: null,
-        },
-      });
-    },
+    onClick: () => updateFields(updatedFieldsOnClick),
+    ignoreClick: () => updateFields(updatedFieldsOnIgnore),
   };
 }
 
