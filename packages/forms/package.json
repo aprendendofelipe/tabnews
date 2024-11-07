@@ -17,7 +17,8 @@
   },
   "dependencies": {
     "@tabnews/helpers": "^0.1.1",
-    "@tabnews/hooks": "^0.1.1"
+    "@tabnews/hooks": "^0.1.1",
+    "validation-br": "^1.5.2"
   },
   "peerDependencies": {
     "react": ">=18.2.0"
