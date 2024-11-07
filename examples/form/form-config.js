@@ -18,7 +18,6 @@ import {
   street,
   username,
 } from '@tabnews/forms';
-import { returnNull } from '@tabnews/helpers';
 
 export const product = {
   cta: 'Encontrou aquele Produto Top que você queria',
@@ -79,11 +78,11 @@ export const checkoutFields = {
   dialog: null,
 };
 
-function updatePayment({ state, updateFields, value }) {
+function updatePayment({ state, updateState, value }) {
   const installment = state.installment.options.find((opt) => opt.value === value);
 
   if (value === 'pix') {
-    updateFields({
+    updateState({
       installment: {
         value: state.installment.value,
       },
@@ -95,18 +94,12 @@ function updatePayment({ state, updateFields, value }) {
         ...installment,
       },
 
-      ...Object.keys(card).reduce((acc, key) => {
-        acc[key] = {
-          validateOnBlurAndSubmit: returnNull,
-        };
-
-        return acc;
-      }, {}),
+      ...Object.fromEntries(Object.keys(card).map((key) => [key, { hidden: true }])),
     });
   }
 
   if (value !== 'pix') {
-    updateFields({
+    updateState({
       installment: {
         value: installment.value,
         description: installment.description || installment.label,
@@ -120,13 +113,7 @@ function updatePayment({ state, updateFields, value }) {
         ...installment,
       },
 
-      ...Object.keys(card).reduce((acc, key) => {
-        acc[key] = {
-          validateOnBlurAndSubmit: card[key].validateOnBlurAndSubmit,
-        };
-
-        return acc;
-      }, {}),
+      ...Object.fromEntries(Object.keys(card).map((key) => [key, { hidden: false }])),
     });
   }
 }
