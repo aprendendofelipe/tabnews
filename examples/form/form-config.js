@@ -5,13 +5,18 @@ import {
   city,
   complement,
   email,
+  emailConfirmable,
   emailConfirmation,
   fullName,
   neighborhood,
   number,
+  password,
+  passwordConfirmable,
+  passwordConfirmation,
   phone,
   state,
   street,
+  username,
 } from '@tabnews/forms';
 import { returnNull } from '@tabnews/helpers';
 
@@ -54,7 +59,7 @@ const installmentField = {
   onValidChange: updatePayment,
 };
 
-export const fields = {
+export const checkoutFields = {
   fullName,
   email,
   emailConfirmation,
@@ -125,3 +130,19 @@ function updatePayment({ state, updateFields, value }) {
     });
   }
 }
+
+export const registrationFields = {
+  username,
+  emailConfirmable,
+  emailConfirmation,
+  passwordConfirmable,
+  passwordConfirmation,
+  termsAccepted: { checked: false },
+  dialog: null,
+};
+
+export const loginFields = {
+  email,
+  password,
+  dialog: null,
+};

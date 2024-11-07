@@ -1,16 +1,13 @@
 import { useForm } from '@tabnews/forms';
 import { Box, Button, Flash, FormField, Heading, TabNav, Text } from '@tabnews/ui';
-import { Dialog, Link } from '@tabnews/ui/primer';
+import { Link } from '@tabnews/ui/primer';
 import { FaCreditCard, FaPix } from 'react-icons/fa6';
 
-export function ExampleForm({ fields, product, store }) {
-  const {
-    state: { dialog, installment, payment, termsAccepted },
-    getFieldProps,
-    handleSubmit,
-    updateState,
-    updateFields,
-  } = useForm(fields);
+import { SubmittedFields } from '.';
+
+export function Checkout({ fields, product, store }) {
+  const { state, getFieldProps, handleSubmit, updateState, updateFields } = useForm(fields);
+  const { dialog, installment, payment, termsAccepted } = state;
 
   function setPaymentMethod(method) {
     payment.update({
@@ -26,10 +23,7 @@ export function ExampleForm({ fields, product, store }) {
 
   return (
     <form style={{ display: 'flex', flexDirection: 'column', width: '100%' }} onSubmit={handleSubmit(onSubmit)}>
-      <Dialog isOpen={Boolean(dialog.value)} onDismiss={() => updateState({ dialog: { value: null } })}>
-        <Dialog.Header>Dados Tratados</Dialog.Header>
-        <pre>{JSON.stringify(dialog.value, null, 2)}</pre>
-      </Dialog>
+      <SubmittedFields state={state} updateState={updateState} />
 
       <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'center', mb: 4 }}>
         <Heading as="h1" sx={{ color: 'attention.fg' }}>
