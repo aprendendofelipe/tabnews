@@ -36,7 +36,7 @@
     "styled-components": "^5.3.11"
   },
   "devDependencies": {
-    "next": "14.2.14",
+    "next": "15.0.3",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
