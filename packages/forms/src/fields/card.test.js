@@ -16,24 +16,24 @@ describe('forms', () => {
     });
 
     it('should format the card number correctly', () => {
-      expect(cardNumber.format('12345678901234567890')).toBe('1234 5678 9012 3456 7890');
+      expect(cardNumber.format('1234567890123456789')).toBe('1234 5678 9012 3456 789');
     });
 
     it('should prepare the card number correctly', () => {
-      const prepared = cardNumber.prepare('1234 5678 9012 3456 7890');
-      expect(prepared).toBe('12345678901234567890');
+      const prepared = cardNumber.prepare('1234 5678 9012 3456 789');
+      expect(prepared).toBe('1234567890123456789');
     });
 
     describe('validateOnBlurAndSubmit', () => {
       it('should return null for valid input length', () => {
-        expect(cardNumber.validateOnBlurAndSubmit('123456789012')).toBeNull();
-        expect(cardNumber.validateOnBlurAndSubmit('12345678901234567890')).toBeNull();
+        expect(cardNumber.validateOnBlurAndSubmit('1234567890123')).toBeNull();
+        expect(cardNumber.validateOnBlurAndSubmit('1234567890123456789')).toBeNull();
       });
 
       it('should return error message for invalid input length', () => {
         expect(cardNumber.validateOnBlurAndSubmit('')).toBe('Cartão inválido.');
-        expect(cardNumber.validateOnBlurAndSubmit('12345678901')).toBe('Cartão inválido.');
-        expect(cardNumber.validateOnBlurAndSubmit('123456789012345678901')).toBe('Cartão inválido.');
+        expect(cardNumber.validateOnBlurAndSubmit('123456789012')).toBe('Cartão inválido.');
+        expect(cardNumber.validateOnBlurAndSubmit('12345678901234567890')).toBe('Cartão inválido.');
       });
     });
   });

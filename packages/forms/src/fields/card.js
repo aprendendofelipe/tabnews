@@ -9,9 +9,9 @@ export const cardNumber = {
       .replace(/\D/g, '')
       .replace(/(\d{4})(?=\d)/g, '$1 ')
       .trim()
-      .slice(0, 24),
+      .slice(0, 23),
   prepare: (number) => number.replace(/\D/g, ''),
-  validateOnBlurAndSubmit: (number) => (/^\d{12,20}$/.test(number) ? null : 'Cartão inválido.'),
+  validateOnBlurAndSubmit: (number) => (/^\d{13,19}$/.test(number) ? null : 'Cartão inválido.'),
 };
 
 export const holderName = {
