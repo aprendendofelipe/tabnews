@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.2.2](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.2.1...forms-v0.2.2) (2024-11-11)
+
+
+### Bug Fixes
+
+* **card-cvv:** update format and validation to support 4-digit CVV ([3e75c01](https://github.com/aprendendofelipe/tabnews/commit/3e75c01511c35442cd117083be5526b7d150ba8c))
+* **card-fields:** update card number length validation and formatting ([4295f68](https://github.com/aprendendofelipe/tabnews/commit/4295f68a858effd8e9a3e6b81d78902e2820c317))
+* **password-fields:** add autocomplete attributes for password inputs ([cafe630](https://github.com/aprendendofelipe/tabnews/commit/cafe630c33f5bf1a5d0a7bf200dba7c2bf1f2689))
+* **password-fields:** remove name properties from password field definitions ([5accd2c](https://github.com/aprendendofelipe/tabnews/commit/5accd2cf64e7255a1487d7752f487f2836da23fa))
+
 ## [0.2.1](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.2.0...forms-v0.2.1) (2024-11-07)
 
 
