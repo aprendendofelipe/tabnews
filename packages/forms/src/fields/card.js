@@ -64,8 +64,8 @@ export const cvv = {
   type: 'password',
   inputMode: 'numeric',
   autoComplete: 'off',
-  format: (cvv) => cvv.replace(/\D/g, '').slice(0, 3),
-  validateOnBlurAndSubmit: (cvv) => (/^\d{3}$/.test(cvv) ? null : 'CVV inválido.'),
+  format: (cvv) => cvv.replace(/\D/g, '').slice(0, 4),
+  validateOnBlurAndSubmit: (cvv) => (/^\d{3,4}$/.test(cvv) ? null : 'CVV inválido.'),
 };
 
 function getYears(numberOfYears = 35) {

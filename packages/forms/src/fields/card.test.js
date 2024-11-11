@@ -189,17 +189,19 @@ describe('forms', () => {
 
     it('should format cvv correctly', () => {
       expect(cvv.format('123')).toBe('123');
-      expect(cvv.format('1234')).toBe('123');
+      expect(cvv.format('1234')).toBe('1234');
+      expect(cvv.format('12345')).toBe('1234');
     });
 
     describe('validateOnBlurAndSubmit', () => {
       it('should return null if cvv is valid', () => {
         expect(cvv.validateOnBlurAndSubmit('123')).toBeNull();
+        expect(cvv.validateOnBlurAndSubmit('1234')).toBeNull();
       });
 
       it('should return error message if cvv is invalid', () => {
         expect(cvv.validateOnBlurAndSubmit('12')).toBe('CVV inválido.');
-        expect(cvv.validateOnBlurAndSubmit('1234')).toBe('CVV inválido.');
+        expect(cvv.validateOnBlurAndSubmit('12345')).toBe('CVV inválido.');
       });
     });
   });
