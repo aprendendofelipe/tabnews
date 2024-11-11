@@ -4,6 +4,7 @@ export const password = {
   label: 'Senha',
   placeholder: 'Digite sua senha',
   type: 'password',
+  autoComplete: 'current-password',
   validateOnBlurAndSubmit: validatePassword,
 };
 
@@ -13,6 +14,7 @@ export const passwordConfirmable = {
   label: 'Senha',
   placeholder: 'Crie uma senha',
   type: 'password',
+  autoComplete: 'new-password',
   validateOnBlurAndSubmit: validatePassword,
   onValidChange: confirmPassword('passwordConfirmation'),
 };
@@ -23,6 +25,7 @@ export const passwordConfirmation = {
   label: 'Confirmação de senha',
   placeholder: 'Confirme sua senha',
   type: 'password',
+  autoComplete: 'new-password',
   validateOnBlurAndSubmit: validatePassword,
   onValidChange: confirmPassword('passwordConfirmable'),
 };
