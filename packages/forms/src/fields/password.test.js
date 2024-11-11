@@ -10,6 +10,7 @@ describe('forms', () => {
         label: 'Senha',
         placeholder: 'Digite sua senha',
         type: 'password',
+        autoComplete: 'current-password',
         validateOnBlurAndSubmit: expect.any(Function),
       });
 
@@ -19,6 +20,7 @@ describe('forms', () => {
         label: 'Senha',
         placeholder: 'Crie uma senha',
         type: 'password',
+        autoComplete: 'new-password',
         validateOnBlurAndSubmit: expect.any(Function),
         onValidChange: expect.any(Function),
       });
@@ -29,6 +31,7 @@ describe('forms', () => {
         label: 'Confirmação de senha',
         placeholder: 'Confirme sua senha',
         type: 'password',
+        autoComplete: 'new-password',
         validateOnBlurAndSubmit: expect.any(Function),
         onValidChange: expect.any(Function),
       });
