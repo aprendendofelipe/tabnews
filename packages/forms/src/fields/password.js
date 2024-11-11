@@ -1,6 +1,5 @@
 export const password = {
   value: '',
-  name: 'password',
   label: 'Senha',
   placeholder: 'Digite sua senha',
   type: 'password',
@@ -10,7 +9,6 @@ export const password = {
 
 export const passwordConfirmable = {
   value: '',
-  name: 'passwordConfirmable',
   label: 'Senha',
   placeholder: 'Crie uma senha',
   type: 'password',
@@ -21,7 +19,6 @@ export const passwordConfirmable = {
 
 export const passwordConfirmation = {
   value: '',
-  name: 'passwordConfirmation',
   label: 'Confirmação de senha',
   placeholder: 'Confirme sua senha',
   type: 'password',
