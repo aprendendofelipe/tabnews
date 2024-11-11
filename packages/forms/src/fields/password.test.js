@@ -6,7 +6,6 @@ describe('forms', () => {
     it('should have the correct shape', () => {
       expect(password).toStrictEqual({
         value: '',
-        name: 'password',
         label: 'Senha',
         placeholder: 'Digite sua senha',
         type: 'password',
@@ -16,7 +15,6 @@ describe('forms', () => {
 
       expect(passwordConfirmable).toStrictEqual({
         value: '',
-        name: 'passwordConfirmable',
         label: 'Senha',
         placeholder: 'Crie uma senha',
         type: 'password',
@@ -27,7 +25,6 @@ describe('forms', () => {
 
       expect(passwordConfirmation).toStrictEqual({
         value: '',
-        name: 'passwordConfirmation',
         label: 'Confirmação de senha',
         placeholder: 'Confirme sua senha',
         type: 'password',
