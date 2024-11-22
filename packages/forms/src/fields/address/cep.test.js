@@ -39,8 +39,9 @@ describe('forms', () => {
     describe('onValidChange', () => {
       it('should not call updateState for incomplete CEP', async () => {
         const updateState = vi.fn();
-        await onValidChange({ value: '12345', updateState });
+        const address = await onValidChange({ value: '12345', updateState });
         expect(updateState).not.toHaveBeenCalled();
+        expect(address).toBeUndefined();
       });
 
       it('should call updateState with loading true for valid CEP', async () => {
@@ -76,15 +77,18 @@ describe('forms', () => {
           }),
         });
 
-        await onValidChange({ value: '12345-678', updateState });
-
-        expect(updateState).toHaveBeenCalledWith({
+        const expectedAddress = {
           cep: { value: '12345-678', loading: false, error: null, isValid: true },
           state: { value: 'SP', error: null, isValid: true },
           city: { value: 'São Paulo', error: null, isValid: true },
           neighborhood: { value: 'Centro', error: null, isValid: true },
           street: { value: 'Rua A', error: null, isValid: true },
-        });
+        };
+
+        const address = await onValidChange({ value: '12345-678', updateState });
+
+        expect(updateState).toHaveBeenCalledWith(expectedAddress);
+        expect(address).toStrictEqual(expectedAddress);
       });
 
       it('should call updateState without address data for inexistent CEP', async () => {
@@ -95,9 +99,12 @@ describe('forms', () => {
           json: async () => ({}),
         });
 
-        await onValidChange({ value: '12345-678', updateState });
+        const expectedAddress = { cep: { value: '12345-678', loading: false } };
 
-        expect(updateState).toHaveBeenCalledWith({ cep: { value: '12345-678', loading: false } });
+        const address = await onValidChange({ value: '12345-678', updateState });
+
+        expect(updateState).toHaveBeenCalledWith(expectedAddress);
+        expect(address).toStrictEqual(expectedAddress);
       });
     });
 

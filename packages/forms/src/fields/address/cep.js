@@ -40,6 +40,8 @@ export async function onValidChange({ value, updateState }) {
   }
 
   updateState(address);
+
+  return address;
 }
 
 export async function getAddress(cep) {
