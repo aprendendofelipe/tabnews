@@ -10,8 +10,25 @@ const defaultProcessors = {
   validateOnChange: returnNull,
 };
 
-export function useForm(initialConfig, { submitDisabled = true, submitHidden = false } = {}) {
-  const { processors, split, state, updateProcessors, updateState } = useConfig(initialConfig, defaultProcessors);
+export function useForm(
+  initialConfig,
+  { onBlur = noop, onChange = noop, onStateChange = noop, submitDisabled = true, submitHidden = false } = {},
+) {
+  const {
+    processors,
+    split,
+    state,
+    updateProcessors,
+    updateState: updateFormValues,
+  } = useConfig(initialConfig, defaultProcessors);
+
+  const updateState = useCallback(
+    (newState) => {
+      updateFormValues(newState);
+      onStateChange(newState);
+    },
+    [onStateChange, updateFormValues],
+  );
 
   const updateFields = useCallback(
     (newConfig) => {
@@ -96,6 +113,15 @@ export function useForm(initialConfig, { submitDisabled = true, submitHidden = f
           if (!updatedState.error) {
             onValidChange({ checked, state, updateFields, updateProcessors, updateState, value });
           }
+
+          onChange(e, {
+            name,
+            ...updatedState,
+            state,
+            updateFields,
+            updateProcessors,
+            updateState,
+          });
         },
         onBlur: (e) => {
           const preparedValue = prepare(e.target.value);
@@ -103,10 +129,11 @@ export function useForm(initialConfig, { submitDisabled = true, submitHidden = f
           if (onBlurError) {
             updateState({ [name]: { error: onBlurError } });
           }
+          onBlur(e, { error: onBlurError, name, preparedValue, state, updateFields, updateProcessors, updateState });
         },
       };
     },
-    [processors, state, updateFields, updateProcessors, updateState],
+    [onBlur, onChange, processors, state, updateFields, updateProcessors, updateState],
   );
 
   return {

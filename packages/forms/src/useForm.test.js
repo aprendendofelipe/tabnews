@@ -723,4 +723,82 @@ describe('useForm', () => {
       });
     });
   });
+
+  describe('event handlers', () => {
+    it('should call "onChange" when provided', () => {
+      const onChange = vi.fn();
+      const { result } = renderHook(() => useForm(initialConfig, { onChange }));
+
+      act(() => {
+        const { onChange } = result.current.getFieldProps('username');
+        onChange({ target: { value: 'abcdef' } });
+      });
+
+      expect(onChange).toHaveBeenCalledWith(
+        { target: { value: 'abcdef' } },
+        {
+          name: 'username',
+          value: 'abcdef',
+          error: null,
+          isValid: false,
+          state: expectedInitialState,
+          updateFields: expect.any(Function),
+          updateProcessors: expect.any(Function),
+          updateState: expect.any(Function),
+        },
+      );
+    });
+
+    it('should call "onBlur" when provided', () => {
+      const onBlur = vi.fn();
+      const { result } = renderHook(() => useForm(initialConfig, { onBlur }));
+
+      act(() => {
+        const { onBlur } = result.current.getFieldProps('username');
+        onBlur({ target: { value: 'abcdef' } });
+      });
+
+      expect(onBlur).toHaveBeenCalledWith(
+        { target: { value: 'abcdef' } },
+        {
+          name: 'username',
+          preparedValue: 'abcdef',
+          error: null,
+          state: expectedInitialState,
+          updateFields: expect.any(Function),
+          updateProcessors: expect.any(Function),
+          updateState: expect.any(Function),
+        },
+      );
+    });
+
+    it('should call "onStateChange" on "onChange" event', () => {
+      const onStateChange = vi.fn();
+      const { result } = renderHook(() => useForm(initialConfig, { onStateChange }));
+
+      act(() => {
+        const { onChange } = result.current.getFieldProps('username');
+        onChange({ target: { value: 'abcdef' } });
+      });
+
+      expect(onStateChange).toHaveBeenCalledWith({
+        username: {
+          value: 'abcdef',
+          error: null,
+          isValid: false,
+        },
+      });
+    });
+
+    it('should call "onStateChange" when call "updateState"', () => {
+      const onStateChange = vi.fn();
+      const { result } = renderHook(() => useForm(initialConfig, { onStateChange }));
+      const { updateState } = result.current;
+      const updatedState = { username: { value: 'abcdef' } };
+
+      act(() => updateState(updatedState));
+
+      expect(onStateChange).toHaveBeenCalledWith(updatedState);
+    });
+  });
 });
