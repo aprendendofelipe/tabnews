@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.3](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.2.2...forms-v0.2.3) (2024-11-22)
+
+
+### Features
+
+* **cep field:** return address from onValidChange ([fb8992c](https://github.com/aprendendofelipe/tabnews/commit/fb8992cbbad922a456ddbc9c0dc5d8f390604216))
+* **useForm:** add onChange, onBlur, and onStateChange handlers ([077f067](https://github.com/aprendendofelipe/tabnews/commit/077f067242d729f84f87fcf74d73f07d36cdcc67))
+
 ## [0.2.2](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.2.1...forms-v0.2.2) (2024-11-11)
 
 
