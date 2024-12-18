@@ -195,8 +195,8 @@ describe('ui', () => {
       });
 
       describe('Select', () => {
-        const errorStyle = '.jQqnSj';
-        const successStyle = '.htCKpT';
+        const errorStyle = '.gWEXNu';
+        const successStyle = '.geAuMO';
 
         it('should set validationStatus to "error" when error prop is provided', () => {
           const { container } = render([

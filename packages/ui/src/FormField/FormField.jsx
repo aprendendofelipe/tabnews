@@ -4,13 +4,13 @@ import { useRef, useState } from 'react';
 import { Button, Checkbox, FormControl, Select, Text, TextInput, Tooltip } from '../index.js';
 
 const defaultProps = {
-  size: 'large',
   block: true,
   contrast: true,
 };
 
 const textInputProps = {
   ...defaultProps,
+  size: 'large',
   autoCorrect: 'off',
   autoCapitalize: 'off',
   spellCheck: false,
@@ -119,7 +119,7 @@ export function FormField({
       {!options && typeof checked === 'undefined' && <TextInput type={type} {...textInputProps} {...inputProps} />}
 
       {options && (
-        <Select {...defaultProps} {...inputProps}>
+        <Select {...defaultProps} {...inputProps} sx={{ height: '40px' }}>
           {options.map((option) => (
             <Select.Option key={option.value} {...option}>
               {option.label}
