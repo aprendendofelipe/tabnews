@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.4](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.2.3...forms-v0.2.4) (2024-12-18)
+
+
+### Bug Fixes
+
+* **cvv field:** change input type from password to text ([72c440a](https://github.com/aprendendofelipe/tabnews/commit/72c440a66758ac29aa2a3c9cfb5774ea9f4dad9b))
+* **document field:** fix PASSPORT validation ([8c71cb4](https://github.com/aprendendofelipe/tabnews/commit/8c71cb441055792334f7f76d56aaa89bffb25a87))
+* **email field:** add max length validation ([de3d007](https://github.com/aprendendofelipe/tabnews/commit/de3d0079f197da180606a9e9624c0bade7fdf04d))
+* **full name field:** add maximum length check and trim preparation ([241549b](https://github.com/aprendendofelipe/tabnews/commit/241549b1ad5c0d4478e1a855c6609ca29dd5682b))
+* **phone field:** improves validations ([8036037](https://github.com/aprendendofelipe/tabnews/commit/803603742cdb40e5c4368ce3a05b077f7679ceb9))
+
 ## [0.2.3](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.2.2...forms-v0.2.3) (2024-11-22)
 
 
