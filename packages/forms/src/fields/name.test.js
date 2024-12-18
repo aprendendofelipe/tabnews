@@ -9,8 +9,13 @@ describe('forms', () => {
         placeholder: 'Informe seu nome completo',
         autoComplete: 'name',
         autoCapitalize: 'words',
+        prepare: expect.any(Function),
         validateOnBlurAndSubmit: expect.any(Function),
       });
+    });
+
+    it('should prepare name correctly', () => {
+      expect(fullName.prepare('  john doe  ')).toBe('john doe');
     });
 
     it('should validate correctly', () => {
@@ -19,6 +24,9 @@ describe('forms', () => {
       expect(fullName.validateOnBlurAndSubmit('John D')).toBe('Nome completo inválido.');
       expect(fullName.validateOnBlurAndSubmit('John Doe')).toBeNull();
       expect(fullName.validateOnBlurAndSubmit('John Doe Smith')).toBeNull();
+      expect(fullName.validateOnBlurAndSubmit('John Doe'.repeat(8) + 'a')).toBe(
+        'Nome completo deve ter no máximo 64 caracteres.',
+      );
     });
   });
 
