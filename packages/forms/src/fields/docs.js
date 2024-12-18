@@ -21,9 +21,14 @@ export const brDocs = {
     }
 
     return {
-      type: 'PASSAPORTE',
+      type: 'PASSPORT',
       number: document,
     };
   },
-  validateOnBlurAndSubmit: (doc) => (['CPF', 'CNPJ'].includes(doc.type) ? null : 'Documento inválido.'),
+  validateOnBlurAndSubmit: (doc) =>
+    ['CPF', 'CNPJ'].includes(doc.type)
+      ? null
+      : doc.number.length > 50
+        ? 'Passaporte deve ter no máximo 50 caracteres'
+        : null,
 };

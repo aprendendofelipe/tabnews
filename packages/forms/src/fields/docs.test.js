@@ -31,11 +31,11 @@ describe('forms', () => {
         });
       });
 
-      it('should prepare an invalid document as PASSAPORTE', () => {
+      it('should prepare an invalid document as PASSPORT', () => {
         const passport = 'A1234567';
         const result = brDocs.prepare(passport);
         expect(result).toStrictEqual({
-          type: 'PASSAPORTE',
+          type: 'PASSPORT',
           number: passport,
         });
       });
@@ -54,10 +54,16 @@ describe('forms', () => {
         expect(result).toBeNull();
       });
 
-      it('should return error message for invalid document type', () => {
-        const doc = { type: 'PASSAPORTE', number: 'A1234567' };
+      it('should return null for valid PASSPORT', () => {
+        const doc = { type: 'PASSPORT', number: 'A1234567' };
         const result = brDocs.validateOnBlurAndSubmit(doc);
-        expect(result).toBe('Documento inválido.');
+        expect(result).toBeNull();
+      });
+
+      it('should return error message for invalid document type', () => {
+        const doc = { type: 'PASSPORT', number: 'A' + '1234567890'.repeat(5) };
+        const result = brDocs.validateOnBlurAndSubmit(doc);
+        expect(result).toBe('Passaporte deve ter no máximo 50 caracteres');
       });
     });
   });
