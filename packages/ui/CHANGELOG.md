@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.3.1...ui-v0.3.2) (2024-12-18)
+
+
+### Bug Fixes
+
+* **FormField:** ensure the Select component is fully clickable ([6c6fc53](https://github.com/aprendendofelipe/tabnews/commit/6c6fc53192909d8905a0acece309a125486f05fa))
+
 ## [0.3.1](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.3.0...ui-v0.3.1) (2024-11-07)
 
 
