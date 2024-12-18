@@ -2,8 +2,10 @@ import { phone } from './index.js';
 import {
   extractPhoneNumber,
   maskPhone,
+  validateCountryCode,
   validateOnChange,
   validatePhoneCodes,
+  validatePhoneLength,
   validatePhoneNumber,
   validatePhoneObject,
 } from './phone.js';
@@ -96,6 +98,20 @@ describe('forms', () => {
       });
     });
 
+    describe('validateCountryCode', () => {
+      it('should return null for valid country code', () => {
+        expect(validateCountryCode({ country_code: '1' })).toBeNull();
+        expect(validateCountryCode({ country_code: '55' })).toBeNull();
+        expect(validateCountryCode({ country_code: '351' })).toBeNull();
+      });
+
+      it('should return error message for invalid country code', () => {
+        expect(validateCountryCode({ country_code: '' })).toBe('Utilize o formato +55(DDD)N ou (DDD)N.');
+        expect(validateCountryCode({ country_code: '1234' })).toBe('Utilize o formato +55(DDD)N ou (DDD)N.');
+        expect(validateCountryCode({ country_code: 'x' })).toBe('Utilize o formato +55(DDD)N ou (DDD)N.');
+      });
+    });
+
     describe('extractPhoneNumber', () => {
       it('should extract country code, area code, and number correctly', () => {
         const result = extractPhoneNumber('+1 (212) 555-1212');
@@ -157,11 +173,23 @@ describe('forms', () => {
       });
 
       it('should return error message for invalid country code', () => {
-        const errorMessage = 'Código do país inválido.';
+        const errorMessage = 'Utilize o formato +55(DDD)N ou (DDD)N.';
 
         expect(validatePhoneCodes({ area_code: '1', country_code: '' })).toBe(errorMessage);
         expect(validatePhoneCodes({ area_code: '2', country_code: '1234' })).toBe(errorMessage);
         expect(validatePhoneCodes({ area_code: '3', country_code: 'x' })).toBe(errorMessage);
+      });
+    });
+
+    describe('validatePhoneLength', () => {
+      it('should return null for valid phone number', () => {
+        expect(validatePhoneLength({ country_code: '1', area_code: '2', number: '3456789012345' })).toBeNull();
+      });
+
+      it('should return error message for long phone number', () => {
+        expect(validatePhoneLength({ country_code: '1', area_code: '2', number: '34567890123456' })).toBe(
+          'Telefone deve ter no máximo 15 dígitos.',
+        );
       });
     });
 
@@ -189,7 +217,7 @@ describe('forms', () => {
       });
 
       it('should return error message for invalid country code', () => {
-        const errorMessage = 'Código do país inválido.';
+        const errorMessage = 'Utilize o formato +55(DDD)N ou (DDD)N.';
 
         expect(validatePhoneObject({ area_code: '1', country_code: '' })).toBe(errorMessage);
         expect(validatePhoneObject({ area_code: '2', country_code: '1234' })).toBe(errorMessage);
@@ -202,21 +230,25 @@ describe('forms', () => {
     });
 
     describe('validateOnChange', () => {
+      it('should return null for incomplete phone number', () => {
+        expect(validateOnChange('+1')).toBeNull();
+        expect(validateOnChange('+1(1')).toBeNull();
+        expect(validateOnChange('+321(1')).toBeNull();
+        expect(validateOnChange('+321(1234')).toBeNull();
+        expect(validateOnChange('(1')).toBeNull();
+        expect(validateOnChange('(41')).toBeNull();
+        expect(validateOnChange('(55)9')).toBeNull();
+      });
+
       it('should return null for valid phone number', () => {
         expect(validateOnChange('+1 (212) 555-1212')).toBeNull();
       });
 
-      it('should return error message for invalid area code', () => {
-        const errorMessage = 'Código de área inválido. Insira o DDD entre parênteses.';
-
-        expect(validateOnChange('+1 () 555')).toBe(errorMessage);
-        expect(validateOnChange('+1 555')).toBe(errorMessage);
-      });
-
       it('should return error message for invalid country code', () => {
-        const errorMessage = 'Código do país inválido.';
+        const errorMessage = 'Utilize o formato +55(DDD)N ou (DDD)N.';
 
         expect(validateOnChange('+9876(2)')).toBe(errorMessage);
+        expect(validateOnChange('+1 555')).toBe(errorMessage);
       });
     });
   });
