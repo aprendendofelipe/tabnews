@@ -4,11 +4,16 @@ export const fullName = {
   placeholder: 'Informe seu nome completo',
   autoComplete: 'name',
   autoCapitalize: 'words',
+  prepare: (name) => name.trim(),
   validateOnBlurAndSubmit: (name) => {
-    const parts = name.trim().split(/\s+/);
+    const parts = name.split(/\s+/);
 
     if (parts.length < 2 || parts.some((part) => part.length < 2)) {
       return 'Nome completo inválido.';
+    }
+
+    if (name.length > 64) {
+      return 'Nome completo deve ter no máximo 64 caracteres.';
     }
 
     return null;
