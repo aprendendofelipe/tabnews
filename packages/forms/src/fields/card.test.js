@@ -179,7 +179,6 @@ describe('forms', () => {
         value: '',
         label: 'CVV',
         placeholder: '000',
-        type: 'password',
         inputMode: 'numeric',
         autoComplete: 'off',
         format: expect.any(Function),

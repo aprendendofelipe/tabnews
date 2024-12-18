@@ -61,7 +61,6 @@ export const cvv = {
   value: '',
   label: 'CVV',
   placeholder: '000',
-  type: 'password',
   inputMode: 'numeric',
   autoComplete: 'off',
   format: (cvv) => cvv.replace(/\D/g, '').slice(0, 4),
