@@ -83,8 +83,12 @@ export function validatePhoneCodes(phoneObject) {
     return 'Código de área inválido. Insira o DDD entre parênteses.';
   }
 
+  return validateCountryCode(phoneObject);
+}
+
+export function validateCountryCode(phoneObject) {
   if (!/^\d{1,3}$/.test(phoneObject.country_code)) {
-    return 'Código do país inválido.';
+    return 'Utilize o formato +55(DDD)N ou (DDD)N.';
   }
 
   return null;
@@ -101,9 +105,16 @@ export function validatePhoneNumber(phoneObject) {
 export function validateOnChange(input) {
   const phoneObject = extractPhoneNumber(input);
 
-  return validatePhoneCodes(phoneObject);
+  return validateCountryCode(phoneObject) || validatePhoneLength(phoneObject);
 }
 
 export function validatePhoneObject(phoneObject) {
-  return validatePhoneCodes(phoneObject) || validatePhoneNumber(phoneObject);
+  return validatePhoneCodes(phoneObject) || validatePhoneNumber(phoneObject) || validatePhoneLength(phoneObject);
+}
+
+export function validatePhoneLength(phoneObject) {
+  const { area_code, country_code, number } = phoneObject;
+  const phoneLength = country_code.length + area_code.length + number.length;
+
+  return phoneLength > 15 ? 'Telefone deve ter no máximo 15 dígitos.' : null;
 }
