@@ -31,7 +31,11 @@ export function format(email) {
 }
 
 export function validateEmail(email) {
-  return isValidEmail(email) ? null : 'Email inválido.';
+  return !isValidEmail(email)
+    ? 'Email inválido.'
+    : email.length > 64
+      ? 'Email deve ter no máximo 64 caracteres.'
+      : null;
 }
 
 export function createIgnorableValidator(ignoredSuggestion) {

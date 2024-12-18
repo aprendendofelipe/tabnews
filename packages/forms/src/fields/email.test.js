@@ -65,6 +65,9 @@ describe('forms', () => {
 
       isValidEmail.mockReturnValueOnce(false);
       expect(validateEmail('invalid-email')).toBe('Email inválido.');
+
+      isValidEmail.mockReturnValueOnce(true);
+      expect(validateEmail('a'.repeat(65))).toBe('Email deve ter no máximo 64 caracteres.');
     });
 
     describe('createIgnorableValidator', () => {
@@ -256,6 +259,9 @@ describe('forms', () => {
 
       isValidEmail.mockReturnValueOnce(false);
       expect(validate('invalid-email')).toBe('Email inválido.');
+
+      isValidEmail.mockReturnValueOnce(true);
+      expect(validate('a'.repeat(65))).toBe('Email deve ter no máximo 64 caracteres.');
     });
   });
 });
