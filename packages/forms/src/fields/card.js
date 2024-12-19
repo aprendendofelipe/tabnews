@@ -44,7 +44,7 @@ export const month = {
     { value: '11', label: '11' },
     { value: '12', label: '12' },
   ],
-  onValidChange: ({ month, updateFields }) => updateFields({ state: { isValid: !!month } }),
+  onValidChange: ({ month, updateFields }) => updateFields({ month: { isValid: !!month } }),
   validateOnBlurAndSubmit: (month) => (month === '' ? 'Selecione.' : null),
 };
 
@@ -53,7 +53,7 @@ export const year = {
   label: 'Ano',
   autoComplete: 'cc-exp-year',
   options: getYears(),
-  onValidChange: ({ year, updateFields }) => updateFields({ state: { isValid: !!year } }),
+  onValidChange: ({ year, updateFields }) => updateFields({ year: { isValid: !!year } }),
   validateOnBlurAndSubmit: (year) => (year === '' ? 'Selecione.' : null),
 };
 
