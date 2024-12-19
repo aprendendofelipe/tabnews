@@ -102,13 +102,13 @@ describe('forms', () => {
       it('should call updateFields with isValid true if month is not empty', () => {
         const updateFields = vi.fn();
         month.onValidChange({ month: '01', updateFields });
-        expect(updateFields).toHaveBeenCalledWith({ state: { isValid: true } });
+        expect(updateFields).toHaveBeenCalledWith({ month: { isValid: true } });
       });
 
       it('should call updateFields with isValid false if month is empty', () => {
         const updateFields = vi.fn();
         month.onValidChange({ month: '', updateFields });
-        expect(updateFields).toHaveBeenCalledWith({ state: { isValid: false } });
+        expect(updateFields).toHaveBeenCalledWith({ month: { isValid: false } });
       });
     });
 
@@ -152,13 +152,13 @@ describe('forms', () => {
       it('should call updateFields with isValid true if year is not empty', () => {
         const updateFields = vi.fn();
         year.onValidChange({ year: '99', updateFields });
-        expect(updateFields).toHaveBeenCalledWith({ state: { isValid: true } });
+        expect(updateFields).toHaveBeenCalledWith({ year: { isValid: true } });
       });
 
       it('should call updateFields with isValid false if year is empty', () => {
         const updateFields = vi.fn();
         year.onValidChange({ year: '', updateFields });
-        expect(updateFields).toHaveBeenCalledWith({ state: { isValid: false } });
+        expect(updateFields).toHaveBeenCalledWith({ year: { isValid: false } });
       });
     });
 
