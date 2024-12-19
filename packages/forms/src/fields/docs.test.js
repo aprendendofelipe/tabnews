@@ -60,10 +60,16 @@ describe('forms', () => {
         expect(result).toBeNull();
       });
 
-      it('should return error message for invalid document type', () => {
+      it('should return error message for long document number', () => {
         const doc = { type: 'PASSPORT', number: 'A' + '1234567890'.repeat(5) };
         const result = brDocs.validateOnBlurAndSubmit(doc);
-        expect(result).toBe('Passaporte deve ter no máximo 50 caracteres');
+        expect(result).toBe('Passaporte deve ter no máximo 50 caracteres.');
+      });
+
+      it('should return error message for empty document number', () => {
+        const doc = { type: 'PASSPORT', number: '' };
+        const result = brDocs.validateOnBlurAndSubmit(doc);
+        expect(result).toBe('Informe um documento válido.');
       });
     });
   });

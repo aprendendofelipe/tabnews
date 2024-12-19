@@ -25,10 +25,19 @@ export const brDocs = {
       number: document,
     };
   },
-  validateOnBlurAndSubmit: (doc) =>
-    ['CPF', 'CNPJ'].includes(doc.type)
-      ? null
-      : doc.number.length > 50
-        ? 'Passaporte deve ter no máximo 50 caracteres'
-        : null,
+  validateOnBlurAndSubmit: (doc) => {
+    if (['CPF', 'CNPJ'].includes(doc.type)) {
+      return null;
+    }
+
+    if (doc.number.length > 50) {
+      return 'Passaporte deve ter no máximo 50 caracteres.';
+    }
+
+    if (!doc.number.length) {
+      return 'Informe um documento válido.';
+    }
+
+    return null;
+  },
 };
