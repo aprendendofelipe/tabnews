@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.0.7](https://github.com/aprendendofelipe/tabnews/compare/form-example-v0.0.6...form-example-v0.0.7) (2024-12-19)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @tabnews/forms bumped from 0.2.4 to 0.2.5
+
 ## [0.0.6](https://github.com/aprendendofelipe/tabnews/compare/form-example-v0.0.5...form-example-v0.0.6) (2024-12-18)
 
 
