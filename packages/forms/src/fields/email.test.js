@@ -130,8 +130,19 @@ describe('forms', () => {
         handler({ updateFields, value: 'test@example.com' });
 
         expect(updateFields).toHaveBeenCalledWith({
-          ['emailConfirmation']: { suggestion: null },
+          emailConfirmation: { suggestion: null },
           emailConfirmable: { validateOnBlurAndSubmit: expect.any(Function), error: null },
+        });
+      });
+
+      it('should handle confirmEmail correctly when confirmationField is updated to empty', () => {
+        const updateFields = vi.fn();
+        const handler = confirmEmail('emailConfirmation', 'emailConfirmable');
+        handler({ updateFields, value: '' });
+
+        expect(updateFields).toHaveBeenCalledWith({
+          emailConfirmation: { suggestion: null },
+          emailConfirmable: { validateOnBlurAndSubmit: validateEmail, error: null },
         });
       });
     });

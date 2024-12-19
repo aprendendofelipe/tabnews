@@ -123,6 +123,8 @@ export function createSuggestionObject(state, value, updateFields, field, confir
 }
 
 export function createConfirmation(expectedValue) {
+  if (!expectedValue) return validateEmail;
+
   return (inputValue) => {
     const validationError = validateEmail(inputValue);
     return validationError || (inputValue === expectedValue ? null : 'Emails não conferem.');
