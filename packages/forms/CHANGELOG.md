@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.2.5](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.2.4...forms-v0.2.5) (2024-12-19)
+
+
+### Bug Fixes
+
+* **card fields:** correctly set `isValid` state for `month` and `year` ([107887b](https://github.com/aprendendofelipe/tabnews/commit/107887b959b76893a568cbaa3df64e46188b04fb))
+* **docs validation:** add empty document number check and update error messages ([48f1903](https://github.com/aprendendofelipe/tabnews/commit/48f19031ff2fed772a7e2592dff5cd24cc22c26d))
+* **email confirmation:** handle empty confirmation field and improve validation logic ([b123bb0](https://github.com/aprendendofelipe/tabnews/commit/b123bb0c96f246ee9e18bbcf772d202a03cb509e))
+
 ## [0.2.4](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.2.3...forms-v0.2.4) (2024-12-18)
 
 
