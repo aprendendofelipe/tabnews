@@ -4,6 +4,7 @@
     "packages/forms": {},
     "packages/helpers": {},
     "packages/hooks": {},
+    "packages/infra": {},
     "packages/ui": {}
   },
   "plugins": ["node-workspace"],
