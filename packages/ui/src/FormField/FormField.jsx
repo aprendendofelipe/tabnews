@@ -112,7 +112,7 @@ export function FormField({
 
   return (
     <FormControl id={name} required={required} sx={{ minHeight: '86px', ...sx }}>
-      {label && <FormControl.Label>{label}</FormControl.Label>}
+      <FormControl.Label>{label}</FormControl.Label>
       {caption && <FormControl.Caption>{caption}</FormControl.Caption>}
       {error && !suggestion?.value && !options && !isCheckbox && (
         <FormControl.Validation variant="error">{error}</FormControl.Validation>
