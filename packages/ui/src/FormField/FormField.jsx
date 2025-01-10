@@ -108,15 +108,19 @@ export function FormField({
     inputProps.sx = { ...textInputProps.sx, pr: 0 };
   }
 
+  const isCheckbox = typeof checked === 'boolean';
+
   return (
     <FormControl id={name} required={required} sx={{ minHeight: '86px', ...sx }}>
       {label && <FormControl.Label>{label}</FormControl.Label>}
       {caption && <FormControl.Caption>{caption}</FormControl.Caption>}
-      {error && !suggestion?.value && <FormControl.Validation variant="error">{error}</FormControl.Validation>}
+      {error && !suggestion?.value && !options && !isCheckbox && (
+        <FormControl.Validation variant="error">{error}</FormControl.Validation>
+      )}
       <Suggestion suggestion={suggestion} />
       <WarningMessage message={capsLockWarningMessage} />
 
-      {!options && typeof checked === 'undefined' && <TextInput type={type} {...textInputProps} {...inputProps} />}
+      {!options && !isCheckbox && <TextInput type={type} {...textInputProps} {...inputProps} />}
 
       {options && (
         <Select {...defaultProps} {...inputProps} sx={{ height: '40px' }}>
@@ -128,7 +132,7 @@ export function FormField({
         </Select>
       )}
 
-      {typeof checked !== 'undefined' && <Checkbox checked={checked} {...inputProps} />}
+      {isCheckbox && <Checkbox checked={checked} {...inputProps} />}
 
       <style jsx="true">{'::-ms-reveal {display: none}'}</style>
     </FormControl>

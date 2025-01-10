@@ -217,13 +217,9 @@ describe('ui', () => {
           ]);
 
           const selectElements = screen.getAllByRole('combobox');
-          const validationMessage1 = screen.getByText('Because of the error, isValid is ignored');
-          const validationMessage2 = screen.getByText('This is an error');
 
           expect(container.querySelector(errorStyle)).toBeInTheDocument();
           expect(container.querySelector(successStyle)).not.toBeInTheDocument();
-          expect(validationMessage1).toBeInTheDocument();
-          expect(validationMessage2).toBeInTheDocument();
 
           selectElements.forEach((selectElement) => {
             expect(selectElement).toHaveAttribute('aria-invalid', 'true');
