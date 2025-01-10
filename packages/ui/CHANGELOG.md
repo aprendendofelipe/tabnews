@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.3](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.3.2...ui-v0.3.3) (2025-01-10)
+
+
+### Bug Fixes
+
+* **FormField:** always add `FormControl.Label` ([ed43cb3](https://github.com/aprendendofelipe/tabnews/commit/ed43cb385404fa613ea2d4943df036fd8d5fff23))
+* **FormField:** use `FormControl.Validation` only with `TextInput` ([9393709](https://github.com/aprendendofelipe/tabnews/commit/9393709ffa49f72fca77d594e833ffed7c0e5475))
+
 ## [0.3.2](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.3.1...ui-v0.3.2) (2024-12-18)
 
 
