@@ -1,8 +1,21 @@
+import { noop } from 'packages/helpers';
+
 import { format, getAddress, onValidChange, prepare, validateOnBlurAndSubmit } from './cep.js';
 import { cep } from './index.js';
 
 describe('forms', () => {
   describe('cep field', () => {
+    let fetchSpy;
+
+    beforeAll(() => {
+      vi.spyOn(console, 'error').mockImplementation(noop);
+      fetchSpy = vi.spyOn(global, 'fetch');
+    });
+
+    afterAll(() => {
+      fetchSpy.mockRestore();
+    });
+
     it('should have the correct shape', () => {
       expect(cep).toStrictEqual({
         label: 'CEP',
@@ -46,7 +59,7 @@ describe('forms', () => {
 
       it('should call updateState with loading true for valid CEP', async () => {
         const updateState = vi.fn();
-        vi.spyOn(global, 'fetch').mockResolvedValue({
+        fetchSpy.mockResolvedValueOnce({
           ok: true,
           // eslint-disable-next-line require-await
           json: async () => ({
@@ -65,7 +78,7 @@ describe('forms', () => {
 
       it('should call updateState with address data for valid CEP', async () => {
         const updateState = vi.fn();
-        vi.spyOn(global, 'fetch').mockResolvedValue({
+        fetchSpy.mockResolvedValueOnce({
           ok: true,
           // eslint-disable-next-line require-await
           json: async () => ({
@@ -93,7 +106,7 @@ describe('forms', () => {
 
       it('should call updateState without address data for inexistent CEP', async () => {
         const updateState = vi.fn();
-        vi.spyOn(global, 'fetch').mockResolvedValue({
+        fetchSpy.mockResolvedValueOnce({
           ok: true,
           // eslint-disable-next-line require-await
           json: async () => ({}),
@@ -110,7 +123,7 @@ describe('forms', () => {
 
     describe('getAddress', () => {
       it('should return address data for valid CEP', async () => {
-        vi.spyOn(global, 'fetch').mockResolvedValue({
+        fetchSpy.mockResolvedValueOnce({
           ok: true,
           // eslint-disable-next-line require-await
           json: async () => ({
@@ -134,7 +147,7 @@ describe('forms', () => {
       });
 
       it('should return "undefined" for invalid CEP', async () => {
-        vi.spyOn(global, 'fetch').mockResolvedValue({
+        fetchSpy.mockResolvedValueOnce({
           status: 404,
           ok: false,
         });
@@ -143,7 +156,7 @@ describe('forms', () => {
       });
 
       it('should return "undefined" for invalid response', async () => {
-        vi.spyOn(global, 'fetch').mockResolvedValue({
+        fetchSpy.mockResolvedValueOnce({
           ok: false,
           status: 500,
         });
@@ -152,7 +165,7 @@ describe('forms', () => {
       });
 
       it('should return "undefined" for invalid CEP in response', async () => {
-        vi.spyOn(global, 'fetch').mockResolvedValue({
+        fetchSpy.mockResolvedValueOnce({
           ok: true,
           // eslint-disable-next-line require-await
           json: async () => ({
