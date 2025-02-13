@@ -23,6 +23,8 @@ describe('ui', () => {
       expect(select).toBeInTheDocument();
       expect(select).toHaveAttribute('id', 'test-select');
 
+      expect(select).toHaveClass('fully-clickable');
+
       options.forEach((option) => {
         const optionElement = screen.getByText(option.label);
         expect(optionElement).toBeInTheDocument();
@@ -165,23 +167,21 @@ describe('ui', () => {
         const successStyle = '.kLIpNb';
 
         it('should set validationStatus to "error" when error prop is provided', () => {
-          const { container } = render(<FormField name="test" error="This is an error" />);
+          render(<FormField name="test" error="This is an error" />);
           const validationMessage = screen.getByText('This is an error');
           const inputElement = screen.getByRole('textbox');
 
-          expect(container.querySelector(errorStyle)).toBeInTheDocument();
-          expect(container.querySelector(successStyle)).not.toBeInTheDocument();
           expect(validationMessage).toBeInTheDocument();
           expect(inputElement).toHaveAttribute('aria-invalid', 'true');
+          expect(inputElement.parentElement).toHaveAttribute('data-validation', 'error');
         });
 
         it('should set validationStatus to "success" when isValid prop is true and no error is provided', () => {
-          const { container } = render(<FormField name="test" isValid />);
+          render(<FormField name="test" isValid />);
           const inputElement = screen.getByRole('textbox');
 
-          expect(container.querySelector(errorStyle)).not.toBeInTheDocument();
-          expect(container.querySelector(successStyle)).toBeInTheDocument();
           expect(inputElement).not.toHaveAttribute('aria-invalid', 'true');
+          expect(inputElement.parentElement).toHaveAttribute('data-validation', 'success');
         });
 
         it('should not set validationStatus when neither error nor isValid props are provided', () => {
@@ -195,11 +195,8 @@ describe('ui', () => {
       });
 
       describe('Select', () => {
-        const errorStyle = '.gWEXNu';
-        const successStyle = '.geAuMO';
-
         it('should set validationStatus to "error" when error prop is provided', () => {
-          const { container } = render([
+          render([
             <FormField
               key="1"
               name="test"
@@ -218,27 +215,26 @@ describe('ui', () => {
 
           const selectElements = screen.getAllByRole('combobox');
 
-          expect(container.querySelector(errorStyle)).toBeInTheDocument();
-          expect(container.querySelector(successStyle)).not.toBeInTheDocument();
-
           selectElements.forEach((selectElement) => {
             expect(selectElement).toHaveAttribute('aria-invalid', 'true');
+            expect(selectElement.parentElement).toHaveAttribute('data-validation', 'error');
           });
         });
 
         it('should set validationStatus to "success" when isValid prop is true and no error is provided', () => {
-          const { container } = render(<FormField name="test" isValid options={[{ value: '1', label: 'Option 1' }]} />);
+          render(<FormField name="test" isValid options={[{ value: '1', label: 'Option 1' }]} />);
           const selectElement = screen.getByRole('combobox');
 
           expect(selectElement).toHaveAttribute('aria-invalid', 'false');
-          expect(container.querySelector(errorStyle)).not.toBeInTheDocument();
-          expect(container.querySelector(successStyle)).toBeInTheDocument();
+          expect(selectElement.parentElement).toHaveAttribute('data-validation', 'success');
         });
 
         it('should not set validationStatus when neither error nor isValid props are provided', () => {
-          const { container } = render(<FormField name="test" options={[{ value: '1', label: 'Option 1' }]} />);
-          expect(container.querySelector(errorStyle)).not.toBeInTheDocument();
-          expect(container.querySelector(successStyle)).not.toBeInTheDocument();
+          render(<FormField name="test" options={[{ value: '1', label: 'Option 1' }]} />);
+          const selectElement = screen.getByRole('combobox');
+
+          expect(selectElement).toHaveAttribute('aria-invalid', 'false');
+          expect(selectElement.parentElement).not.toHaveAttribute('data-validation');
         });
       });
 

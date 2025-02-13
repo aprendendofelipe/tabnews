@@ -16,7 +16,8 @@
     "./primer": {
       "import": "./dist/primer.js",
       "require": "./dist/primer.cjs"
-    }
+    },
+    "./css": "./dist/ui.css"
   },
   "files": [
     "dist"
@@ -32,7 +33,7 @@
   },
   "dependencies": {
     "@primer/octicons-react": "19.15.0",
-    "@primer/react": "^36.27.0",
+    "@primer/react": "^37.12.0",
     "styled-components": "^5.3.11"
   },
   "devDependencies": {
@@ -42,7 +43,7 @@
   },
   "peerDependencies": {
     "next": ">=14.2.4",
-    "react": ">=18.2.0",
+    "react": ">=18.3.1",
     "react-dom": ">=18.2.0"
   },
   "author": "TabNews",
