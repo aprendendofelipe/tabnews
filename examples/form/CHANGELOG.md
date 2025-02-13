@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.1.0](https://github.com/aprendendofelipe/tabnews/compare/form-example-v0.0.8...form-example-v0.1.0) (2025-02-13)
+
+
+### Features
+
+* **CSS modules:** update to the new `@primer/react` approach ([a645a6c](https://github.com/aprendendofelipe/tabnews/commit/a645a6c6ffdc17862bdabd8e653c88626575981d))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @tabnews/ui bumped from 0.3.3 to 0.4.0
+
 ## [0.0.8](https://github.com/aprendendofelipe/tabnews/compare/form-example-v0.0.7...form-example-v0.0.8) (2025-01-10)
 
 

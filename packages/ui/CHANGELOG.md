@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.3.3...ui-v0.4.0) (2025-02-13)
+
+
+### Features
+
+* **CSS modules:** update to the new `@primer/react` approach ([a645a6c](https://github.com/aprendendofelipe/tabnews/commit/a645a6c6ffdc17862bdabd8e653c88626575981d))
+
 ## [0.3.3](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.3.2...ui-v0.3.3) (2025-01-10)
 
 
