@@ -10,6 +10,7 @@ export {
   Button,
   Checkbox,
   CounterLabel,
+  Dialog,
   Flash,
   FormControl,
   Heading,
@@ -21,13 +22,13 @@ export {
   SegmentedControl,
   Select,
   Spinner,
-  TabNav,
   Text,
   TextInput,
-  Tooltip as TooltipV1,
+  Tooltip,
   Truncate,
   useConfirm,
   useTheme,
 } from '@primer/react';
-export { Dialog } from '@primer/react/experimental';
-export { Tooltip } from '@primer/react/next';
+export { TabNav, Tooltip as TooltipV1 } from '@primer/react/deprecated';
+
+import './Styles/global.css';

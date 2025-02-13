@@ -123,7 +123,7 @@ export function FormField({
       {!options && !isCheckbox && <TextInput type={type} {...textInputProps} {...inputProps} />}
 
       {options && (
-        <Select {...defaultProps} {...inputProps} sx={{ height: '40px' }}>
+        <Select {...defaultProps} {...inputProps} className="fully-clickable">
           {options.map((option) => (
             <Select.Option key={option.value} {...option}>
               {option.label}
@@ -134,7 +134,14 @@ export function FormField({
 
       {isCheckbox && <Checkbox checked={checked} {...inputProps} />}
 
-      <style jsx="true">{'::-ms-reveal {display: none}'}</style>
+      <style jsx="true">{`
+        .fully-clickable {
+          height: 36px;
+        }
+        ::-ms-reveal {
+          display: none;
+        }
+      `}</style>
     </FormControl>
   );
 }

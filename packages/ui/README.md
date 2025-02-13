@@ -12,11 +12,11 @@ npm i @tabnews/ui
 
 ## Configure Next.js
 
-In your `next.config.js`, add `@tabnews/ui` to `transpilePackages`:
+In your `next.config.js`, add `@primer/react` and `@tabnews/ui` to `transpilePackages`:
 
 ```js
 // next.config.js
-transpilePackages: ['@tabnews/ui'],
+transpilePackages: ['@primer/react', '@tabnews/ui'],
 ```
 
 In `pages/_document.js`, you must export it as default:
@@ -35,6 +35,7 @@ To use a fixed color mode (e.g., night mode), wrap your app with `ThemeProvider`
 ```js
 // pages/_app.js
 import { ThemeProvider } from '@tabnews/ui';
+import '@tabnews/ui/css';
 
 export default function NextApp({ Component, pageProps }) {
   return (
@@ -52,6 +53,7 @@ For automatic theme switching based on user preference, use `AutoThemeProvider`:
 ```js
 // pages/_app.js
 import { AutoThemeProvider } from '@tabnews/ui';
+import '@tabnews/ui/css';
 
 export default function NextApp({ Component, pageProps }) {
   return (
