@@ -1,3 +1,4 @@
+'use client';
 import { identity, noop, returnNull } from '@tabnews/helpers';
 import { useConfig } from '@tabnews/hooks';
 import { useCallback } from 'react';

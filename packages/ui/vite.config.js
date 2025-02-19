@@ -1,8 +1,9 @@
 import react from '@vitejs/plugin-react-swc';
+import { preserveDirectives } from 'rollup-plugin-preserve-directives';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), preserveDirectives()],
   build: {
     lib: {
       entry: {
@@ -22,6 +23,7 @@ export default defineConfig({
         },
         externalLiveBindings: false,
         reexportProtoFromExternal: false,
+        preserveModules: true,
       },
     },
   },
