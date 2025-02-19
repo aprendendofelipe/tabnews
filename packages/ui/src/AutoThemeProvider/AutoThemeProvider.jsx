@@ -10,19 +10,19 @@ import { ThemeProvider } from '../ThemeProvider/index.js';
 const removeNoFlashStyle = () => setTimeout(() => document.documentElement.removeAttribute('data-no-flash'));
 const useBrowserLayoutEffect = typeof document === 'undefined' ? useEffect : useLayoutEffect;
 
-export function AutoThemeProvider({ children, defaultColorMode, ...props }) {
+export function AutoThemeProvider({ children, defaultColorMode, noFlash = true, ...props }) {
   const [colorMode, setColorMode] = useState(defaultColorMode === 'dark' ? 'dark' : 'light');
 
   useBrowserLayoutEffect(() => {
     const cachedColorMode = localStorage.getItem('colorMode') || colorMode;
-    removeNoFlashStyle();
+    if (noFlash) removeNoFlashStyle();
     if (cachedColorMode == colorMode) return;
     setColorMode(cachedColorMode);
   }, []);
 
   return (
     <ThemeProvider colorMode={colorMode} {...props}>
-      <NoFlashGlobalStyle />
+      {noFlash && <NoFlashGlobalStyle />}
       {children}
     </ThemeProvider>
   );
