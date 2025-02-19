@@ -60,6 +60,13 @@ describe('ui', () => {
       expect(styleTag).not.toBeNull();
       expect(styleTag.textContent).toContain("html[data-no-flash='true'] { visibility: hidden; }");
     });
+
+    it('does not apply NoFlashGlobalStyle when noFlash is false', () => {
+      const { container } = render(<AutoThemeProvider noFlash={false} />);
+      const styleTag = container.querySelector('style');
+
+      expect(styleTag).toBeNull();
+    });
   });
 
   describe('NoFlashGlobalStyle', () => {
