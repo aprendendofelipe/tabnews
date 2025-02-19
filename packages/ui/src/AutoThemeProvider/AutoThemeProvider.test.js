@@ -1,8 +1,20 @@
+import { useTheme } from '@primer/react';
 import { render, waitFor } from '@testing-library/react';
 
+import { ColorModeCookieSync } from './AutoThemeProvider.jsx';
 import { AutoThemeProvider, NoFlashGlobalStyle } from './index.js';
 
+const COLOR_MODE_COOKIE = 'cm';
+
+vi.mock('@primer/react', () => ({
+  useTheme: vi.fn().mockImplementation(() => ({ resolvedColorMode: 'light' })),
+}));
+
 describe('ui', () => {
+  beforeEach(() => {
+    document.cookie = `${COLOR_MODE_COOKIE}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  });
+
   describe('AutoThemeProvider', () => {
     vi.mock('../ThemeProvider', () => ({
       ThemeProvider: ({ children, colorMode, ...props }) => (
@@ -67,6 +79,12 @@ describe('ui', () => {
 
       expect(styleTag).toBeNull();
     });
+
+    it('applies ColorModeCookieSync correctly', () => {
+      render(<AutoThemeProvider defaultColorMode="light" />);
+
+      expect(document.cookie).toContain(`${COLOR_MODE_COOKIE}=light`);
+    });
   });
 
   describe('NoFlashGlobalStyle', () => {
@@ -76,6 +94,23 @@ describe('ui', () => {
 
       expect(styleTag).not.toBeNull();
       expect(styleTag.innerHTML).toBe("html[data-no-flash='true'] { visibility: hidden; }");
+    });
+  });
+
+  describe('ColorModeCookieSync', () => {
+    it('sets the color mode cookie with the resolved color mode', () => {
+      render(<ColorModeCookieSync />);
+
+      expect(document.cookie).toContain(`${COLOR_MODE_COOKIE}=light`);
+    });
+
+    it('updates the color mode cookie when the resolved color mode changes', () => {
+      const { rerender } = render(<ColorModeCookieSync />);
+      useTheme.mockReturnValueOnce({ resolvedColorMode: 'dark' });
+
+      rerender(<ColorModeCookieSync />);
+
+      expect(document.cookie).toContain(`${COLOR_MODE_COOKIE}=dark`);
     });
   });
 });
