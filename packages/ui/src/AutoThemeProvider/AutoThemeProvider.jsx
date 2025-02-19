@@ -10,13 +10,13 @@ const removeNoFlashStyle = () => setTimeout(() => document.documentElement.remov
 const useBrowserLayoutEffect = typeof document === 'undefined' ? useEffect : useLayoutEffect;
 
 export function AutoThemeProvider({ children, defaultColorMode, ...props }) {
-  const [colorMode, setColorMode] = useState(defaultColorMode === 'night' ? 'night' : 'day');
+  const [colorMode, setColorMode] = useState(defaultColorMode === 'dark' ? 'dark' : 'light');
 
   useBrowserLayoutEffect(() => {
     const cachedColorMode = localStorage.getItem('colorMode') || colorMode;
+    removeNoFlashStyle();
     if (cachedColorMode == colorMode) return;
     setColorMode(cachedColorMode);
-    removeNoFlashStyle();
   }, []);
 
   return (

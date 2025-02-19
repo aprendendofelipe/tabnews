@@ -30,7 +30,7 @@ export { Document as default } from '@tabnews/ui/document';
 
 ### Fixed Theme
 
-To use a fixed color mode (e.g., night mode), wrap your app with `ThemeProvider` in `_app.js`:
+To use a fixed color mode (e.g., dark mode), wrap your app with `ThemeProvider` in `_app.js`:
 
 ```js
 // pages/_app.js
@@ -39,7 +39,7 @@ import '@tabnews/ui/css';
 
 export default function NextApp({ Component, pageProps }) {
   return (
-    <ThemeProvider colorMode="night">
+    <ThemeProvider colorMode="dark">
       <Component {...pageProps} />
     </ThemeProvider>
   );
@@ -57,7 +57,7 @@ import '@tabnews/ui/css';
 
 export default function NextApp({ Component, pageProps }) {
   return (
-    <AutoThemeProvider defaultColorMode="night">
+    <AutoThemeProvider defaultColorMode="dark">
       <Component {...pageProps} />
     </AutoThemeProvider>
   );

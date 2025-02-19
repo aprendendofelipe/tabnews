@@ -22,7 +22,7 @@ describe('ui', () => {
       const themeScript = container.querySelector('script#theme');
       expect(themeScript).toBeDefined();
       expect(themeScript.innerHTML).toBe(
-        `if (['auto','night'].includes(localStorage.getItem('colorMode')))
+        `if (['auto','night','dark','day','light'].includes(localStorage.getItem('colorMode')))
 document.documentElement.setAttribute('data-no-flash', true)`,
       );
 

@@ -28,33 +28,33 @@ describe('ui', () => {
       const { getByTestId } = render(<AutoThemeProvider />);
       const colorMode = getByTestId('ThemeProvider').getAttribute('data-test-colormode');
 
-      expect(colorMode).toBe('day');
+      expect(colorMode).toBe('light');
     });
 
-    it('sets initial color mode to "night" via "defaultColorMode"', () => {
-      const { getByTestId } = render(<AutoThemeProvider defaultColorMode="night" />);
+    it('sets initial color mode to "dark" via "defaultColorMode"', () => {
+      const { getByTestId } = render(<AutoThemeProvider defaultColorMode="dark" />);
       const colorMode = getByTestId('ThemeProvider').getAttribute('data-test-colormode');
 
-      expect(colorMode).toBe('night');
+      expect(colorMode).toBe('dark');
     });
 
     it('uses cached color mode from localStorage if available', () => {
-      localStorage.setItem('colorMode', 'night');
-      const { getByTestId } = render(<AutoThemeProvider defaultColorMode="day" />);
+      localStorage.setItem('colorMode', 'dark');
+      const { getByTestId } = render(<AutoThemeProvider defaultColorMode="light" />);
       const colorMode = getByTestId('ThemeProvider').getAttribute('data-test-colormode');
 
-      expect(colorMode).toBe('night');
+      expect(colorMode).toBe('dark');
     });
 
     it('removes data-no-flash attribute after setting color mode', async () => {
       document.documentElement.setAttribute('data-no-flash', 'true');
-      render(<AutoThemeProvider defaultColorMode="day" />);
+      render(<AutoThemeProvider defaultColorMode="light" />);
 
       await waitFor(() => expect(document.documentElement.getAttribute('data-no-flash')).toBeNull());
     });
 
     it('applies NoFlashGlobalStyle correctly', () => {
-      const { container } = render(<AutoThemeProvider defaultColorMode="day" />);
+      const { container } = render(<AutoThemeProvider defaultColorMode="light" />);
       const styleTag = container.querySelector('style');
 
       expect(styleTag).not.toBeNull();
