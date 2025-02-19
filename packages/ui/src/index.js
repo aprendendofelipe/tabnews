@@ -1,5 +1,6 @@
 export * from './AutoThemeProvider/index.js';
 export * from './FormField/index.js';
+export { StyledComponentsRegistry } from './SCRegistry/SCRegistry.jsx';
 export * from './ThemeProvider/index.js';
 export {
   ActionList,
