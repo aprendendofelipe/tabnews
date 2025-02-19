@@ -1,7 +1,8 @@
+'use client';
 import { AlertFillIcon, EyeClosedIcon, EyeIcon } from '@primer/octicons-react';
+import { Button, Checkbox, FormControl, Select, Text, TextInput } from '@primer/react';
+import { Tooltip } from '@primer/react/next';
 import { useRef, useState } from 'react';
-
-import { Button, Checkbox, FormControl, Select, Text, TextInput, Tooltip } from '../index.js';
 
 const defaultProps = {
   block: true,
@@ -164,18 +165,18 @@ export function Suggestion({ suggestion }) {
         color: 'attention.fg',
       }}>
       <AlertFillIcon size={12} />
-      <Text>{suggestion.label ?? 'Você quis dizer'}</Text>
+      <span>{suggestion.label ?? 'Você quis dizer'}</span>
 
       <TooltippedButton
         tooltip={suggestion.tooltip || 'Aceitar sugestão'}
         onClick={suggestion.onClick}
         color="success.fg">
-        <Text>{suggestion.pre}</Text>
+        <span>{suggestion.pre}</span>
         <Text sx={{ textDecoration: 'underline' }}>{suggestion.mid}</Text>
-        <Text>{suggestion.post}</Text>
+        <span>{suggestion.post}</span>
       </TooltippedButton>
 
-      <Text>{suggestion.labelEnd ?? '?'}</Text>
+      <span>{suggestion.labelEnd ?? '?'}</span>
 
       {suggestion.ignoreClick && (
         <TooltippedButton

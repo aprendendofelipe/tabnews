@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useLayoutEffect, useState } from 'react';
 
 import { ThemeProvider } from '../ThemeProvider/index.js';
