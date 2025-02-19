@@ -1,6 +1,8 @@
 'use client';
+import { useTheme } from '@primer/react';
 import { useEffect, useLayoutEffect, useState } from 'react';
 
+import { COLOR_MODE_COOKIE } from '../constants/public.js';
 import { ThemeProvider } from '../ThemeProvider/index.js';
 
 // script to be called before interactive in _document.js
@@ -17,12 +19,14 @@ export function AutoThemeProvider({ children, defaultColorMode, noFlash = true, 
     const cachedColorMode = localStorage.getItem('colorMode') || colorMode;
     if (noFlash) removeNoFlashStyle();
     if (cachedColorMode == colorMode) return;
+    document.documentElement.setAttribute('data-color-mode', cachedColorMode);
     setColorMode(cachedColorMode);
   }, []);
 
   return (
     <ThemeProvider colorMode={colorMode} {...props}>
       {noFlash && <NoFlashGlobalStyle />}
+      <ColorModeCookieSync />
       {children}
     </ThemeProvider>
   );
@@ -36,4 +40,11 @@ export function NoFlashGlobalStyle() {
       }}
     />
   );
+}
+
+export function ColorModeCookieSync() {
+  const { resolvedColorMode } = useTheme();
+  useEffect(() => {
+    document.cookie = `${COLOR_MODE_COOKIE}=${resolvedColorMode}; max-age=31536000; path=/`;
+  }, [resolvedColorMode]);
 }

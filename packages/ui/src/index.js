@@ -1,4 +1,5 @@
 export * from './AutoThemeProvider/index.js';
+export { COLOR_MODE_COOKIE } from './constants/public.js';
 export * from './FormField/index.js';
 export { StyledComponentsRegistry } from './SCRegistry/SCRegistry.jsx';
 export * from './ThemeProvider/index.js';
