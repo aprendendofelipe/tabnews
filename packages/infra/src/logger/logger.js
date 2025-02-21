@@ -3,7 +3,7 @@ import pino from 'pino';
 
 import { axiomTransport } from './axiom-transport.js';
 
-export function getLogger(options = {}) {
+export async function getLogger(options = {}) {
   const environment = process.env.VERCEL_ENV || process.env.NODE_ENV;
 
   if (['preview', 'production'].includes(environment) || process.env.AXIOM_DATASET) {
@@ -15,7 +15,7 @@ export function getLogger(options = {}) {
           ...options.base,
         },
       },
-      axiomTransport(),
+      await axiomTransport(),
     );
 
     return pinoLogger;

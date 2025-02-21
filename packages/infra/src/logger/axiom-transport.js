@@ -1,9 +1,8 @@
 // Inspired by `@axiomhq/pino`, but compatible with `waitUntil` from `@vercel/functions`
 import { Axiom } from '@axiomhq/js';
 import { waitUntil } from '@vercel/functions';
-import build from 'pino-abstract-transport';
 
-export function axiomTransport({
+export async function axiomTransport({
   dataset = process.env.AXIOM_DATASET,
   token = process.env.AXIOM_TOKEN,
   url = process.env.AXIOM_URL,
@@ -16,6 +15,8 @@ export function axiomTransport({
   let resolve, reject;
 
   const axiom = new Axiom({ dataset, token, url, onError });
+
+  const build = (await import('pino-abstract-transport')).default;
 
   const transport = build(
     async function (source) {

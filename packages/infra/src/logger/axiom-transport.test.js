@@ -57,16 +57,16 @@ describe('axiomTransport', () => {
       versionsNode.mockRestore();
     });
 
-    it('should return undefined if node version is missing', () => {
-      expect(axiomTransport({ dataset, token })).toBeUndefined();
+    it('should return undefined if node version is missing', async () => {
+      expect(await axiomTransport({ dataset, token })).toBeUndefined();
     });
   });
 
   describe('Node runtime', () => {
-    it('should return undefined if dataset, or token is missing', () => {
-      expect(axiomTransport({ dataset: null, token: null })).toBeUndefined();
-      expect(axiomTransport({ dataset, token: null })).toBeUndefined();
-      expect(axiomTransport({ dataset: null, token })).toBeUndefined();
+    it('should return undefined if dataset, or token is missing', async () => {
+      expect(await axiomTransport({ dataset: null, token: null })).toBeUndefined();
+      expect(await axiomTransport({ dataset, token: null })).toBeUndefined();
+      expect(await axiomTransport({ dataset: null, token })).toBeUndefined();
     });
 
     it('should create a transport', () => {
@@ -74,7 +74,7 @@ describe('axiomTransport', () => {
     });
 
     it('should ingest logs', async () => {
-      const transport = axiomTransport({ dataset, token });
+      const transport = await axiomTransport({ dataset, token });
 
       await transport.write(JSON.stringify({ time: new Date().toISOString(), level: 30, msg: 'test log' }) + '\n');
 
@@ -83,7 +83,7 @@ describe('axiomTransport', () => {
     });
 
     it('should ingest logs in chunks', async () => {
-      const transport = axiomTransport({ dataset, token });
+      const transport = await axiomTransport({ dataset, token });
 
       const logEntry = JSON.stringify({ time: new Date().toISOString(), level: 'info', msg: 'test log' });
       const part1 = logEntry.slice(0, -5);
@@ -98,7 +98,7 @@ describe('axiomTransport', () => {
     });
 
     it('should flush without logs', async () => {
-      const transport = axiomTransport({ dataset, token });
+      const transport = await axiomTransport({ dataset, token });
 
       await transport.flush();
 
@@ -107,7 +107,7 @@ describe('axiomTransport', () => {
     });
 
     it('should flush with logs', async () => {
-      const transport = axiomTransport({ dataset, token });
+      const transport = await axiomTransport({ dataset, token });
 
       await transport.write(JSON.stringify({ time: new Date().toISOString(), level: 40, msg: 'test log 1' }) + '\n');
       await transport.write(JSON.stringify({ time: new Date().toISOString(), level: 50, msg: 'test log 2' }) + '\n');
@@ -126,7 +126,7 @@ describe('axiomTransport', () => {
     });
 
     it('should not ingest invalid logs', async () => {
-      const transport = axiomTransport({ dataset, token });
+      const transport = await axiomTransport({ dataset, token });
 
       transport.write('invalid chunk \n');
 
@@ -136,7 +136,7 @@ describe('axiomTransport', () => {
     });
 
     it('should flush with invalid logs', async () => {
-      const transport = axiomTransport({ dataset, token });
+      const transport = await axiomTransport({ dataset, token });
 
       await transport.write('invalid chunk\n');
       await transport.write(JSON.stringify({ time: new Date().toISOString(), level: 10, msg: 'test log 1' }) + '\n');
@@ -174,7 +174,7 @@ describe('axiomTransport', () => {
         flush: mocks.flush,
       }));
 
-      const transport = axiomTransport({ dataset, token });
+      const transport = await axiomTransport({ dataset, token });
 
       transport.flush();
       transport.write(JSON.stringify({ time: new Date().toISOString(), level: 'silent', msg: 'test log 1' }) + '\n');

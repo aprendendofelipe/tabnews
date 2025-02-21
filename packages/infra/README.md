@@ -27,7 +27,7 @@ Initialize the configuration by providing options compatible with the [pino logg
 ```js
 import { getLogger } from '@tabnews/infra';
 
-const logger = getLogger({
+const logger = await getLogger({
   // pino options
 });
 ```
