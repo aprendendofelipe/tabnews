@@ -1,10 +1,11 @@
-import { Layout, Registration } from '../components/index.js';
+import { DefaultLayout } from '../components/DefaultLayout.jsx';
+import { Registration } from '../components/Registration.jsx';
 import { registrationFields, store } from '../form-config.js';
 
 export default function RegistrationPage() {
   return (
-    <Layout containerWidth="small">
+    <DefaultLayout containerWidth="small">
       <Registration fields={registrationFields} store={store} />
-    </Layout>
+    </DefaultLayout>
   );
 }

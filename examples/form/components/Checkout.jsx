@@ -1,9 +1,10 @@
+'use client';
 import { useForm } from '@tabnews/forms';
 import { Box, Button, Flash, FormField, Heading, TabNav, Text } from '@tabnews/ui';
 import { Link } from '@tabnews/ui/primer';
 import { FaCreditCard, FaPix } from 'react-icons/fa6';
 
-import { SubmittedFields } from './index.js';
+import { SubmittedFields } from './SubmittedFields.jsx';
 
 export function Checkout({ fields, product, store }) {
   const { state, getFieldProps, handleSubmit, updateState } = useForm(fields);
