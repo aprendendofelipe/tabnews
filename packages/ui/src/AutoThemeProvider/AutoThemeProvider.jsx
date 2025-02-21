@@ -1,5 +1,8 @@
+'use client';
+import { useTheme } from '@primer/react';
 import { useEffect, useLayoutEffect, useState } from 'react';
 
+import { COLOR_MODE_COOKIE } from '../constants/public.js';
 import { ThemeProvider } from '../ThemeProvider/index.js';
 
 // script to be called before interactive in _document.js
@@ -9,19 +12,21 @@ import { ThemeProvider } from '../ThemeProvider/index.js';
 const removeNoFlashStyle = () => setTimeout(() => document.documentElement.removeAttribute('data-no-flash'));
 const useBrowserLayoutEffect = typeof document === 'undefined' ? useEffect : useLayoutEffect;
 
-export function AutoThemeProvider({ children, defaultColorMode, ...props }) {
-  const [colorMode, setColorMode] = useState(defaultColorMode === 'night' ? 'night' : 'day');
+export function AutoThemeProvider({ children, defaultColorMode, noFlash = true, ...props }) {
+  const [colorMode, setColorMode] = useState(defaultColorMode === 'dark' ? 'dark' : 'light');
 
   useBrowserLayoutEffect(() => {
     const cachedColorMode = localStorage.getItem('colorMode') || colorMode;
+    if (noFlash) removeNoFlashStyle();
     if (cachedColorMode == colorMode) return;
+    document.documentElement.setAttribute('data-color-mode', cachedColorMode);
     setColorMode(cachedColorMode);
-    removeNoFlashStyle();
   }, []);
 
   return (
     <ThemeProvider colorMode={colorMode} {...props}>
-      <NoFlashGlobalStyle />
+      {noFlash && <NoFlashGlobalStyle />}
+      <ColorModeCookieSync />
       {children}
     </ThemeProvider>
   );
@@ -35,4 +40,11 @@ export function NoFlashGlobalStyle() {
       }}
     />
   );
+}
+
+export function ColorModeCookieSync() {
+  const { resolvedColorMode } = useTheme();
+  useEffect(() => {
+    document.cookie = `${COLOR_MODE_COOKIE}=${resolvedColorMode}; max-age=31536000; path=/`;
+  }, [resolvedColorMode]);
 }

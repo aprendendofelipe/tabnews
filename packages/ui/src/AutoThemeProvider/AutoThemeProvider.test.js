@@ -1,8 +1,20 @@
+import { useTheme } from '@primer/react';
 import { render, waitFor } from '@testing-library/react';
 
+import { ColorModeCookieSync } from './AutoThemeProvider.jsx';
 import { AutoThemeProvider, NoFlashGlobalStyle } from './index.js';
 
+const COLOR_MODE_COOKIE = 'cm';
+
+vi.mock('@primer/react', () => ({
+  useTheme: vi.fn().mockImplementation(() => ({ resolvedColorMode: 'light' })),
+}));
+
 describe('ui', () => {
+  beforeEach(() => {
+    document.cookie = `${COLOR_MODE_COOKIE}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  });
+
   describe('AutoThemeProvider', () => {
     vi.mock('../ThemeProvider', () => ({
       ThemeProvider: ({ children, colorMode, ...props }) => (
@@ -28,37 +40,50 @@ describe('ui', () => {
       const { getByTestId } = render(<AutoThemeProvider />);
       const colorMode = getByTestId('ThemeProvider').getAttribute('data-test-colormode');
 
-      expect(colorMode).toBe('day');
+      expect(colorMode).toBe('light');
     });
 
-    it('sets initial color mode to "night" via "defaultColorMode"', () => {
-      const { getByTestId } = render(<AutoThemeProvider defaultColorMode="night" />);
+    it('sets initial color mode to "dark" via "defaultColorMode"', () => {
+      const { getByTestId } = render(<AutoThemeProvider defaultColorMode="dark" />);
       const colorMode = getByTestId('ThemeProvider').getAttribute('data-test-colormode');
 
-      expect(colorMode).toBe('night');
+      expect(colorMode).toBe('dark');
     });
 
     it('uses cached color mode from localStorage if available', () => {
-      localStorage.setItem('colorMode', 'night');
-      const { getByTestId } = render(<AutoThemeProvider defaultColorMode="day" />);
+      localStorage.setItem('colorMode', 'dark');
+      const { getByTestId } = render(<AutoThemeProvider defaultColorMode="light" />);
       const colorMode = getByTestId('ThemeProvider').getAttribute('data-test-colormode');
 
-      expect(colorMode).toBe('night');
+      expect(colorMode).toBe('dark');
     });
 
     it('removes data-no-flash attribute after setting color mode', async () => {
       document.documentElement.setAttribute('data-no-flash', 'true');
-      render(<AutoThemeProvider defaultColorMode="day" />);
+      render(<AutoThemeProvider defaultColorMode="light" />);
 
       await waitFor(() => expect(document.documentElement.getAttribute('data-no-flash')).toBeNull());
     });
 
     it('applies NoFlashGlobalStyle correctly', () => {
-      const { container } = render(<AutoThemeProvider defaultColorMode="day" />);
+      const { container } = render(<AutoThemeProvider defaultColorMode="light" />);
       const styleTag = container.querySelector('style');
 
       expect(styleTag).not.toBeNull();
       expect(styleTag.textContent).toContain("html[data-no-flash='true'] { visibility: hidden; }");
+    });
+
+    it('does not apply NoFlashGlobalStyle when noFlash is false', () => {
+      const { container } = render(<AutoThemeProvider noFlash={false} />);
+      const styleTag = container.querySelector('style');
+
+      expect(styleTag).toBeNull();
+    });
+
+    it('applies ColorModeCookieSync correctly', () => {
+      render(<AutoThemeProvider defaultColorMode="light" />);
+
+      expect(document.cookie).toContain(`${COLOR_MODE_COOKIE}=light`);
     });
   });
 
@@ -69,6 +94,23 @@ describe('ui', () => {
 
       expect(styleTag).not.toBeNull();
       expect(styleTag.innerHTML).toBe("html[data-no-flash='true'] { visibility: hidden; }");
+    });
+  });
+
+  describe('ColorModeCookieSync', () => {
+    it('sets the color mode cookie with the resolved color mode', () => {
+      render(<ColorModeCookieSync />);
+
+      expect(document.cookie).toContain(`${COLOR_MODE_COOKIE}=light`);
+    });
+
+    it('updates the color mode cookie when the resolved color mode changes', () => {
+      const { rerender } = render(<ColorModeCookieSync />);
+      useTheme.mockReturnValueOnce({ resolvedColorMode: 'dark' });
+
+      rerender(<ColorModeCookieSync />);
+
+      expect(document.cookie).toContain(`${COLOR_MODE_COOKIE}=dark`);
     });
   });
 });

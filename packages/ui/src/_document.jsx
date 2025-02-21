@@ -5,7 +5,7 @@ import Script from 'next/script.js';
 import { ServerStyleSheet } from 'styled-components';
 
 // Script related to `AutoThemeProvider`
-export const noFlashScript = `if (['auto','night'].includes(localStorage.getItem('colorMode')))
+export const noFlashScript = `if (['auto','night','dark','day','light'].includes(localStorage.getItem('colorMode')))
 document.documentElement.setAttribute('data-no-flash', true)`;
 
 const Doc = NextDocument?.default ?? NextDocument;

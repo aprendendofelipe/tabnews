@@ -2,7 +2,7 @@ import { useForm } from '@tabnews/forms';
 import { Button, Flash, FormField, Heading } from '@tabnews/ui';
 import { Link } from '@tabnews/ui/primer';
 
-import { SubmittedFields } from './index.js';
+import { SubmittedFields } from './SubmittedFields.jsx';
 
 export function Login({ fields, store }) {
   const { state, getFieldProps, handleSubmit, updateState } = useForm(fields);
