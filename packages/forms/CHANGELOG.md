@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.2.5...forms-v0.3.0) (2025-02-26)
+
+
+### Features
+
+* **app router:** add `use client` directive ([11b6bf3](https://github.com/aprendendofelipe/tabnews/commit/11b6bf394165bcf10bba727b9900f683b38e5151))
+
 ## [0.2.5](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.2.4...forms-v0.2.5) (2024-12-19)
 
 
