@@ -3,8 +3,11 @@ import { isValidEmail, suggestEmail } from './index.js';
 describe('helpers', () => {
   describe('suggestEmail', () => {
     it('should return null for a correct email', () => {
-      const email = 'user@gmail.com';
-      expect(suggestEmail(email)).toBeNull();
+      const emails = ['user@gmail.com', 'user@yahoo.com.br', 'user@outlook.com.br'];
+
+      emails.forEach((input) => {
+        expect(suggestEmail(input)).toBeNull();
+      });
     });
 
     it('should return null for an email with an unknown domain', () => {
@@ -206,6 +209,10 @@ describe('helpers', () => {
       ['yahoo.comm', 'yahoo.com'],
       ['yahoo.con', 'yahoo.com'],
       ['yaho.com', 'yahoo.com'],
+      ['yahoo.com.', 'yahoo.com'],
+      ['yahoo.com.v', 'yahoo.com.br'],
+      ['yahoo.com.brr', 'yahoo.com.br'],
+      ['yahoo.com.bt', 'yahoo.com.br'],
       ['protonmil.com', 'protonmail.com'],
       ['outlok.com', 'outlook.com'],
       ['outlook.con', 'outlook.com'],
@@ -213,6 +220,10 @@ describe('helpers', () => {
       ['outlook.cm', 'outlook.com'],
       ['outlook.comm', 'outlook.com'],
       ['outlook.co', 'outlook.com'],
+      ['outlook.com.', 'outlook.com'],
+      ['outlook.com.v', 'outlook.com.br'],
+      ['outlook.com.brr', 'outlook.com.br'],
+      ['outlook.com.bt', 'outlook.com.br'],
       ['prontomail.com', 'protonmail.com'],
       ['zipmail.combr', 'zipmail.com.br'],
     ];

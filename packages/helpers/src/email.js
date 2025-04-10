@@ -152,6 +152,18 @@ export function suggestEmail(typedEmail) {
     .replace(/^\.+|\.+$/g, '')
     .replace(/\.+/g, '.');
 
+  if (domainWithTld.toLowerCase() === 'yahoo.com.br' || domainWithTld.toLowerCase() === 'outlook.com.br') {
+    return null;
+  }
+
+  if (domain.startsWith('yahoo.com.')) {
+    return `${userName}@yahoo.com.br`.toLowerCase();
+  }
+
+  if (domain.startsWith('outlook.com.')) {
+    return `${userName}@outlook.com.br`.toLowerCase();
+  }
+
   while (tlds.has(domain.slice(domain.lastIndexOf('.') + 1))) {
     domain = domain.slice(0, domain.lastIndexOf('.'));
   }
