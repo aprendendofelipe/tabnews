@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.4.0](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.3.3...ui-v0.4.0) (2025-04-16)
+
+
+### Features
+
+* **app router:** add `use client` directive ([11b6bf3](https://github.com/aprendendofelipe/tabnews/commit/11b6bf394165bcf10bba727b9900f683b38e5151))
+* **AutoThemeProvider:** add `noFlash` prop to control NoFlashGlobalStyle rendering ([526f4b5](https://github.com/aprendendofelipe/tabnews/commit/526f4b582860efea30ff1038d85e809deef97228))
+* **AutoThemeProvider:** add ColorModeCookieSync for managing color mode in cookies ([03f2db9](https://github.com/aprendendofelipe/tabnews/commit/03f2db9bf2469237c7d79260034845bf4a50de37))
+* **color mode:** use `light`/`dark` instead of `day`/`night` ([01a7676](https://github.com/aprendendofelipe/tabnews/commit/01a7676c291bd8e7ac5a1c183c2288f75dfe5e4a))
+* **CSS modules:** update to the new `@primer/react` approach ([a645a6c](https://github.com/aprendendofelipe/tabnews/commit/a645a6c6ffdc17862bdabd8e653c88626575981d))
+* **PrimerRoot:** add server component with color mode management ([fd69b5c](https://github.com/aprendendofelipe/tabnews/commit/fd69b5c9439df452afee2b92d0dbc29d2b6e2948))
+* **SCRegistry:** add StyledComponentsRegistry for server-side rendering with styled-components ([f059981](https://github.com/aprendendofelipe/tabnews/commit/f0599813bfed8ffd60bfbcd51512d9668393c99a))
+
 ## [0.3.3](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.3.2...ui-v0.3.3) (2025-01-10)
 
 

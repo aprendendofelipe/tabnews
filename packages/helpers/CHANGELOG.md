@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/aprendendofelipe/tabnews/compare/helpers-v0.1.2...helpers-v0.2.0) (2025-04-16)
+
+
+### Features
+
+* **@tabnews/helpers:** add support for `yahoo.com.br` and `outlook.com.br` in email suggestions ([9625958](https://github.com/aprendendofelipe/tabnews/commit/962595846478665684a6513590497d6c59eae5f8))
+
 ## [0.1.2](https://github.com/aprendendofelipe/tabnews/compare/helpers-v0.1.1...helpers-v0.1.2) (2024-11-07)
 
 
