@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.4.0...ui-v0.4.1) (2025-04-21)
+
+
+### Bug Fixes
+
+* **FormField:** add color prop for ignore suggestion button ([0fd3012](https://github.com/aprendendofelipe/tabnews/commit/0fd3012cd4f7a1b1a364189d8702717424b909a1))
+
 ## [0.4.0](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.3.3...ui-v0.4.0) (2025-04-16)
 
 
