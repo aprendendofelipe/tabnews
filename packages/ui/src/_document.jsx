@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-before-interactive-script-outside-document */
-/* eslint-disable-next-line @next/next/no-document-import-in-page */
 import NextDocument, { Head, Html, Main, NextScript } from 'next/document.js';
 import Script from 'next/script.js';
 import { ServerStyleSheet } from 'styled-components';

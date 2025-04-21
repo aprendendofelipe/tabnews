@@ -93,17 +93,17 @@ export function FormField({
 
     inputProps.onKeyUp = (e) => {
       detectCapsLock(e);
-      props.onKeyUp && props.onKeyUp(e);
+      if (props.onKeyUp) props.onKeyUp(e);
     };
 
     inputProps.onKeyDown = (e) => {
       detectCapsLock(e);
-      props.onKeyDown && props.onKeyDown(e);
+      if (props.onKeyDown) props.onKeyDown(e);
     };
 
     inputProps.onBlur = (e) => {
       setCapsLockWarningMessage(null);
-      props.onBlur && props.onBlur(e);
+      if (props.onBlur) props.onBlur(e);
     };
 
     inputProps.sx = { ...textInputProps.sx, pr: 0 };
