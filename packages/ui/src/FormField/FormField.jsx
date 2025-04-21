@@ -182,6 +182,7 @@ export function Suggestion({ suggestion }) {
         <TooltippedButton
           tooltip={suggestion.ignoreTooltip || 'Ignorar sugestão'}
           onClick={suggestion.ignoreClick}
+          color="accent.fg"
           sx={{ flex: 1 }}>
           {suggestion.ignoreLabel || 'Ignorar'}
         </TooltippedButton>
