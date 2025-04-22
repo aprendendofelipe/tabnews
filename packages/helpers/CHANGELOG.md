@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/aprendendofelipe/tabnews/compare/helpers-v0.2.0...helpers-v0.2.1) (2025-04-22)
+
+
+### Features
+
+* **string helpers:** add string manipulation functions and tests ([f80af1c](https://github.com/aprendendofelipe/tabnews/commit/f80af1c42d70c099d775b6aa38fef0fcca4f2730))
+
 ## [0.2.0](https://github.com/aprendendofelipe/tabnews/compare/helpers-v0.1.2...helpers-v0.2.0) (2025-04-16)
 
 

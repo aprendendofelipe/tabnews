@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.3.1](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.3.0...forms-v0.3.1) (2025-04-22)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @tabnews/helpers bumped from ^0.2.0 to ^0.2.1
+    * @tabnews/hooks bumped from ^0.1.3 to ^0.1.4
+
 ## [0.3.0](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.2.5...forms-v0.3.0) (2025-04-16)
 
 
