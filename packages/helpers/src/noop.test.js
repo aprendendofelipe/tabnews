@@ -3,7 +3,10 @@ import { identity, noop, returnNull } from './index.js';
 describe('helpers', () => {
   describe('No-Op and Identity Functions', () => {
     const inputs = [, 42, '42', 'hello', null, undefined, { key: 'value' }, [1, 2, 3]];
-    expect(inputs.length).toBe(8);
+
+    it('should have 8 test inputs', () => {
+      expect(inputs).toHaveLength(8);
+    });
 
     describe('identity', () => {
       it('should return the same value that is passed in', () => {
