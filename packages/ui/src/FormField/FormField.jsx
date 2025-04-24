@@ -2,7 +2,7 @@
 import { AlertFillIcon, EyeClosedIcon, EyeIcon } from '@primer/octicons-react';
 import { Button, Checkbox, FormControl, Select, Text, TextInput } from '@primer/react';
 import { Tooltip } from '@primer/react/next';
-import { useRef, useState } from 'react';
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 
 const defaultProps = {
   block: true,
@@ -26,126 +26,135 @@ const textInputProps = {
   },
 };
 
-export function FormField({
-  caption,
-  checked,
-  error,
-  hidden,
-  inputMode,
-  isValid,
-  label,
-  name,
-  options,
-  required,
-  suggestion,
-  sx,
-  type,
-  ...props
-}) {
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [capsLockWarningMessage, setCapsLockWarningMessage] = useState(null);
-  const ref = useRef();
+export const FormField = forwardRef(
+  (
+    {
+      caption,
+      checked,
+      error,
+      hidden,
+      inputMode,
+      isValid,
+      label,
+      name,
+      options,
+      required,
+      suggestion,
+      sx,
+      type,
+      ...props
+    },
+    externalRef,
+  ) => {
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const [capsLockWarningMessage, setCapsLockWarningMessage] = useState(null);
+    const ref = useRef();
 
-  if (hidden) return null;
+    useImperativeHandle(externalRef, () => ref.current);
 
-  const inputProps = {
-    validationStatus: error ? 'error' : isValid ? 'success' : null,
-    inputMode,
-    ref,
-    ...props,
-  };
+    if (hidden) return null;
 
-  if (type === 'password') {
-    function focusAfterEnd() {
-      setTimeout(() => {
-        const input = ref.current;
-        const len = input.value.length;
-        input.focus();
-        input.setSelectionRange(len, len);
-      });
-    }
+    const inputProps = {
+      validationStatus: error ? 'error' : isValid ? 'success' : null,
+      inputMode,
+      ref,
+      ...props,
+    };
 
-    function detectCapsLock(event) {
-      if (inputMode !== 'numeric' && event.getModifierState('CapsLock')) {
-        setCapsLockWarningMessage('Caps Lock está ativado.');
-      } else {
-        setCapsLockWarningMessage(null);
+    if (type === 'password') {
+      function focusAfterEnd() {
+        setTimeout(() => {
+          const input = ref.current;
+          const len = input.value.length;
+          input.focus();
+          input.setSelectionRange(len, len);
+        });
       }
+
+      function detectCapsLock(event) {
+        if (inputMode !== 'numeric' && event.getModifierState('CapsLock')) {
+          setCapsLockWarningMessage('Caps Lock está ativado.');
+        } else {
+          setCapsLockWarningMessage(null);
+        }
+      }
+
+      function handlePasswordVisible(event) {
+        event.preventDefault();
+        setIsPasswordVisible(!isPasswordVisible);
+        focusAfterEnd();
+        detectCapsLock(event);
+      }
+
+      inputProps.type = isPasswordVisible ? 'text' : 'password';
+
+      inputProps.trailingVisual = inputProps.trailingVisual || (
+        <TextInput.Action
+          aria-label={isPasswordVisible ? `Ocultar ${label}` : `Visualizar ${label}`}
+          tooltipDirection="nw"
+          onClick={handlePasswordVisible}
+          icon={isPasswordVisible ? EyeClosedIcon : EyeIcon}
+        />
+      );
+
+      inputProps.onKeyUp = (e) => {
+        detectCapsLock(e);
+        if (props.onKeyUp) props.onKeyUp(e);
+      };
+
+      inputProps.onKeyDown = (e) => {
+        detectCapsLock(e);
+        if (props.onKeyDown) props.onKeyDown(e);
+      };
+
+      inputProps.onBlur = (e) => {
+        setCapsLockWarningMessage(null);
+        if (props.onBlur) props.onBlur(e);
+      };
+
+      inputProps.sx = { ...textInputProps.sx, pr: 0 };
     }
 
-    function handlePasswordVisible(event) {
-      event.preventDefault();
-      setIsPasswordVisible(!isPasswordVisible);
-      focusAfterEnd();
-      detectCapsLock(event);
-    }
+    const isCheckbox = typeof checked === 'boolean';
 
-    inputProps.type = isPasswordVisible ? 'text' : 'password';
+    return (
+      <FormControl id={name} required={required} sx={{ minHeight: '86px', ...sx }}>
+        <FormControl.Label>{label}</FormControl.Label>
+        {caption && <FormControl.Caption>{caption}</FormControl.Caption>}
+        {error && !suggestion?.value && !options && !isCheckbox && (
+          <FormControl.Validation variant="error">{error}</FormControl.Validation>
+        )}
+        <Suggestion suggestion={suggestion} />
+        <WarningMessage message={capsLockWarningMessage} />
 
-    inputProps.trailingVisual = inputProps.trailingVisual || (
-      <TextInput.Action
-        aria-label={isPasswordVisible ? `Ocultar ${label}` : `Visualizar ${label}`}
-        tooltipDirection="nw"
-        onClick={handlePasswordVisible}
-        icon={isPasswordVisible ? EyeClosedIcon : EyeIcon}
-      />
+        {!options && !isCheckbox && <TextInput type={type} {...textInputProps} {...inputProps} />}
+
+        {options && (
+          <Select {...defaultProps} {...inputProps} className="fully-clickable">
+            {options.map((option) => (
+              <Select.Option key={option.value} {...option}>
+                {option.label}
+              </Select.Option>
+            ))}
+          </Select>
+        )}
+
+        {isCheckbox && <Checkbox checked={checked} {...inputProps} />}
+
+        <style jsx="true">{`
+          .fully-clickable {
+            height: 36px;
+          }
+          ::-ms-reveal {
+            display: none;
+          }
+        `}</style>
+      </FormControl>
     );
+  },
+);
 
-    inputProps.onKeyUp = (e) => {
-      detectCapsLock(e);
-      if (props.onKeyUp) props.onKeyUp(e);
-    };
-
-    inputProps.onKeyDown = (e) => {
-      detectCapsLock(e);
-      if (props.onKeyDown) props.onKeyDown(e);
-    };
-
-    inputProps.onBlur = (e) => {
-      setCapsLockWarningMessage(null);
-      if (props.onBlur) props.onBlur(e);
-    };
-
-    inputProps.sx = { ...textInputProps.sx, pr: 0 };
-  }
-
-  const isCheckbox = typeof checked === 'boolean';
-
-  return (
-    <FormControl id={name} required={required} sx={{ minHeight: '86px', ...sx }}>
-      <FormControl.Label>{label}</FormControl.Label>
-      {caption && <FormControl.Caption>{caption}</FormControl.Caption>}
-      {error && !suggestion?.value && !options && !isCheckbox && (
-        <FormControl.Validation variant="error">{error}</FormControl.Validation>
-      )}
-      <Suggestion suggestion={suggestion} />
-      <WarningMessage message={capsLockWarningMessage} />
-
-      {!options && !isCheckbox && <TextInput type={type} {...textInputProps} {...inputProps} />}
-
-      {options && (
-        <Select {...defaultProps} {...inputProps} className="fully-clickable">
-          {options.map((option) => (
-            <Select.Option key={option.value} {...option}>
-              {option.label}
-            </Select.Option>
-          ))}
-        </Select>
-      )}
-
-      {isCheckbox && <Checkbox checked={checked} {...inputProps} />}
-
-      <style jsx="true">{`
-        .fully-clickable {
-          height: 36px;
-        }
-        ::-ms-reveal {
-          display: none;
-        }
-      `}</style>
-    </FormControl>
-  );
-}
+FormField.displayName = 'FormField';
 
 export function Suggestion({ suggestion }) {
   if (!suggestion?.value) return null;

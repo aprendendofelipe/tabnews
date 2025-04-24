@@ -1,5 +1,6 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
+import React from 'react';
 
 import { FormField, Suggestion } from './index.js';
 
@@ -159,6 +160,18 @@ describe('ui', () => {
         fireEvent.blur(input);
         expect(onBlur).toHaveBeenCalled();
       });
+
+      it('forwards ref to the input', () => {
+        const inputRef = React.createRef();
+        render(<FormField {...passwordTestProps} ref={inputRef} />);
+        expect(inputRef.current).not.toBeNull();
+
+        const passwordInput = screen.getByLabelText('Test Label');
+        expect(passwordInput).not.toHaveFocus();
+
+        inputRef.current.focus();
+        expect(passwordInput).toHaveFocus();
+      });
     });
 
     describe('validationStatus', () => {
@@ -191,6 +204,18 @@ describe('ui', () => {
           expect(container.querySelector(errorStyle)).not.toBeInTheDocument();
           expect(container.querySelector(successStyle)).not.toBeInTheDocument();
           expect(inputElement).not.toHaveAttribute('aria-invalid', 'true');
+        });
+
+        it('forwards ref to the input', () => {
+          const inputRef = React.createRef();
+          render(<FormField name="test" ref={inputRef} />);
+          expect(inputRef.current).not.toBeNull();
+
+          const inputElement = screen.getByRole('textbox');
+          expect(inputElement).not.toHaveFocus();
+
+          inputRef.current.focus();
+          expect(inputElement).toHaveFocus();
         });
       });
 
@@ -236,6 +261,18 @@ describe('ui', () => {
           expect(selectElement).toHaveAttribute('aria-invalid', 'false');
           expect(selectElement.parentElement).not.toHaveAttribute('data-validation');
         });
+
+        it('forwards ref to the input', () => {
+          const inputRef = React.createRef();
+          render(<FormField name="test" options={[{ value: '1', label: 'Option 1' }]} ref={inputRef} />);
+          expect(inputRef.current).not.toBeNull();
+
+          const selectElement = screen.getByRole('combobox');
+          expect(selectElement).not.toHaveFocus();
+
+          inputRef.current.focus();
+          expect(selectElement).toHaveFocus();
+        });
       });
 
       describe('Checkbox', () => {
@@ -249,6 +286,18 @@ describe('ui', () => {
           render(<FormField name="test" checked />);
           const checkbox = screen.getByRole('checkbox');
           expect(checkbox).toHaveAttribute('aria-invalid', 'false');
+        });
+
+        it('forwards ref to the input', () => {
+          const inputRef = React.createRef();
+          render(<FormField name="test" checked ref={inputRef} />);
+          expect(inputRef.current).not.toBeNull();
+
+          const checkbox = screen.getByRole('checkbox');
+          expect(checkbox).not.toHaveFocus();
+
+          inputRef.current.focus();
+          expect(checkbox).toHaveFocus();
         });
       });
 
