@@ -13,6 +13,10 @@
       "import": "./dist/_document.js",
       "require": "./dist/_document.cjs"
     },
+    "./markdown": {
+      "import": "./dist/markdown.js",
+      "require": "./dist/markdown.cjs"
+    },
     "./primer": {
       "import": "./dist/primer.js",
       "require": "./dist/primer.cjs"

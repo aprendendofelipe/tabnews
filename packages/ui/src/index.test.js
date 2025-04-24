@@ -1,6 +1,7 @@
 /* eslint-disable import/namespace */
 import * as document from './_document.jsx';
 import * as ui from './index.js';
+import * as markdown from './Markdown/index.js';
 
 const exportedByIndex = [
   'ActionList',
@@ -43,6 +44,15 @@ const exportedByIndex = [
 
 const exportedBy_document = ['Document'];
 
+const exportedByMarkdown = [
+  'MarkdownEditor',
+  'MarkdownViewer',
+  'anchorHeadersPlugin',
+  'copyCodeToClipboardPlugin',
+  'externalLinksPlugin',
+  'removeDuplicateClobberPrefix',
+];
+
 describe('ui', () => {
   describe('index', () => {
     it.each(exportedByIndex)('should export "%s"', (exported) => {
@@ -53,6 +63,12 @@ describe('ui', () => {
   describe('_document', () => {
     it.each(exportedBy_document)('should export "%s"', (exported) => {
       expect(document[exported]).toBeDefined();
+    });
+  });
+
+  describe('markdown', () => {
+    it.each(exportedByMarkdown)('should export "%s"', (exported) => {
+      expect(markdown[exported]).toBeDefined();
     });
   });
 });
