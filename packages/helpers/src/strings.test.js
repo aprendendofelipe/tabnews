@@ -48,10 +48,55 @@ describe('helpers', () => {
       expect(result).toBe('No max length');
     });
 
-    it('should return the original string if maxLength is 0', () => {
-      const input = 'No max length';
+    it('should return the original string if maxLength is not a number', () => {
+      const input = 'Max length is not a number';
+      const result = truncate(input, 'not a number');
+      expect(result).toBe(input);
+    });
+
+    it('should return the same object if input is not a string', () => {
+      const input = 1234567890;
+      const result = truncate(input, 5);
+      expect(result).toBe(input);
+    });
+
+    it('should return empty string if maxLength is 0', () => {
+      const input = 'Max length = 0';
       const result = truncate(input, 0);
-      expect(result).toBe('No max length');
+      expect(result).toBe('');
+    });
+
+    it('should return empty string if maxLength is negative', () => {
+      const input = 'negative max length';
+      const result = truncate(input, -5);
+      expect(result).toBe('');
+    });
+
+    it('should handle empty strings', () => {
+      const input = '';
+      const result = truncate(input, 10);
+      expect(result).toBe(input);
+    });
+
+    it('should truncate ellipsis if maxLength is less than ellipsis length', () => {
+      const input = 'This is a long string.';
+      const result = truncate(input, 2);
+      expect(result).toBe('..');
+    });
+
+    it('should not truncate if content fits, even when maxLength < ellipsis length', () => {
+      const input = '👩‍❤️‍💋‍👨';
+      expect(input).toHaveLength(11);
+      const result = truncate(input, 2);
+      expect(result).toBe('👩‍❤️‍💋‍👨');
+    });
+
+    it('should not truncate when grapheme count is below maxLength', () => {
+      const input = 'Hello 👩‍❤️‍💋‍👨!';
+      expect(input).toHaveLength(18);
+
+      const result = truncate(input, 15);
+      expect(result).toBe(input);
     });
 
     it('should handle emojis correctly', () => {
