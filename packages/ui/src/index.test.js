@@ -16,6 +16,7 @@ const exportedByIndex = [
   'Flash',
   'FormControl',
   'GlobalStyle',
+  'GoToTopButton',
   'Heading',
   'IconButton',
   'Label',
