@@ -1,4 +1,4 @@
-import { Box } from '@tabnews/ui';
+import { Box, GoToTopButton } from '@tabnews/ui';
 
 import { Header } from './Header.jsx';
 
@@ -14,6 +14,7 @@ export function DefaultLayout({ children, containerWidth }) {
         }}>
         {children}
       </Box>
+      <GoToTopButton target="header" />
     </>
   );
 }
