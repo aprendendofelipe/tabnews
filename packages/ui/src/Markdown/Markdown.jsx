@@ -20,7 +20,9 @@ import {
   externalLinksPlugin,
   removeDuplicateClobberPrefix,
 } from './plugins/index.js';
-import { EditorColors, EditorStyles } from './styles/index.jsx';
+import { EditorStyles } from './styles/index.jsx';
+import './styles/editor.css';
+import './styles/viewer.css';
 
 const bytemdPluginBaseList = [
   gfmPlugin({ locale: gfmLocale }),
@@ -86,17 +88,18 @@ export function MarkdownViewer({ value: _value, areLinksTrusted, clobberPrefix, 
 }
 
 export function MarkdownEditor({
-  isInvalid,
-  onKeyDown,
-  compact,
   areLinksTrusted,
   clobberPrefix,
+  editorConfig = {},
+  initialHeight = '30vh',
+  isInvalid,
+  mode = 'split', // 'tab'
+  onKeyDown,
   shouldAddNofollow,
   ...props
 }) {
   clobberPrefix = clobberPrefix?.toLowerCase();
   const bytemdPluginList = usePlugins({ areLinksTrusted, clobberPrefix, shouldAddNofollow });
-  const editorMode = 'split'; // 'tab'
   const editorRef = useRef();
 
   useEffect(() => {
@@ -116,15 +119,14 @@ export function MarkdownEditor({
     <Box sx={{ width: '100%' }} ref={editorRef} className={isInvalid ? 'is-invalid' : ''}>
       <ByteMdEditor
         plugins={bytemdPluginList}
-        mode={editorMode}
+        mode={mode}
         locale={byteMDLocale}
         sanitize={sanitize({ clobberPrefix })}
-        editorConfig={{ autocapitalize: 'sentences', inputStyle: 'contenteditable', spellcheck: true }}
+        editorConfig={{ autocapitalize: 'sentences', inputStyle: 'contenteditable', spellcheck: true, ...editorConfig }}
         remarkRehype={{ clobberPrefix }}
         {...props}
       />
-      <EditorStyles compact={compact} mode={editorMode} />
-      <EditorColors />
+      <EditorStyles height={initialHeight} mode={mode} />
     </Box>
   );
 }
