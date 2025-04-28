@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.5.0](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.4.1...ui-v0.5.0) (2025-04-28)
+
+
+### Features
+
+* **Markdown:** add `MarkdownEditor/Viewer` component ([279218d](https://github.com/aprendendofelipe/tabnews/commit/279218de3cee983d5f10ee8687ca4edbc92703d1))
+* **Markdown:** align component styles with `@primer/react` ([d1229b7](https://github.com/aprendendofelipe/tabnews/commit/d1229b77936ccf5d6be536aa4e2b30fe4b8d0069))
+* **ui:** create GoToTopButton component ([c935b7e](https://github.com/aprendendofelipe/tabnews/commit/c935b7ec581a18ce01046b2440c1dccaee7c2bb8))
+* **ui:** forward ref on FormField ([0614e1c](https://github.com/aprendendofelipe/tabnews/commit/0614e1c6f816c75377457ca60465eb98e0ee4d9c))
+
+
+### Bug Fixes
+
+* lock react peer dependency to 18.x ([509721b](https://github.com/aprendendofelipe/tabnews/commit/509721b5847c68d07ff43dd2a2d0fccf71caab4b))
+
 ## [0.4.1](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.4.0...ui-v0.4.1) (2025-04-21)
 
 

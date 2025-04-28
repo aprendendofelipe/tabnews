@@ -1,6 +1,6 @@
 {
   "name": "@tabnews/hooks",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "TabNews Hooks",
   "license": "MIT",
   "type": "module",
@@ -16,7 +16,7 @@
     "format": "eslint --fix . && prettier --write ."
   },
   "dependencies": {
-    "@tabnews/helpers": "^0.2.1"
+    "@tabnews/helpers": "^0.3.0"
   },
   "peerDependencies": {
     "react": "^18.2.0"

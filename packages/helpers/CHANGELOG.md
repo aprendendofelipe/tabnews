@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/aprendendofelipe/tabnews/compare/helpers-v0.2.1...helpers-v0.3.0) (2025-04-28)
+
+
+### Features
+
+* **truncate:** improve input validation and tests for edge cases ([9c0725a](https://github.com/aprendendofelipe/tabnews/commit/9c0725acfb5e24a0d4182d8a7e8abca7c4730e63))
+
 ## [0.2.1](https://github.com/aprendendofelipe/tabnews/compare/helpers-v0.2.0...helpers-v0.2.1) (2025-04-22)
 
 
