@@ -9,6 +9,8 @@
     "build": "npm run build --workspace packages/ui",
     "build:examples:form": "npm run build && npm run build --workspace examples/form",
     "start:examples:form": "npm run start --workspace examples/form",
+    "build:examples:markdown": "npm run build && npm run build --workspace examples/markdown",
+    "start:examples:markdown": "npm run start --workspace examples/markdown",
     "test": "tn test",
     "test:run": "tn test run",
     "coverage": "tn test --coverage",
