@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.2.0](https://github.com/aprendendofelipe/tabnews/compare/form-example-v0.1.2...form-example-v0.2.0) (2025-04-28)
+
+
+### Features
+
+* **form examples:** add GoToTopButton component to all pages ([f06bf66](https://github.com/aprendendofelipe/tabnews/commit/f06bf668b2e8bcf8df4f5d039e3cc310501305be))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @tabnews/forms bumped from 0.3.1 to 0.3.2
+    * @tabnews/ui bumped from 0.4.1 to 0.5.0
+
 ## [0.1.2](https://github.com/aprendendofelipe/tabnews/compare/form-example-v0.1.1...form-example-v0.1.2) (2025-04-22)
 
 

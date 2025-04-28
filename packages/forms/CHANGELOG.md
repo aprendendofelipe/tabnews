@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.3.2](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.3.1...forms-v0.3.2) (2025-04-28)
+
+
+### Bug Fixes
+
+* lock react peer dependency to 18.x ([509721b](https://github.com/aprendendofelipe/tabnews/commit/509721b5847c68d07ff43dd2a2d0fccf71caab4b))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @tabnews/helpers bumped from ^0.2.1 to ^0.3.0
+    * @tabnews/hooks bumped from ^0.1.4 to ^0.1.5
+
 ## [0.3.1](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.3.0...forms-v0.3.1) (2025-04-22)
 
 

@@ -1,6 +1,7 @@
 {
   "packages": {
     "examples/form": {},
+    "examples/markdown": {},
     "packages/forms": {},
     "packages/helpers": {},
     "packages/hooks": {},
