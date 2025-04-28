@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.5.0...ui-v0.5.1) (2025-04-28)
+
+
+### Bug Fixes
+
+* **MarkdownEditor:** align border focus color with Primer variables ([8203af1](https://github.com/aprendendofelipe/tabnews/commit/8203af16970b4f0ccfe27b96eadece4386df5208))
+
 ## [0.5.0](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.4.1...ui-v0.5.0) (2025-04-28)
 
 
