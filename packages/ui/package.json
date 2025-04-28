@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@primer/octicons-react": "19.15.1",
-    "@primer/react": "^37.12.0",
+    "@primer/react": "^37.21.0",
     "styled-components": "^5.3.11"
   },
   "devDependencies": {
