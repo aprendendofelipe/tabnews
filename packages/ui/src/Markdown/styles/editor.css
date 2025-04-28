@@ -20,8 +20,8 @@
 }
 
 .bytemd:focus-within {
-  border-color: var(--borderColor-accent-emphasis);
-  outline: 2px solid var(--borderColor-accent-emphasis);
+  border-color: var(--fgColor-accent);
+  outline: 2px solid var(--fgColor-accent);
 }
 
 .is-invalid .bytemd {
@@ -29,8 +29,8 @@
 }
 
 .is-invalid .bytemd:focus-within {
-  border-color: var(--control-borderColor-danger);
-  outline: 2px solid var(--control-borderColor-danger);
+  border-color: var(--borderColor-danger-emphasis);
+  outline: 2px solid var(--borderColor-danger-emphasis);
 }
 
 .bytemd-fullscreen {
