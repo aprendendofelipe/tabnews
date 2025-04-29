@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.3](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.5.2...ui-v0.5.3) (2025-04-29)
+
+
+### Bug Fixes
+
+* **MarkdownEditor:** Revert "refactor(MarkdownEditor): apply background-color via .bytemd container" ([4741de4](https://github.com/aprendendofelipe/tabnews/commit/4741de4a6f1d76765906c79cf7acb85cd27d610d))
+
 ## [0.5.2](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.5.1...ui-v0.5.2) (2025-04-29)
 
 
