@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.2](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.5.1...ui-v0.5.2) (2025-04-29)
+
+
+### Bug Fixes
+
+* **MarkdownEditor:** add padding to prevent border overlap by child elements ([62890d8](https://github.com/aprendendofelipe/tabnews/commit/62890d85ddb7e1f41392d6a4f6db5b28f2df2022))
+* **MarkdownEditor:** avoid Safari clipping resize handle ([9414460](https://github.com/aprendendofelipe/tabnews/commit/9414460b2537ce3bb99465bbfa99f8a7bd20cb04))
+
 ## [0.5.1](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.5.0...ui-v0.5.1) (2025-04-28)
 
 
