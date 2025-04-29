@@ -377,6 +377,11 @@
   vertical-align: top;
   height: 100%;
   overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+}
+
+.bytemd-fullscreen .bytemd-editor {
+  clip-path: none;
 }
 
 .bytemd-editor .CodeMirror {
