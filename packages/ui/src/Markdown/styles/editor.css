@@ -1,4 +1,5 @@
 .bytemd {
+  background-color: var(--bgColor-inset);
   display: inline-block;
   width: 100%;
   border-width: 1px;
@@ -20,6 +21,7 @@
 }
 
 .bytemd:focus-within {
+  background-color: var(--bgColor-default);
   border-color: var(--fgColor-accent);
   outline: 2px solid var(--fgColor-accent);
 }
@@ -65,7 +67,6 @@
 }
 
 .bytemd-body {
-  background-color: var(--bgColor-default);
   caret-color: var(--codeMirror-cursor-fgColor);
   min-height: 150px;
   overflow: auto;
@@ -398,16 +399,11 @@
 }
 
 .CodeMirror {
-  background-color: var(--bgColor-inset);
   font-family: monospace;
   direction: ltr;
   position: relative;
   height: 300px;
   overflow: hidden;
-}
-
-.CodeMirror:focus-within {
-  background-color: var(--bgColor-default);
 }
 
 .CodeMirror-lines {
