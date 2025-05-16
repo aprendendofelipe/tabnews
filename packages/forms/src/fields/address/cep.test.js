@@ -5,15 +5,17 @@ import { cep } from './index.js';
 
 describe('forms', () => {
   describe('cep field', () => {
-    let fetchSpy;
-
     beforeAll(() => {
-      vi.spyOn(console, 'error').mockImplementation(noop);
-      fetchSpy = vi.spyOn(global, 'fetch');
+      vi.spyOn(console, 'warn').mockImplementation(noop);
+      vi.spyOn(global, 'fetch').mockResolvedValue();
+    });
+
+    beforeEach(() => {
+      vi.clearAllMocks();
     });
 
     afterAll(() => {
-      fetchSpy.mockRestore();
+      vi.restoreAllMocks();
     });
 
     it('should have the correct shape', () => {
@@ -59,7 +61,7 @@ describe('forms', () => {
 
       it('should call updateState with loading true for valid CEP', async () => {
         const updateState = vi.fn();
-        fetchSpy.mockResolvedValueOnce({
+        global.fetch.mockResolvedValueOnce({
           ok: true,
           // eslint-disable-next-line require-await
           json: async () => ({
@@ -78,7 +80,7 @@ describe('forms', () => {
 
       it('should call updateState with address data for valid CEP', async () => {
         const updateState = vi.fn();
-        fetchSpy.mockResolvedValueOnce({
+        global.fetch.mockResolvedValueOnce({
           ok: true,
           // eslint-disable-next-line require-await
           json: async () => ({
@@ -106,7 +108,7 @@ describe('forms', () => {
 
       it('should call updateState without address data for inexistent CEP', async () => {
         const updateState = vi.fn();
-        fetchSpy.mockResolvedValueOnce({
+        global.fetch.mockResolvedValueOnce({
           ok: true,
           // eslint-disable-next-line require-await
           json: async () => ({}),
@@ -123,7 +125,7 @@ describe('forms', () => {
 
     describe('getAddress', () => {
       it('should return address data for valid CEP', async () => {
-        fetchSpy.mockResolvedValueOnce({
+        global.fetch.mockResolvedValueOnce({
           ok: true,
           // eslint-disable-next-line require-await
           json: async () => ({
@@ -147,7 +149,7 @@ describe('forms', () => {
       });
 
       it('should return "undefined" for invalid CEP', async () => {
-        fetchSpy.mockResolvedValueOnce({
+        global.fetch.mockResolvedValueOnce({
           status: 404,
           ok: false,
         });
@@ -156,7 +158,7 @@ describe('forms', () => {
       });
 
       it('should return "undefined" for invalid response', async () => {
-        fetchSpy.mockResolvedValueOnce({
+        global.fetch.mockResolvedValueOnce({
           ok: false,
           status: 500,
         });
@@ -165,7 +167,7 @@ describe('forms', () => {
       });
 
       it('should return "undefined" for invalid CEP in response', async () => {
-        fetchSpy.mockResolvedValueOnce({
+        global.fetch.mockResolvedValueOnce({
           ok: true,
           // eslint-disable-next-line require-await
           json: async () => ({
@@ -174,6 +176,54 @@ describe('forms', () => {
         });
 
         expect(await getAddress('00000000')).toBeUndefined();
+      });
+
+      it('should abort first request if called again', async () => {
+        global.fetch
+          .mockImplementationOnce(
+            (_, { signal }) =>
+              new Promise((_, reject) => {
+                signal.addEventListener('abort', () => {
+                  const reason = new Error('AbortError');
+                  reason.name = 'AbortError';
+                  reject(reason);
+                });
+              }),
+          )
+          .mockImplementationOnce(() => {
+            return Promise.resolve({
+              ok: true,
+              status: 200,
+              // eslint-disable-next-line require-await
+              json: async () => ({ cep: '87654321' }),
+            });
+          });
+
+        const firstCall = getAddress('12345678');
+
+        await vi.waitFor(() => {
+          expect(global.fetch).toHaveBeenCalledOnce();
+        });
+
+        const secondCall = await getAddress('87654321');
+
+        expect(global.fetch).toHaveBeenCalledTimes(2);
+        expect(secondCall).toStrictEqual({ cep: '87654321' });
+        await expect(firstCall).resolves.toBeUndefined();
+        expect(console.warn).not.toHaveBeenCalled();
+      });
+
+      it('should log warning for fetch error', async () => {
+        global.fetch.mockRejectedValueOnce(new Error('Network error'));
+
+        await getAddress('12345678');
+
+        expect(console.warn).toHaveBeenCalledWith(
+          'Falha ao obter dados do CEP',
+          '12345678',
+          '- Erro:',
+          'Network error',
+        );
       });
     });
 
