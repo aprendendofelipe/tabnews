@@ -26,13 +26,14 @@ export function maskPhone(input) {
   const countryCodesRegex = new RegExp(`^\\+(${relevantCountryCodes.join('|')})(\\(?(\\d))`);
   phone = phone.replace(countryCodesRegex, '+$1($3');
 
+  phone = phone.replace(/(\(\d)(\()(\d+\))/, '$1$3');
   phone = phone.replace(/^(\+55\(\d{2})(\d)/, '$1)$2');
   phone = phone.replace(/^(\(\d{2})(\d)/, '$1)$2');
 
   let openParenFound = false;
   let closeParenFound = false;
 
-  phone = phone.replace(/([()\s-]+)/g, () => {
+  phone = phone.replace(/([()\s-]+)/g, (match) => {
     if (!openParenFound) {
       openParenFound = true;
       return '(';
@@ -43,7 +44,11 @@ export function maskPhone(input) {
       return ')';
     }
 
-    return '-';
+    if (match.includes('-') || match.includes(' ')) {
+      return '-';
+    }
+
+    return '';
   });
 
   if (phone.length > 3 && !openParenFound) {
