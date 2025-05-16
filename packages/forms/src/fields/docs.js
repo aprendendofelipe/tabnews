@@ -6,23 +6,25 @@ export const brDocs = {
   label: 'CPF/CNPJ',
   placeholder: 'Informe seu CPF ou CNPJ',
   prepare: (document) => {
-    if (isCpfValid(document)) {
+    const cpf = document.replace(/\D/g, '').padStart(11, '0');
+    if (isCpfValid(cpf)) {
       return {
         type: 'CPF',
-        number: document.replace(/\D/g, '').padStart(11, '0'),
+        number: cpf,
       };
     }
 
-    if (isCnpjValid(document)) {
+    const cnpj = document.replace(/[^a-zA-Z0-9]/g, '').padStart(14, '0');
+    if (isCnpjValid(cnpj)) {
       return {
         type: 'CNPJ',
-        number: document.replace(/[^a-zA-Z0-9]/g, '').padStart(14, '0'),
+        number: cnpj,
       };
     }
 
     return {
       type: 'PASSPORT',
-      number: document,
+      number: document.trim(),
     };
   },
   validateOnBlurAndSubmit: (doc) => {
