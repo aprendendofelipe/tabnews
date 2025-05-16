@@ -73,7 +73,8 @@ export async function getAddress(cep) {
 
     throw new Error('Dados inválidos.');
   } catch (err) {
-    console.error('Falha ao obter dados do CEP', cep, '- Erro:', err.message);
+    if (err.name === 'AbortError') return;
+    console.warn('Falha ao obter dados do CEP', cep, '- Erro:', err.message);
   }
 }
 
