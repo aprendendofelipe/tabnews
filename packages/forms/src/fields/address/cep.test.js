@@ -5,11 +5,9 @@ import { cep } from './index.js';
 
 describe('forms', () => {
   describe('cep field', () => {
-    let fetchSpy;
-
     beforeAll(() => {
       vi.spyOn(console, 'warn').mockImplementation(noop);
-      fetchSpy = vi.spyOn(global, 'fetch').mockResolvedValue();
+      vi.spyOn(global, 'fetch').mockResolvedValue();
     });
 
     beforeEach(() => {
@@ -63,7 +61,7 @@ describe('forms', () => {
 
       it('should call updateState with loading true for valid CEP', async () => {
         const updateState = vi.fn();
-        fetchSpy.mockResolvedValueOnce({
+        global.fetch.mockResolvedValueOnce({
           ok: true,
           // eslint-disable-next-line require-await
           json: async () => ({
@@ -82,7 +80,7 @@ describe('forms', () => {
 
       it('should call updateState with address data for valid CEP', async () => {
         const updateState = vi.fn();
-        fetchSpy.mockResolvedValueOnce({
+        global.fetch.mockResolvedValueOnce({
           ok: true,
           // eslint-disable-next-line require-await
           json: async () => ({
@@ -110,7 +108,7 @@ describe('forms', () => {
 
       it('should call updateState without address data for inexistent CEP', async () => {
         const updateState = vi.fn();
-        fetchSpy.mockResolvedValueOnce({
+        global.fetch.mockResolvedValueOnce({
           ok: true,
           // eslint-disable-next-line require-await
           json: async () => ({}),
@@ -127,7 +125,7 @@ describe('forms', () => {
 
     describe('getAddress', () => {
       it('should return address data for valid CEP', async () => {
-        fetchSpy.mockResolvedValueOnce({
+        global.fetch.mockResolvedValueOnce({
           ok: true,
           // eslint-disable-next-line require-await
           json: async () => ({
@@ -151,7 +149,7 @@ describe('forms', () => {
       });
 
       it('should return "undefined" for invalid CEP', async () => {
-        fetchSpy.mockResolvedValueOnce({
+        global.fetch.mockResolvedValueOnce({
           status: 404,
           ok: false,
         });
@@ -160,7 +158,7 @@ describe('forms', () => {
       });
 
       it('should return "undefined" for invalid response', async () => {
-        fetchSpy.mockResolvedValueOnce({
+        global.fetch.mockResolvedValueOnce({
           ok: false,
           status: 500,
         });
@@ -169,7 +167,7 @@ describe('forms', () => {
       });
 
       it('should return "undefined" for invalid CEP in response', async () => {
-        fetchSpy.mockResolvedValueOnce({
+        global.fetch.mockResolvedValueOnce({
           ok: true,
           // eslint-disable-next-line require-await
           json: async () => ({
@@ -181,7 +179,7 @@ describe('forms', () => {
       });
 
       it('should abort first request if called again', async () => {
-        fetchSpy
+        global.fetch
           .mockImplementationOnce(
             (_, { signal }) =>
               new Promise((_, reject) => {
@@ -204,19 +202,19 @@ describe('forms', () => {
         const firstCall = getAddress('12345678');
 
         await vi.waitFor(() => {
-          expect(fetchSpy).toHaveBeenCalledOnce();
+          expect(global.fetch).toHaveBeenCalledOnce();
         });
 
         const secondCall = await getAddress('87654321');
 
-        expect(fetchSpy).toHaveBeenCalledTimes(2);
+        expect(global.fetch).toHaveBeenCalledTimes(2);
         expect(secondCall).toStrictEqual({ cep: '87654321' });
         await expect(firstCall).resolves.toBeUndefined();
         expect(console.warn).not.toHaveBeenCalled();
       });
 
       it('should log warning for fetch error', async () => {
-        fetchSpy.mockRejectedValueOnce(new Error('Network error'));
+        global.fetch.mockRejectedValueOnce(new Error('Network error'));
 
         await getAddress('12345678');
 
