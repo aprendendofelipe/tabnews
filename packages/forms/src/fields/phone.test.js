@@ -88,13 +88,15 @@ describe('forms', () => {
         expect(maskPhone('+5511998765432')).toBe('+55(11)998765432');
         expect(maskPhone('+55 11 99876 5432')).toBe('+55(11)99876-5432');
         expect(maskPhone('+  55  11  998765432')).toBe('+55(11)998765432');
-        expect(maskPhone(' +  55  (11)  998(765)432')).toBe('+55(11)998-765-432');
+        expect(maskPhone(' +  55  (11)  998(765)432')).toBe('+55(11)998765432');
         expect(maskPhone('  +  55  11  99876-5432')).toBe('+55(11)99876-5432');
       });
 
       it('should handle input with extra parentheses', () => {
-        expect(maskPhone('11998(765)432')).toBe('(11)998-765-432');
-        expect(maskPhone('+55 (11) 99876 (5432)')).toBe('+55(11)99876-5432-');
+        expect(maskPhone('11998(765)432')).toBe('(11)998765432');
+        expect(maskPhone('+55 (11) 99876 (5432)')).toBe('+55(11)99876-5432');
+        expect(maskPhone('+55(1(1)99876-5432')).toBe('+55(11)99876-5432');
+        expect(maskPhone('+55(11)9)9876-5432')).toBe('+55(11)99876-5432');
       });
     });
 
