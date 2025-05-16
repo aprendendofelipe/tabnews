@@ -8,12 +8,16 @@ describe('forms', () => {
     let fetchSpy;
 
     beforeAll(() => {
-      vi.spyOn(console, 'error').mockImplementation(noop);
-      fetchSpy = vi.spyOn(global, 'fetch');
+      vi.spyOn(console, 'warn').mockImplementation(noop);
+      fetchSpy = vi.spyOn(global, 'fetch').mockResolvedValue();
+    });
+
+    beforeEach(() => {
+      vi.clearAllMocks();
     });
 
     afterAll(() => {
-      fetchSpy.mockRestore();
+      vi.restoreAllMocks();
     });
 
     it('should have the correct shape', () => {
@@ -174,6 +178,54 @@ describe('forms', () => {
         });
 
         expect(await getAddress('00000000')).toBeUndefined();
+      });
+
+      it('should abort first request if called again', async () => {
+        fetchSpy
+          .mockImplementationOnce(
+            (_, { signal }) =>
+              new Promise((_, reject) => {
+                signal.addEventListener('abort', () => {
+                  const reason = new Error('AbortError');
+                  reason.name = 'AbortError';
+                  reject(reason);
+                });
+              }),
+          )
+          .mockImplementationOnce(() => {
+            return Promise.resolve({
+              ok: true,
+              status: 200,
+              // eslint-disable-next-line require-await
+              json: async () => ({ cep: '87654321' }),
+            });
+          });
+
+        const firstCall = getAddress('12345678');
+
+        await vi.waitFor(() => {
+          expect(fetchSpy).toHaveBeenCalledOnce();
+        });
+
+        const secondCall = await getAddress('87654321');
+
+        expect(fetchSpy).toHaveBeenCalledTimes(2);
+        expect(secondCall).toStrictEqual({ cep: '87654321' });
+        await expect(firstCall).resolves.toBeUndefined();
+        expect(console.warn).not.toHaveBeenCalled();
+      });
+
+      it('should log warning for fetch error', async () => {
+        fetchSpy.mockRejectedValueOnce(new Error('Network error'));
+
+        await getAddress('12345678');
+
+        expect(console.warn).toHaveBeenCalledWith(
+          'Falha ao obter dados do CEP',
+          '12345678',
+          '- Erro:',
+          'Network error',
+        );
       });
     });
 
