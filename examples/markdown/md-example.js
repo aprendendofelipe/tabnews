@@ -1,4 +1,6 @@
-export const shouldAddNofollow = (url) => !url.startsWith('https://www.tabnews.com.br');
+import { isTrustedDomain } from '@tabnews/helpers';
+
+export const shouldAddNofollow = (url) => !isTrustedDomain(url);
 
 export const mdContent = `
 <!--
