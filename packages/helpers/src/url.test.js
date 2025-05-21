@@ -142,6 +142,38 @@ describe('helpers/url', () => {
     });
   });
 
+  describe('getDomain', () => {
+    let getDomain;
+
+    beforeAll(async () => {
+      vi.stubEnv('NEXT_PUBLIC_VERCEL_URL', 'base.url');
+      ({ getDomain } = await import('./index.js'));
+    });
+
+    it('should return the domain for all protocols', () => {
+      expect(getDomain('http://github.com/web')).toBe('github.com');
+      expect(getDomain('https://tabnews.com.br/user?q=1')).toBe('tabnews.com.br');
+      expect(getDomain('//curso.dev')).toBe('curso.dev');
+    });
+
+    it('should return the domain and subdomain', () => {
+      expect(getDomain('https://secret.tabnews.com.br')).toBe('secret.tabnews.com.br');
+      expect(getDomain('https://my.custom.example.com')).toBe('my.custom.example.com');
+    });
+
+    it('should not return "www." in the beginning', () => {
+      expect(getDomain('https://www.google.com')).toBe('google.com');
+      expect(getDomain('https://www.example.com/fakewebsite.com')).toBe('example.com');
+      expect(getDomain('https://www.www-site.co')).toBe('www-site.co');
+    });
+
+    it('should return the baseUrl domain if the address is relative', () => {
+      expect(getDomain('/about')).toBe('base.url');
+      expect(getDomain('/about?param=value')).toBe('base.url');
+      expect(getDomain('/about#hash')).toBe('base.url');
+    });
+  });
+
   describe('isExternalLink', () => {
     let isExternalLink;
 

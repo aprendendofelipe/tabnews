@@ -5,4 +5,12 @@ export * from './merge.js';
 export * from './noop.js';
 export * from './splitConfig.js';
 export * from './strings.js';
-export { baseUrl, getBaseUrl, isExternalLink, replaceParams, tryParseUrl, webserverHostname } from './url.js';
+export {
+  baseUrl,
+  getBaseUrl,
+  getDomain,
+  isExternalLink,
+  replaceParams,
+  tryParseUrl,
+  webserverHostname,
+} from './url.js';
