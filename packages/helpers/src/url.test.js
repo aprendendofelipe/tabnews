@@ -1,6 +1,134 @@
 import { replaceParams } from './index.js';
 
 describe('helpers/url', () => {
+  describe('baseUrl', () => {
+    beforeEach(() => {
+      vi.unstubAllEnvs();
+      vi.resetModules();
+    });
+
+    afterAll(() => {
+      vi.unstubAllEnvs();
+      vi.resetModules();
+    });
+
+    describe('Local', () => {
+      test('Dev', async () => {
+        vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'next_public_webserver_host1');
+        vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '1');
+
+        const { baseUrl } = await import('./index.js');
+
+        expect(baseUrl).toBe('http://next_public_webserver_host1:1');
+      });
+
+      test('Build', async () => {
+        vi.stubEnv('NEXT_PHASE', 'phase-production-build');
+        vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'next_public_webserver_host2');
+        vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '2');
+
+        const { baseUrl } = await import('./index.js');
+
+        expect(baseUrl).toBe('http://next_public_webserver_host2:2');
+      });
+
+      test('Production', async () => {
+        vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'next_public_webserver_host3');
+        vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3');
+
+        const { baseUrl } = await import('./index.js');
+
+        expect(baseUrl).toBe('http://next_public_webserver_host3:3');
+      });
+    });
+
+    describe('Vercel Node', () => {
+      test.todo('Development');
+
+      test('Build', async () => {
+        vi.stubEnv('NEXT_PHASE', 'phase-production-build');
+        vi.stubEnv('NEXT_PUBLIC_VERCEL_ENV', 'production');
+        vi.stubEnv('NEXT_PUBLIC_VERCEL_URL', 'tabnews.vercel.app');
+        vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'tabnews.com.br');
+        vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
+        vi.stubEnv('VERCEL', '1');
+
+        const { baseUrl } = await import('./index.js');
+
+        expect(baseUrl).toBe('https://tabnews.com.br');
+      });
+
+      test('Production', async () => {
+        vi.stubEnv('NEXT_PUBLIC_VERCEL_ENV', 'production');
+        vi.stubEnv('NEXT_PUBLIC_VERCEL_URL', 'tabnews.vercel.app');
+        vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'tabnews.com.br');
+        vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
+        vi.stubEnv('VERCEL', '1');
+
+        const { baseUrl } = await import('./index.js');
+
+        expect(baseUrl).toBe('https://tabnews.com.br');
+      });
+
+      test('Production fallbacks to VERCEL_URL when NEXT_PUBLIC_WEBSERVER_HOST is undefined', async () => {
+        vi.stubEnv('NEXT_PUBLIC_VERCEL_ENV', 'production');
+        vi.stubEnv('NEXT_PUBLIC_VERCEL_URL', 'tabnews.vercel.app');
+        vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
+        vi.stubEnv('VERCEL', '1');
+
+        const { baseUrl } = await import('./index.js');
+
+        expect(baseUrl).toBe('https://tabnews.vercel.app');
+      });
+
+      test('Preview', async () => {
+        vi.stubEnv('NEXT_PUBLIC_VERCEL_ENV', 'preview');
+        vi.stubEnv('NEXT_PUBLIC_VERCEL_URL', 'prev-tabnews.vercel.app');
+        vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'localhost');
+        vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
+        vi.stubEnv('VERCEL', '1');
+
+        const { baseUrl } = await import('./index.js');
+
+        expect(baseUrl).toBe('https://prev-tabnews.vercel.app');
+      });
+    });
+
+    describe('Vercel Edge', () => {
+      beforeAll(() => {
+        vi.stubGlobal('EdgeRuntime', true);
+      });
+
+      afterAll(() => {
+        vi.unstubAllGlobals();
+      });
+
+      test('Production', async () => {
+        vi.stubEnv('NEXT_PUBLIC_VERCEL_ENV', 'production');
+        vi.stubEnv('NEXT_PUBLIC_VERCEL_URL', 'tabnews.vercel.app');
+        vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'tabnews.com.br');
+        vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
+        vi.stubEnv('VERCEL', '1');
+
+        const { baseUrl } = await import('./index.js');
+
+        expect(baseUrl).toBe('https://tabnews.com.br');
+      });
+
+      test('Preview', async () => {
+        vi.stubEnv('NEXT_PUBLIC_VERCEL_ENV', 'preview');
+        vi.stubEnv('NEXT_PUBLIC_VERCEL_URL', 'prev-tabnews.vercel.app');
+        vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'localhost');
+        vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
+        vi.stubEnv('VERCEL', '1');
+
+        const { baseUrl } = await import('./index.js');
+
+        expect(baseUrl).toBe('https://prev-tabnews.vercel.app');
+      });
+    });
+  });
+
   describe('replaceParams', () => {
     const testUrl = 'https://test.com/path?param1=value1&param2=value2&param3=value3';
 

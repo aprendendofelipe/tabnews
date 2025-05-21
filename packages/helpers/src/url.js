@@ -1,3 +1,46 @@
+import { isProduction, isServerlessRuntime } from './environment.js';
+
+export const baseUrl = getBaseUrl();
+
+/**
+ * Returns the effective base URL for the application:
+ * - In production, it uses the `NEXT_PUBLIC_WEBSERVER_HOST`.
+ * - In preview, it uses the `NEXT_PUBLIC_VERCEL_URL`.
+ * - In development, it uses the `NEXT_PUBLIC_WEBSERVER_HOST` and `NEXT_PUBLIC_WEBSERVER_PORT`.
+ * - In browser environments, it uses the current location's origin if available.
+ * - If none of the above, it defaults to 'https://www.tabnews.com.br'.
+ *
+ * @returns {string} The resolved base URL.
+ */
+export function getBaseUrl() {
+  const { NEXT_PUBLIC_VERCEL_URL, NEXT_PUBLIC_WEBSERVER_HOST, NEXT_PUBLIC_WEBSERVER_PORT } = process.env;
+
+  const protocol = isServerlessRuntime ? 'https' : 'http';
+
+  // Vercel Production
+  if (isProduction && NEXT_PUBLIC_WEBSERVER_HOST) {
+    return `${protocol}://${NEXT_PUBLIC_WEBSERVER_HOST}`;
+  }
+
+  // Vercel Preview
+  if (NEXT_PUBLIC_VERCEL_URL) {
+    return `${protocol}://${NEXT_PUBLIC_VERCEL_URL}`;
+  }
+
+  // Development
+  if (NEXT_PUBLIC_WEBSERVER_HOST && NEXT_PUBLIC_WEBSERVER_PORT) {
+    return `${protocol}://${NEXT_PUBLIC_WEBSERVER_HOST}:${NEXT_PUBLIC_WEBSERVER_PORT}`;
+  }
+
+  // Browser
+  if (typeof location !== 'undefined' && location.origin) {
+    return location.origin;
+  }
+
+  // Fallback
+  return 'https://www.tabnews.com.br';
+}
+
 /**
  * Replaces or removes search parameters in the current URL using `history.replaceState`.
  *
