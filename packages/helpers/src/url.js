@@ -1,6 +1,7 @@
 import { isProduction, isServerlessRuntime } from './environment.js';
 
 export const baseUrl = getBaseUrl();
+export const webserverHostname = tryParseUrl(baseUrl).hostname;
 
 /**
  * Returns the effective base URL for the application:
