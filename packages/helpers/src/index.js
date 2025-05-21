@@ -4,3 +4,4 @@ export * from './merge.js';
 export * from './noop.js';
 export * from './splitConfig.js';
 export * from './strings.js';
+export { replaceParams } from './url.js';
