@@ -1,6 +1,10 @@
-import { replaceParams } from './index.js';
+import { replaceParams, tryParseUrl } from './index.js';
 
 describe('helpers/url', () => {
+  beforeAll(() => {
+    vi.spyOn(console, 'warn').mockImplementation(() => {});
+  });
+
   describe('baseUrl', () => {
     beforeEach(() => {
       vi.unstubAllEnvs();
@@ -260,6 +264,52 @@ describe('helpers/url', () => {
       vi.stubGlobal('history', undefined);
 
       expect(() => replaceParams({ param1: 'newValue1' })).not.toThrowError();
+    });
+  });
+
+  describe('tryParseUrl', () => {
+    it('should return a URL object for a valid absolute URL string', () => {
+      const result = tryParseUrl('https://example.com');
+      expect(result).toBeInstanceOf(URL);
+      expect(result.href).toBe('https://example.com/');
+    });
+
+    it('should return a URL object when passing a URL instance', () => {
+      const input = new URL('https://example.com');
+      const result = tryParseUrl(input);
+      expect(result).toStrictEqual(input);
+    });
+
+    it('should return a URL object for a relative URL', () => {
+      const result = tryParseUrl('/about');
+      expect(result.href).toBe('http://localhost:3000/about');
+    });
+
+    it('should return an empty object for invalid URL', () => {
+      const result = tryParseUrl('https://invalid[URL]');
+      expect(result).toStrictEqual({});
+      expect(console.warn).toHaveBeenCalledWith('[tryParseUrl] Invalid URL passed: "https://invalid[URL]"');
+    });
+
+    it('should use the label in the warning message', () => {
+      const result = tryParseUrl('https://bad[url]', 'customLabel');
+      expect(result).toStrictEqual({});
+      expect(console.warn).toHaveBeenCalledWith('[customLabel] Invalid URL passed: "https://bad[url]"');
+    });
+
+    it('should return an empty object for null input', () => {
+      const result = tryParseUrl(null);
+      expect(result).toStrictEqual({});
+    });
+
+    it('should return an empty object for undefined input', () => {
+      const result = tryParseUrl(undefined);
+      expect(result).toStrictEqual({});
+    });
+
+    it('should return an empty object for empty string', () => {
+      const result = tryParseUrl('');
+      expect(result).toStrictEqual({});
     });
   });
 });

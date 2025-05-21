@@ -88,3 +88,22 @@ export function replaceParams(params) {
     /* empty */
   }
 }
+
+/**
+ * Attempts to parse a value into a valid URL.
+ *
+ * @param {string | URL} url - Any value that can potentially be coerced into a URL string.
+ * @param {string} [label='tryParseUrl'] - Label used in development error messages.
+ * @returns {URL | Object} A valid URL object if parsing succeeds, otherwise an empty object.
+ */
+export function tryParseUrl(url, label = 'tryParseUrl') {
+  if (!url) return {};
+
+  try {
+    return new URL(url, baseUrl);
+  } catch {
+    console.warn(`[${label}] Invalid URL passed: "${url}"`);
+  }
+
+  return {};
+}
