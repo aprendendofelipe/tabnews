@@ -5,7 +5,7 @@ describe('helpers/url', () => {
     vi.spyOn(console, 'warn').mockImplementation(() => {});
   });
 
-  describe('baseUrl', () => {
+  describe('Constants "baseUrl" and "webserverHostname"', () => {
     beforeEach(() => {
       vi.unstubAllEnvs();
       vi.resetModules();
@@ -21,9 +21,10 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'next_public_webserver_host1');
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '1');
 
-        const { baseUrl } = await import('./index.js');
+        const { baseUrl, webserverHostname } = await import('./index.js');
 
         expect(baseUrl).toBe('http://next_public_webserver_host1:1');
+        expect(webserverHostname).toBe('next_public_webserver_host1');
       });
 
       test('Build', async () => {
@@ -31,18 +32,20 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'next_public_webserver_host2');
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '2');
 
-        const { baseUrl } = await import('./index.js');
+        const { baseUrl, webserverHostname } = await import('./index.js');
 
         expect(baseUrl).toBe('http://next_public_webserver_host2:2');
+        expect(webserverHostname).toBe('next_public_webserver_host2');
       });
 
       test('Production', async () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'next_public_webserver_host3');
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3');
 
-        const { baseUrl } = await import('./index.js');
+        const { baseUrl, webserverHostname } = await import('./index.js');
 
         expect(baseUrl).toBe('http://next_public_webserver_host3:3');
+        expect(webserverHostname).toBe('next_public_webserver_host3');
       });
     });
 
@@ -57,9 +60,10 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
         vi.stubEnv('VERCEL', '1');
 
-        const { baseUrl } = await import('./index.js');
+        const { baseUrl, webserverHostname } = await import('./index.js');
 
         expect(baseUrl).toBe('https://tabnews.com.br');
+        expect(webserverHostname).toBe('tabnews.com.br');
       });
 
       test('Production', async () => {
@@ -69,9 +73,10 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
         vi.stubEnv('VERCEL', '1');
 
-        const { baseUrl } = await import('./index.js');
+        const { baseUrl, webserverHostname } = await import('./index.js');
 
         expect(baseUrl).toBe('https://tabnews.com.br');
+        expect(webserverHostname).toBe('tabnews.com.br');
       });
 
       test('Production fallbacks to VERCEL_URL when NEXT_PUBLIC_WEBSERVER_HOST is undefined', async () => {
@@ -80,9 +85,10 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
         vi.stubEnv('VERCEL', '1');
 
-        const { baseUrl } = await import('./index.js');
+        const { baseUrl, webserverHostname } = await import('./index.js');
 
         expect(baseUrl).toBe('https://tabnews.vercel.app');
+        expect(webserverHostname).toBe('tabnews.vercel.app');
       });
 
       test('Preview', async () => {
@@ -92,9 +98,10 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
         vi.stubEnv('VERCEL', '1');
 
-        const { baseUrl } = await import('./index.js');
+        const { baseUrl, webserverHostname } = await import('./index.js');
 
         expect(baseUrl).toBe('https://prev-tabnews.vercel.app');
+        expect(webserverHostname).toBe('prev-tabnews.vercel.app');
       });
     });
 
@@ -114,9 +121,10 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
         vi.stubEnv('VERCEL', '1');
 
-        const { baseUrl } = await import('./index.js');
+        const { baseUrl, webserverHostname } = await import('./index.js');
 
         expect(baseUrl).toBe('https://tabnews.com.br');
+        expect(webserverHostname).toBe('tabnews.com.br');
       });
 
       test('Preview', async () => {
@@ -126,9 +134,10 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
         vi.stubEnv('VERCEL', '1');
 
-        const { baseUrl } = await import('./index.js');
+        const { baseUrl, webserverHostname } = await import('./index.js');
 
         expect(baseUrl).toBe('https://prev-tabnews.vercel.app');
+        expect(webserverHostname).toBe('prev-tabnews.vercel.app');
       });
     });
   });
