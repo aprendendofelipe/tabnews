@@ -43,6 +43,22 @@ export function getBaseUrl() {
 }
 
 /**
+ * Extracts the domain from a given link.
+ *
+ * @param {string | URL} link - The link to extract the domain from. Can be anything coercible to a URL.
+ * @returns {string} The extracted domain, excluding 'www.' if present.
+ */
+export function getDomain(link) {
+  const domain = tryParseUrl(link).hostname;
+
+  if (domain.startsWith('www.')) {
+    return domain.substring(4);
+  }
+
+  return domain;
+}
+
+/**
  * Checks whether a given link points to an external domain.
  *
  * @param {string | URL} link - The link to check. Can be anything coercible to a URL.
