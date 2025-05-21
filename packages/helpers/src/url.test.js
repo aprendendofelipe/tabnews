@@ -142,6 +142,48 @@ describe('helpers/url', () => {
     });
   });
 
+  describe('isExternalLink', () => {
+    let isExternalLink;
+
+    beforeAll(async () => {
+      vi.stubEnv('NEXT_PUBLIC_VERCEL_URL', 'tabnews.com.br');
+      vi.resetModules();
+      ({ isExternalLink } = await import('./index.js'));
+    });
+
+    test('returns false for internal URL as string', () => {
+      expect(isExternalLink('https://tabnews.com.br/sobre')).toBe(false);
+    });
+
+    test('returns false for internal URL as URL object', () => {
+      expect(isExternalLink(new URL('https://tabnews.com.br/teste'))).toBe(false);
+    });
+
+    test('returns false if hostname matches even with path/query/hash', () => {
+      expect(isExternalLink('https://tabnews.com.br/some/path?query=string#hash')).toBe(false);
+      expect(isExternalLink('https://tabnews.com.br/some/path')).toBe(false);
+      expect(isExternalLink('https://tabnews.com.br/some/path#hash')).toBe(false);
+      expect(isExternalLink('https://tabnews.com.br/some/path?query=string')).toBe(false);
+      expect(isExternalLink('https://tabnews.com.br/#hash')).toBe(false);
+      expect(isExternalLink('https://tabnews.com.br/?query=string')).toBe(false);
+      expect(isExternalLink('https://tabnews.com.br/#')).toBe(false);
+      expect(isExternalLink('https://tabnews.com.br/?query=string#hash')).toBe(false);
+    });
+
+    test('returns true for external URL', () => {
+      expect(isExternalLink('https://example.com')).toBe(true);
+    });
+
+    test('returns true for malformed URL (fallback {})', () => {
+      expect(isExternalLink('http://not[a]url')).toBe(true);
+    });
+
+    test('returns true for link with different subdomain', () => {
+      expect(isExternalLink('https://blog.tabnews.com.br')).toBe(true);
+      expect(isExternalLink('https://www.tabnews.com.br')).toBe(true);
+    });
+  });
+
   describe('replaceParams', () => {
     const testUrl = 'https://test.com/path?param1=value1&param2=value2&param3=value3';
 

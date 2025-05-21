@@ -43,6 +43,16 @@ export function getBaseUrl() {
 }
 
 /**
+ * Checks whether a given link points to an external domain.
+ *
+ * @param {string | URL} link - The link to check. Can be anything coercible to a URL.
+ * @returns {boolean} True if the link is external, false otherwise.
+ */
+export function isExternalLink(link) {
+  return tryParseUrl(link).hostname !== webserverHostname;
+}
+
+/**
  * Replaces or removes search parameters in the current URL using `history.replaceState`.
  *
  * - If `params` is `null`, all search parameters are removed.
