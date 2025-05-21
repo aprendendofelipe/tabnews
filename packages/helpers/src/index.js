@@ -10,7 +10,10 @@ export {
   getBaseUrl,
   getDomain,
   isExternalLink,
+  isTrustedDomain,
   replaceParams,
+  trustedDomains,
   tryParseUrl,
+  webserverDomain,
   webserverHostname,
 } from './url.js';
