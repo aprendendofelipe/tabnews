@@ -1,11 +1,13 @@
-import { replaceParams, tryParseUrl } from './index.js';
+import { isTrustedDomain, replaceParams, tryParseUrl } from './index.js';
 
 describe('helpers/url', () => {
   beforeAll(() => {
     vi.spyOn(console, 'warn').mockImplementation(() => {});
   });
 
-  describe('Constants "baseUrl" and "webserverHostname"', () => {
+  describe('Constants by Environment', () => {
+    const defaultTrustedDomains = ['tabnews.com.br', 'curso.dev', 'filipedeschamps.com.br', 'github.com'];
+
     beforeEach(() => {
       vi.unstubAllEnvs();
       vi.resetModules();
@@ -21,10 +23,12 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'next_public_webserver_host1');
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '1');
 
-        const { baseUrl, webserverHostname } = await import('./index.js');
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
 
         expect(baseUrl).toBe('http://next_public_webserver_host1:1');
         expect(webserverHostname).toBe('next_public_webserver_host1');
+        expect(webserverDomain).toBe('next_public_webserver_host1');
+        expect(trustedDomains).toStrictEqual([webserverDomain, ...defaultTrustedDomains]);
       });
 
       test('Build', async () => {
@@ -32,20 +36,24 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'next_public_webserver_host2');
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '2');
 
-        const { baseUrl, webserverHostname } = await import('./index.js');
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
 
         expect(baseUrl).toBe('http://next_public_webserver_host2:2');
         expect(webserverHostname).toBe('next_public_webserver_host2');
+        expect(webserverDomain).toBe('next_public_webserver_host2');
+        expect(trustedDomains).toStrictEqual([webserverDomain, ...defaultTrustedDomains]);
       });
 
       test('Production', async () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'next_public_webserver_host3');
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3');
 
-        const { baseUrl, webserverHostname } = await import('./index.js');
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
 
         expect(baseUrl).toBe('http://next_public_webserver_host3:3');
         expect(webserverHostname).toBe('next_public_webserver_host3');
+        expect(webserverDomain).toBe('next_public_webserver_host3');
+        expect(trustedDomains).toStrictEqual([webserverDomain, ...defaultTrustedDomains]);
       });
     });
 
@@ -60,10 +68,12 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
         vi.stubEnv('VERCEL', '1');
 
-        const { baseUrl, webserverHostname } = await import('./index.js');
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
 
         expect(baseUrl).toBe('https://tabnews.com.br');
         expect(webserverHostname).toBe('tabnews.com.br');
+        expect(webserverDomain).toBe('tabnews.com.br');
+        expect(trustedDomains).toStrictEqual(defaultTrustedDomains);
       });
 
       test('Production', async () => {
@@ -72,11 +82,14 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'tabnews.com.br');
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
         vi.stubEnv('VERCEL', '1');
+        vi.stubEnv('NEXT_PUBLIC_TRUSTED_DOMAINS', 'curso.dev');
 
-        const { baseUrl, webserverHostname } = await import('./index.js');
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
 
         expect(baseUrl).toBe('https://tabnews.com.br');
         expect(webserverHostname).toBe('tabnews.com.br');
+        expect(webserverDomain).toBe('tabnews.com.br');
+        expect(trustedDomains).toStrictEqual(['tabnews.com.br', 'curso.dev']);
       });
 
       test('Production fallbacks to VERCEL_URL when NEXT_PUBLIC_WEBSERVER_HOST is undefined', async () => {
@@ -85,10 +98,12 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
         vi.stubEnv('VERCEL', '1');
 
-        const { baseUrl, webserverHostname } = await import('./index.js');
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
 
         expect(baseUrl).toBe('https://tabnews.vercel.app');
         expect(webserverHostname).toBe('tabnews.vercel.app');
+        expect(webserverDomain).toBe('tabnews.vercel.app');
+        expect(trustedDomains).toStrictEqual([webserverDomain, ...defaultTrustedDomains]);
       });
 
       test('Preview', async () => {
@@ -98,10 +113,12 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
         vi.stubEnv('VERCEL', '1');
 
-        const { baseUrl, webserverHostname } = await import('./index.js');
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
 
         expect(baseUrl).toBe('https://prev-tabnews.vercel.app');
         expect(webserverHostname).toBe('prev-tabnews.vercel.app');
+        expect(webserverDomain).toBe('prev-tabnews.vercel.app');
+        expect(trustedDomains).toStrictEqual([webserverDomain, ...defaultTrustedDomains]);
       });
     });
 
@@ -117,14 +134,16 @@ describe('helpers/url', () => {
       test('Production', async () => {
         vi.stubEnv('NEXT_PUBLIC_VERCEL_ENV', 'production');
         vi.stubEnv('NEXT_PUBLIC_VERCEL_URL', 'tabnews.vercel.app');
-        vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'tabnews.com.br');
+        vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'www.tabnews.com.br');
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
         vi.stubEnv('VERCEL', '1');
 
-        const { baseUrl, webserverHostname } = await import('./index.js');
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
 
-        expect(baseUrl).toBe('https://tabnews.com.br');
-        expect(webserverHostname).toBe('tabnews.com.br');
+        expect(baseUrl).toBe('https://www.tabnews.com.br');
+        expect(webserverHostname).toBe('www.tabnews.com.br');
+        expect(webserverDomain).toBe('tabnews.com.br');
+        expect(trustedDomains).toStrictEqual(defaultTrustedDomains);
       });
 
       test('Preview', async () => {
@@ -134,10 +153,12 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
         vi.stubEnv('VERCEL', '1');
 
-        const { baseUrl, webserverHostname } = await import('./index.js');
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
 
         expect(baseUrl).toBe('https://prev-tabnews.vercel.app');
         expect(webserverHostname).toBe('prev-tabnews.vercel.app');
+        expect(webserverDomain).toBe('prev-tabnews.vercel.app');
+        expect(trustedDomains).toStrictEqual([webserverDomain, ...defaultTrustedDomains]);
       });
     });
   });
@@ -213,6 +234,59 @@ describe('helpers/url', () => {
     test('returns true for link with different subdomain', () => {
       expect(isExternalLink('https://blog.tabnews.com.br')).toBe(true);
       expect(isExternalLink('https://www.tabnews.com.br')).toBe(true);
+    });
+  });
+
+  describe('isTrustedDomain', () => {
+    it('should trust default trusted domains and their subdomains', () => {
+      expect(isTrustedDomain('http://www.github.com')).toBe(true);
+      expect(isTrustedDomain('https://tabnews.com.br')).toBe(true);
+      expect(isTrustedDomain('//curso.dev')).toBe(true);
+      expect(isTrustedDomain('https://filipedeschamps.com.br')).toBe(true);
+      expect(isTrustedDomain('http://sub.tabnews.com.br')).toBe(true);
+    });
+
+    it('should not trust domains that are not in the trusted list', () => {
+      expect(isTrustedDomain('https://tabnews.com')).toBe(false);
+      expect(isTrustedDomain('http://www.tabnews.com')).toBe(false);
+      expect(isTrustedDomain('https://faketabnews.com.br')).toBe(false);
+      expect(isTrustedDomain('http://ttabnews.com.br')).toBe(false);
+      expect(isTrustedDomain('https://www.faketabnews.com.br')).toBe(false);
+    });
+
+    it('should trust relative paths', () => {
+      expect(isTrustedDomain('/recentes')).toBe(true);
+      expect(isTrustedDomain('/relevantes')).toBe(true);
+      expect(isTrustedDomain('/faq')).toBe(true);
+    });
+
+    it('should handle domains without specifying the protocol as relative paths', () => {
+      expect(isTrustedDomain('sub.tabnews.com.br')).toBe(true);
+      expect(isTrustedDomain('example.com')).toBe(true);
+      expect(isTrustedDomain('www.example.com')).toBe(true);
+    });
+
+    it('should handle invalid URLs gracefully', () => {
+      expect(isTrustedDomain('http://not[a]url')).toBe(false);
+      expect(isTrustedDomain('')).toBe(false);
+      expect(isTrustedDomain(null)).toBe(false);
+      expect(isTrustedDomain(undefined)).toBe(false);
+    });
+
+    it('should trust domains from NEXT_PUBLIC_TRUSTED_DOMAINS', async () => {
+      vi.resetModules();
+      vi.stubEnv('NEXT_PUBLIC_VERCEL_URL', 'base.url');
+      vi.stubEnv('NEXT_PUBLIC_TRUSTED_DOMAINS', 'sub.test.com, with.space ,without.space');
+      const { isTrustedDomain } = await import('./index.js');
+
+      expect(isTrustedDomain('http://base.url')).toBe(true);
+      expect(isTrustedDomain('http://sub.test.com')).toBe(true);
+      expect(isTrustedDomain('http://with.space')).toBe(true);
+      expect(isTrustedDomain('http://without.space')).toBe(true);
+
+      expect(isTrustedDomain('http://test.com')).toBe(false);
+      expect(isTrustedDomain('http://nottrusted.com')).toBe(false);
+      expect(isTrustedDomain('http://tabnews.com.br')).toBe(false);
     });
   });
 

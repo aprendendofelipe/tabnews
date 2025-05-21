@@ -2,6 +2,20 @@ import { isProduction, isServerlessRuntime } from './environment.js';
 
 export const baseUrl = getBaseUrl();
 export const webserverHostname = tryParseUrl(baseUrl).hostname;
+export const webserverDomain = webserverHostname.replace(/^www\./, '');
+
+const DEFAULT_TRUSTED_DOMAINS = ['tabnews.com.br', 'curso.dev', 'filipedeschamps.com.br', 'github.com'];
+
+const NEXT_PUBLIC_TRUSTED_DOMAINS =
+  process.env.NEXT_PUBLIC_TRUSTED_DOMAINS?.split(',')
+    .map((host) => host.trim())
+    .filter(Boolean) || [];
+
+const externalTrustedDomains = NEXT_PUBLIC_TRUSTED_DOMAINS.length
+  ? NEXT_PUBLIC_TRUSTED_DOMAINS
+  : DEFAULT_TRUSTED_DOMAINS;
+
+export const trustedDomains = [webserverDomain, ...externalTrustedDomains.filter((host) => host !== webserverDomain)];
 
 /**
  * Returns the effective base URL for the application:
@@ -66,6 +80,18 @@ export function getDomain(link) {
  */
 export function isExternalLink(link) {
   return tryParseUrl(link).hostname !== webserverHostname;
+}
+
+/**
+ * Checks if a given URL belongs to a trusted domain or subdomain.
+ *
+ * @param {string | URL} url - A string or URL-like input.
+ * @returns {boolean} True if the domain is trusted, false otherwise.
+ */
+export function isTrustedDomain(url) {
+  const { hostname } = tryParseUrl(url);
+
+  return trustedDomains.some((trustedDomain) => hostname === trustedDomain || hostname?.endsWith(`.${trustedDomain}`));
 }
 
 /**
