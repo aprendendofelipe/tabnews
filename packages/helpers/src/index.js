@@ -1,4 +1,5 @@
 export * from './email.js';
+export { isBuildTime, isEdgeRuntime, isLambdaRuntime, isProduction, isServerlessRuntime } from './environment.js';
 export * from './is.js';
 export * from './merge.js';
 export * from './noop.js';
