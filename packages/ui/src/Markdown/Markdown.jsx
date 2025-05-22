@@ -11,7 +11,6 @@ import mermaidLocale from '@bytemd/plugin-mermaid/locales/pt_BR.json';
 import { Editor as ByteMdEditor, Viewer as ByteMdViewer } from '@bytemd/react';
 import { Box, useTheme } from '@primer/react';
 import byteMDLocale from 'bytemd/locales/pt_BR.json';
-import 'katex/dist/katex.css';
 import { useEffect, useMemo, useRef, useState } from 'react';
 
 import {
