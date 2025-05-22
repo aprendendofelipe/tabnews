@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.1.0](https://github.com/aprendendofelipe/tabnews/compare/markdown-example-v0.0.4...markdown-example-v0.1.0) (2025-05-22)
+
+
+### Features
+
+* **markdown example:** update `shouldAddNofollow` to use `isTrustedDomain` ([79a46c8](https://github.com/aprendendofelipe/tabnews/commit/79a46c881687ad2bbfcec5f8eeccb26155b16368))
+* **ui/_document:** add `configureDocument` function to manage document properties ([7d4e518](https://github.com/aprendendofelipe/tabnews/commit/7d4e5181444774c3988ef2349d6b9ae5652d9360))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @tabnews/helpers bumped from 0.3.0 to 0.4.0
+    * @tabnews/ui bumped from 0.5.3 to 0.6.0
+
 ## [0.0.4](https://github.com/aprendendofelipe/tabnews/compare/markdown-example-v0.0.3...markdown-example-v0.0.4) (2025-04-29)
 
 

@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.4.0](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.3.2...forms-v0.4.0) (2025-05-22)
+
+
+### Features
+
+* **forms/cep:** handle fetch abort errors ([8277eb1](https://github.com/aprendendofelipe/tabnews/commit/8277eb193545550d5d9011d8b9560452e342b3a8))
+* **forms/docs:** improve CPF and CNPJ preparation logic ([63c05ea](https://github.com/aprendendofelipe/tabnews/commit/63c05ea849dd63006e51eb939bb619d90e407160))
+
+
+### Bug Fixes
+
+* **forms/phone:** improve formatting when editing phone number ([1f1ee28](https://github.com/aprendendofelipe/tabnews/commit/1f1ee28efa1295f9cfe4e91e0b2ef2c8e9869bb2))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @tabnews/helpers bumped from ^0.3.0 to ^0.4.0
+    * @tabnews/hooks bumped from ^0.1.5 to ^0.1.6
+
 ## [0.3.2](https://github.com/aprendendofelipe/tabnews/compare/forms-v0.3.1...forms-v0.3.2) (2025-04-28)
 
 
