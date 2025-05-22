@@ -114,6 +114,31 @@ describe('ui', () => {
       const autoThemeProvider = getByTestId('auto-theme-provider');
       expect(autoThemeProvider).toHaveAttribute('data-prevent-ssr-mismatch', 'true');
     });
+
+    it('passes additional props to the HTML element', async () => {
+      const { container } = await renderServerComponent(PrimerRoot, {
+        ...defaultProps,
+        htmlProps: {
+          'data-custom-attribute': 'customValue',
+        },
+      });
+
+      const html = container.querySelector('html');
+      expect(html).toHaveAttribute('data-custom-attribute', 'customValue');
+    });
+
+    it('renders headChildren in the head', async () => {
+      const { container } = await renderServerComponent(PrimerRoot, {
+        ...defaultProps,
+        headChildren: <meta name="description" content="Test description" />,
+      });
+
+      const head = container.querySelector('head');
+      const meta = head.querySelector('meta[name="description"]');
+
+      expect(meta).toBeInTheDocument();
+      expect(meta).toHaveAttribute('content', 'Test description');
+    });
   });
 });
 
