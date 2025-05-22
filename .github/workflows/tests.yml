@@ -13,6 +13,7 @@ jobs:
       matrix:
         node:
           - version: 20
+          - version: 22
         os:
           - ubuntu-latest
 
