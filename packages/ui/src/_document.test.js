@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import React from 'react';
 
-import { Document } from './_document.jsx';
+import { configureDocument, Document } from './_document.jsx';
 
 describe('ui', () => {
   describe('_document', () => {
@@ -52,6 +52,34 @@ document.documentElement.setAttribute('data-no-flash', true)`,
       expect(hoisted.renderPage).toHaveBeenCalledOnce();
 
       expect(hoisted.collectStyles).toHaveBeenCalledOnce();
+    });
+
+    it('should pass the correct props to the Html component', () => {
+      configureDocument({
+        htmlProps: {
+          lang: 'pt',
+          'data-color-mode': 'dark',
+        },
+      });
+
+      const { getByTestId } = renderOnMockRoot(<Document />);
+      const htmlTag = getByTestId('Next Html');
+
+      expect(htmlTag).toBeDefined();
+      expect(htmlTag.getAttribute('lang')).toBe('pt');
+      expect(htmlTag.getAttribute('data-color-mode')).toBe('dark');
+    });
+
+    it('should pass the correct props to the Head component', () => {
+      configureDocument({
+        headChildren: <meta name="description" content="Test" />,
+      });
+
+      const { getByTestId } = renderOnMockRoot(<Document />);
+      const headTag = getByTestId('Next Head');
+
+      expect(headTag).toBeDefined();
+      expect(headTag.innerHTML).toContain('<meta name="description" content="Test">');
     });
   });
 });
