@@ -8,10 +8,10 @@
     "start": "next start"
   },
   "dependencies": {
-    "@primer/octicons-react": "19.15.1",
+    "@primer/octicons-react": "19.15.2",
     "@tabnews/forms": "0.3.2",
     "@tabnews/ui": "0.5.3",
-    "next": "15.3.1",
+    "next": "15.3.2",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-icons": "5.5.0"
