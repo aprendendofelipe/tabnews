@@ -6,6 +6,23 @@ import { ServerStyleSheet } from 'styled-components';
 export const noFlashScript = `if (['auto','night','dark','day','light'].includes(localStorage.getItem('colorMode')))
 document.documentElement.setAttribute('data-no-flash', true)`;
 
+let documentConfig = {
+  htmlProps: {},
+};
+
+/**
+ * Configure the document properties.
+ * @param {Object} config - The configuration object.
+ * @param {Object} [config.htmlProps] - The HTML properties to be set on the <html> tag.
+ * @param {import("react").ReactNode} [config.headChildren] - The children to be added to the <head> tag.
+ */
+export function configureDocument({ htmlProps = {}, headChildren } = {}) {
+  documentConfig = {
+    htmlProps,
+    headChildren,
+  };
+}
+
 const Doc = NextDocument?.default ?? NextDocument;
 
 export class Document extends Doc {
@@ -30,9 +47,11 @@ export class Document extends Doc {
   }
 
   render() {
+    const { htmlProps, headChildren } = documentConfig;
+
     return (
-      <Html>
-        <Head />
+      <Html {...htmlProps}>
+        <Head>{headChildren}</Head>
         <body>
           <Main />
           <Script id="theme" strategy="beforeInteractive">
