@@ -161,6 +161,20 @@ describe('helpers/url', () => {
         expect(trustedDomains).toStrictEqual([webserverDomain, ...defaultTrustedDomains]);
       });
     });
+
+    describe('Unknown Environment', () => {
+      it('should return default values', async () => {
+        vi.stubGlobal('location', {});
+        vi.resetModules();
+
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
+
+        expect(baseUrl).toBe('https://www.tabnews.com.br');
+        expect(webserverHostname).toBe('www.tabnews.com.br');
+        expect(webserverDomain).toBe('tabnews.com.br');
+        expect(trustedDomains).toStrictEqual(defaultTrustedDomains);
+      });
+    });
   });
 
   describe('getDomain', () => {
@@ -168,6 +182,7 @@ describe('helpers/url', () => {
 
     beforeAll(async () => {
       vi.stubEnv('NEXT_PUBLIC_VERCEL_URL', 'base.url');
+      vi.resetModules();
       ({ getDomain } = await import('./index.js'));
     });
 
