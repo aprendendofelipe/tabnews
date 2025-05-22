@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.6.0](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.5.3...ui-v0.6.0) (2025-05-22)
+
+
+### Features
+
+* **Markdown/KaTeX:** load KaTeX fonts on demand from jsDelivr ([0f50293](https://github.com/aprendendofelipe/tabnews/commit/0f50293237d742ba8fc84b115578b92ae5f16ec6))
+* **PrimerRoot:** add support for headChildren and additional HTML props ([52baa5f](https://github.com/aprendendofelipe/tabnews/commit/52baa5ffb0b6342d8ca0f37d84846d3f22da3a66))
+* **ui/_document:** add `configureDocument` function to manage document properties ([7d4e518](https://github.com/aprendendofelipe/tabnews/commit/7d4e5181444774c3988ef2349d6b9ae5652d9360))
+
+
+### Bug Fixes
+
+* **vite.config:** set preserveModulesRoot to 'src' for better module resolution ([8f549d5](https://github.com/aprendendofelipe/tabnews/commit/8f549d508ae9be6c530d7c400d5c92cc070b8ed5))
+
 ## [0.5.3](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.5.2...ui-v0.5.3) (2025-04-29)
 
 

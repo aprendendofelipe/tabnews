@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.4.0](https://github.com/aprendendofelipe/tabnews/compare/helpers-v0.3.0...helpers-v0.4.0) (2025-05-22)
+
+
+### Features
+
+* **helpers/environment:** add environment detection utilities and tests ([43b4fa2](https://github.com/aprendendofelipe/tabnews/commit/43b4fa21b83f2cc485379701ce6d783bfdbadb3c))
+* **helpers/url:** add `baseUrl` constant and `getBaseUrl` function ([fd5c46a](https://github.com/aprendendofelipe/tabnews/commit/fd5c46aaf7d5c0b502ea4ed1740b828cdcd3dd8d))
+* **helpers/url:** add `getDomain` function and corresponding tests ([facc195](https://github.com/aprendendofelipe/tabnews/commit/facc1957f48d5a20931e940c8478c962aa34fd2b))
+* **helpers/url:** add `isExternalLink` function and corresponding tests ([ec9c4d2](https://github.com/aprendendofelipe/tabnews/commit/ec9c4d28a07f51b1d89801e3f45036fd0db75b5f))
+* **helpers/url:** add `isTrustedDomain` function and related tests ([3b9623d](https://github.com/aprendendofelipe/tabnews/commit/3b9623d4bb3e67510cd7e02e98ab34dac71fb5cc))
+* **helpers/url:** add `replaceParams` function ([d09f8ba](https://github.com/aprendendofelipe/tabnews/commit/d09f8baadaf3620afbd24c2479247786d3cd3fa8))
+* **helpers/url:** add `tryParseUrl` function and corresponding tests ([dbaa5de](https://github.com/aprendendofelipe/tabnews/commit/dbaa5de686f380ef013024e0d948bb00555119e8))
+* **helpers/url:** add `webserverHostname` constant and update tests ([3c3b8e2](https://github.com/aprendendofelipe/tabnews/commit/3c3b8e2939b5a015f4cec2b1d6d5bbfb0edd26f0))
+
 ## [0.3.0](https://github.com/aprendendofelipe/tabnews/compare/helpers-v0.2.1...helpers-v0.3.0) (2025-04-28)
 
 
