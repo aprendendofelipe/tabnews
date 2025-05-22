@@ -25,6 +25,7 @@ export default defineConfig({
         externalLiveBindings: false,
         reexportProtoFromExternal: false,
         preserveModules: true,
+        preserveModulesRoot: 'src',
       },
     },
   },
