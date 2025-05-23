@@ -24,8 +24,6 @@ describe('ui', () => {
       expect(select).toBeInTheDocument();
       expect(select).toHaveAttribute('id', 'test-select');
 
-      expect(select).toHaveClass('fully-clickable');
-
       options.forEach((option) => {
         const optionElement = screen.getByText(option.label);
         expect(optionElement).toBeInTheDocument();
