@@ -7,11 +7,11 @@ import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 const defaultProps = {
   block: true,
   contrast: true,
+  size: 'large',
 };
 
 const textInputProps = {
   ...defaultProps,
-  size: 'large',
   autoCorrect: 'off',
   autoCapitalize: 'off',
   spellCheck: false,
@@ -130,7 +130,7 @@ export const FormField = forwardRef(
         {!options && !isCheckbox && <TextInput type={type} {...textInputProps} {...inputProps} />}
 
         {options && (
-          <Select {...defaultProps} {...inputProps} className="fully-clickable">
+          <Select {...defaultProps} sx={{ py: 0 }} {...inputProps}>
             {options.map((option) => (
               <Select.Option key={option.value} {...option}>
                 {option.label}
@@ -142,9 +142,6 @@ export const FormField = forwardRef(
         {isCheckbox && <Checkbox checked={checked} {...inputProps} />}
 
         <style jsx="true">{`
-          .fully-clickable {
-            height: 36px;
-          }
           ::-ms-reveal {
             display: none;
           }
