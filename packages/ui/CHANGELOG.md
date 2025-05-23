@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.6.0...ui-v0.6.1) (2025-05-23)
+
+
+### Bug Fixes
+
+* **FormField:** fix Select component styling ([cc16c3d](https://github.com/aprendendofelipe/tabnews/commit/cc16c3d88105598317d7bbfda5efd59a5e98fca1))
+
 ## [0.6.0](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.5.3...ui-v0.6.0) (2025-05-22)
 
 
