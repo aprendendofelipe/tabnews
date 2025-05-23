@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.1.1](https://github.com/aprendendofelipe/tabnews/compare/markdown-example-v0.1.0...markdown-example-v0.1.1) (2025-05-23)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @tabnews/ui bumped from 0.6.0 to 0.6.1
+
 ## [0.1.0](https://github.com/aprendendofelipe/tabnews/compare/markdown-example-v0.0.4...markdown-example-v0.1.0) (2025-05-22)
 
 
