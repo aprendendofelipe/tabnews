@@ -7,4 +7,11 @@ if (typeof document !== 'undefined') {
       return false;
     }),
   };
+
+  Object.defineProperty(window, 'matchMedia', {
+    value: vi.fn().mockReturnValue({
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+    }),
+  });
 }
