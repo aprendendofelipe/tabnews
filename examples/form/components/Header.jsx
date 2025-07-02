@@ -2,6 +2,7 @@
 import { Header as PrimerHeader } from '@tabnews/ui/primer';
 import NextLink from 'next/link';
 
+import { NotificationCenter } from './Notifications';
 import { ThemeSwitcher } from './ThemeSwitcher.jsx';
 
 export function Header() {
@@ -21,6 +22,9 @@ export function Header() {
       </PrimerHeader.Item>
       <PrimerHeader.Item>
         <ThemeSwitcher />
+      </PrimerHeader.Item>
+      <PrimerHeader.Item>
+        <NotificationCenter />
       </PrimerHeader.Item>
     </PrimerHeader>
   );
