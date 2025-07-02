@@ -38,10 +38,14 @@ describe('ui', () => {
     });
 
     it('renders core HTML structure', async () => {
+      const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
       const { container, getByTestId } = await renderServerComponent(PrimerRoot, {
         ...defaultProps,
         lang: 'en',
       });
+
+      consoleErrorSpy.mockRestore();
 
       const html = container.querySelector('html');
       const body = container.querySelector('body');
