@@ -2,7 +2,7 @@ export * from './AutoThemeProvider/index.js';
 export { COLOR_MODE_COOKIE } from './constants/public.js';
 export * from './FormField/index.js';
 export * from './GoToTopButton/index.js';
-export { NotificationList, NotificationsProvider, useNotifications } from './Notifications/index.js';
+export { NotificationList, NotificationMenu, NotificationsProvider, useNotifications } from './Notifications/index.js';
 export { PrimerRoot } from './PrimerRoot/PrimerRoot.jsx';
 export { StyledComponentsRegistry } from './SCRegistry/SCRegistry.jsx';
 export * from './ThemeProvider/index.js';

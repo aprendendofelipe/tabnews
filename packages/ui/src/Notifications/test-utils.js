@@ -40,3 +40,7 @@ export function renderWithContext(ui, providerProps = {}) {
     </ThemeProvider>,
   );
 }
+
+export function renderWithTheme(ui) {
+  return render(<ThemeProvider>{ui}</ThemeProvider>);
+}
