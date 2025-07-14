@@ -6,6 +6,7 @@ export * from './merge.js';
 export * from './noop.js';
 export * from './splitConfig.js';
 export * from './strings.js';
+export { findPathToNode, getSubtreeDepth, getSubtreeSize } from './tree.js';
 export {
   baseUrl,
   getBaseUrl,
