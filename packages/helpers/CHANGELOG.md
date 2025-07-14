@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.1](https://github.com/aprendendofelipe/tabnews/compare/helpers-v0.4.0...helpers-v0.4.1) (2025-07-14)
+
+
+### Features
+
+* **dom:** add isTopLeftInUpperLeftViewport and scrollToElementWithRetry functions ([e3ef986](https://github.com/aprendendofelipe/tabnews/commit/e3ef9867071bc8a23c1955446dad566277ce8ba5))
+* **tree:** add findPathToNode, getSubtreeDepth, and getSubtreeSize functions ([b47af14](https://github.com/aprendendofelipe/tabnews/commit/b47af146877d251860a700a91a6a0ca67bffc615))
+
 ## [0.4.0](https://github.com/aprendendofelipe/tabnews/compare/helpers-v0.3.0...helpers-v0.4.0) (2025-05-22)
 
 

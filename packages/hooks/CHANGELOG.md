@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.1.7](https://github.com/aprendendofelipe/tabnews/compare/hooks-v0.1.6...hooks-v0.1.7) (2025-07-14)
+
+
+### Features
+
+* **useTreeCollapse:** add hook with collapse state management ([65d1fbf](https://github.com/aprendendofelipe/tabnews/commit/65d1fbf643492cf4d66a9eb098ab10ec265ba708))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @tabnews/helpers bumped from ^0.4.0 to ^0.4.1
+
 ## [0.1.6](https://github.com/aprendendofelipe/tabnews/compare/hooks-v0.1.5...hooks-v0.1.6) (2025-05-22)
 
 

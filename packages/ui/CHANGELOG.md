@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.6.2](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.6.1...ui-v0.6.2) (2025-07-14)
+
+
+### Features
+
+* **Notifications:** add NotificationList component and associated tests ([4f69213](https://github.com/aprendendofelipe/tabnews/commit/4f69213c22cb07b48be7599a21f23b6aa04ff877))
+* **Notifications:** add NotificationMenu component with associated tests and configuration ([ebdb422](https://github.com/aprendendofelipe/tabnews/commit/ebdb422fca5cd9cf3a79cee41e841d38a2532509))
+* **Notifications:** add Notifications context and provider with hooks and default configuration ([9222f89](https://github.com/aprendendofelipe/tabnews/commit/9222f895b4603d6a708c25b85fe2fecffe85727b))
+* **Notifications:** add README for Notifications module with usage examples and props API ([7bbd05b](https://github.com/aprendendofelipe/tabnews/commit/7bbd05bf8c75c04e92525aedfacdde0f53baf32d))
+
 ## [0.6.1](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.6.0...ui-v0.6.1) (2025-05-23)
 
 

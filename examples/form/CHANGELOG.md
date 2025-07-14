@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.3.2](https://github.com/aprendendofelipe/tabnews/compare/form-example-v0.3.1...form-example-v0.3.2) (2025-07-14)
+
+
+### Features
+
+* **Notifications example:** add Notifications feature with provider, context, and UI components ([72a8846](https://github.com/aprendendofelipe/tabnews/commit/72a8846cfb9d574b456197ee283dc6e03cc3da85))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @tabnews/forms bumped from 0.4.0 to 0.4.1
+    * @tabnews/ui bumped from 0.6.1 to 0.6.2
+
 ## [0.3.1](https://github.com/aprendendofelipe/tabnews/compare/form-example-v0.3.0...form-example-v0.3.1) (2025-05-23)
 
 

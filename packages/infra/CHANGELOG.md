@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.0.7](https://github.com/aprendendofelipe/tabnews/compare/infra-v0.0.6...infra-v0.0.7) (2025-07-14)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @tabnews/helpers bumped from ^0.4.0 to ^0.4.1
+
 ## [0.0.6](https://github.com/aprendendofelipe/tabnews/compare/infra-v0.0.5...infra-v0.0.6) (2025-05-22)
 
 
