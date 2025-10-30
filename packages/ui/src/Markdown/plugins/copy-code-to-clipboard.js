@@ -92,6 +92,10 @@ export function copyCodeToClipboardPlugin() {
         const pre = codeElement.parentElement;
         if (pre.dataset.copyButtonInjected === 'true') return;
 
+        const isMermaidBlock = codeElement.classList.contains('language-mermaid') || pre.classList.contains('mermaid');
+
+        if (isMermaidBlock) return;
+
         const codeToCopy = codeElement.innerText;
 
         const wrapper = document.createElement('div');
@@ -100,14 +104,8 @@ export function copyCodeToClipboardPlugin() {
         const preComputedStyle = window.getComputedStyle(pre);
         setStyleProperties(wrapper, {
           position: 'relative',
-          width: '100%',
           'margin-top': preComputedStyle.marginTop,
-          'margin-right': preComputedStyle.marginRight,
           'margin-bottom': preComputedStyle.marginBottom,
-          'margin-left': preComputedStyle.marginLeft,
-        });
-        setStyleProperties(pre, {
-          margin: '0',
         });
 
         const existingPaddingRight = parseFloat(preComputedStyle.paddingRight) || 0;
@@ -121,7 +119,6 @@ export function copyCodeToClipboardPlugin() {
           position: 'absolute',
           top: '8px',
           right: '8px',
-          'z-index': '1',
         });
 
         wrapper.appendChild(buttonWrapper);
