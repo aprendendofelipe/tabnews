@@ -1,4 +1,4 @@
-import { getSubtreeSize } from '@tabnews/helpers';
+import { getSubtreeSize } from '@barso/helpers';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 /**

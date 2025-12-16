@@ -1,6 +1,6 @@
-import { useForm } from '@tabnews/forms';
-import { Button, Flash, FormField, Heading } from '@tabnews/ui';
-import { Link } from '@tabnews/ui/primer';
+import { useForm } from '@barso/forms';
+import { Button, Flash, FormField, Heading } from '@barso/ui';
+import { Link } from '@barso/ui/primer';
 
 import { SubmittedFields } from './SubmittedFields.jsx';
 

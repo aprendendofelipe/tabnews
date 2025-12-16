@@ -1,5 +1,5 @@
+import { Button, useTheme } from '@barso/ui';
 import { MoonIcon, SunIcon } from '@primer/octicons-react';
-import { Button, useTheme } from '@tabnews/ui';
 
 export function ThemeSwitcher() {
   const { resolvedColorMode: mode, setColorMode } = useTheme();

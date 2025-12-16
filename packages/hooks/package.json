@@ -1,7 +1,7 @@
 {
-  "name": "@tabnews/hooks",
+  "name": "@barso/hooks",
   "version": "0.1.7",
-  "description": "TabNews Hooks",
+  "description": "Barso Hooks",
   "license": "MIT",
   "type": "module",
   "main": "src/index.js",
@@ -16,19 +16,19 @@
     "format": "eslint --fix . && prettier --write ."
   },
   "dependencies": {
-    "@tabnews/helpers": "^0.4.1"
+    "@barso/helpers": "^0.4.1"
   },
   "peerDependencies": {
     "react": "^18.2.0"
   },
-  "author": "TabNews",
+  "author": "aprendendofelipe",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aprendendofelipe/tabnews",
+    "url": "https://github.com/aprendendofelipe/react-stack",
     "directory": "packages/hooks"
   },
   "keywords": [
-    "tabnews",
+    "barso",
     "hooks"
   ],
   "publishConfig": {

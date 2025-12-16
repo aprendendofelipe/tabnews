@@ -1,4 +1,4 @@
-import { noop } from '@tabnews/helpers';
+import { noop } from '@barso/helpers';
 import pino from 'pino';
 
 import { axiomTransport } from './axiom-transport.js';

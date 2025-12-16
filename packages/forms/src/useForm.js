@@ -1,6 +1,6 @@
 'use client';
-import { identity, noop, returnNull } from '@tabnews/helpers';
-import { useConfig } from '@tabnews/hooks';
+import { identity, noop, returnNull } from '@barso/helpers';
+import { useConfig } from '@barso/hooks';
 import { useCallback } from 'react';
 
 const defaultProcessors = {

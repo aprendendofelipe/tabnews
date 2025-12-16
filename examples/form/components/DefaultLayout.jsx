@@ -1,4 +1,4 @@
-import { Box, GoToTopButton } from '@tabnews/ui';
+import { Box, GoToTopButton } from '@barso/ui';
 
 import { Header } from './Header.jsx';
 

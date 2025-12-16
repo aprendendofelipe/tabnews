@@ -1,3 +1,3 @@
 module.exports = {
-  transpilePackages: ['@primer/react', '@tabnews/ui'],
+  transpilePackages: ['@barso/ui', '@primer/react'],
 };

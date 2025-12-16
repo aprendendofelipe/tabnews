@@ -1,23 +1,23 @@
-# @tabnews/ui
+# @barso/ui
 
-A React component library for [tabnews.com.br](https://www.tabnews.com.br/).
+A React component library.
 
 ## Installation
 
 To install the package, use:
 
 ```bash
-npm i @tabnews/ui
+npm i @barso/ui
 ```
 
 ## Configure Next.js
 
-In your `next.config.js`, add `@primer/react` and `@tabnews/ui` to `transpilePackages`:
+In your `next.config.js`, add `@primer/react` and `@barso/ui` to `transpilePackages`:
 
 ```js
 // next.config.js
 module.exports = {
-  transpilePackages: ['@primer/react', '@tabnews/ui'],
+  transpilePackages: ['@primer/react', '@barso/ui'],
 };
 ```
 
@@ -27,7 +27,7 @@ To configure theming, first import the global CSS file in your main application 
 
 ```js
 // app/layout.js (App Router) or pages/_app.js (Pages Router)
-import '@tabnews/ui/css';
+import '@barso/ui/css';
 ```
 
 The library provides two properties for theme control:
@@ -43,8 +43,8 @@ In the **App Router**, wrap your app with `PrimerRoot`. This component creates t
 
 ```js
 // app/layout.js
-import { PrimerRoot } from '@tabnews/ui';
-import '@tabnews/ui/css';
+import { PrimerRoot } from '@barso/ui';
+import '@barso/ui/css';
 
 export default function Layout({ children }) {
   return (
@@ -65,7 +65,7 @@ In **Pages Router**, you must add `_document.js` to ensure proper theme setup:
 
 ```js
 // pages/_document.js
-export { Document as default } from '@tabnews/ui/document';
+export { Document as default } from '@barso/ui/document';
 ```
 
 In `_app.js`, you can use either `AutoThemeProvider` or `ThemeProvider`:
@@ -74,8 +74,8 @@ In `_app.js`, you can use either `AutoThemeProvider` or `ThemeProvider`:
 
 ```js
 // pages/_app.js
-import { AutoThemeProvider } from '@tabnews/ui';
-import '@tabnews/ui/css';
+import { AutoThemeProvider } from '@barso/ui';
+import '@barso/ui/css';
 
 export default function NextApp({ Component, pageProps }) {
   return (
@@ -90,8 +90,8 @@ export default function NextApp({ Component, pageProps }) {
 
 ```js
 // pages/_app.js
-import { ThemeProvider } from '@tabnews/ui';
-import '@tabnews/ui/css';
+import { ThemeProvider } from '@barso/ui';
+import '@barso/ui/css';
 
 export default function NextApp({ Component, pageProps }) {
   return (
@@ -115,4 +115,4 @@ test.server.deps.inline: true
 
 ## Examples
 
-See examples in the [`examples`](https://github.com/aprendendofelipe/tabnews/tree/main/examples) directory.
+See examples in the [`examples`](https://github.com/aprendendofelipe/react-stack/tree/main/examples) directory.

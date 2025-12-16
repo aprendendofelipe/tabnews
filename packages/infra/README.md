@@ -1,13 +1,13 @@
-# @tabnews/infra
+# @barso/infra
 
-Infrastructure components for [tabnews.com.br](https://www.tabnews.com.br/).
+Infrastructure components for React applications.
 
 ## Installation
 
 To install the package, use:
 
 ```bash
-npm i @tabnews/infra
+npm i @barso/infra
 ```
 
 ## Logger
@@ -25,7 +25,7 @@ Sends logs to the `console`, `stdout`, or Axiom, depending on the environment.
 Initialize the configuration by providing options compatible with the [pino logger](https://getpino.io/).
 
 ```js
-import { getLogger } from '@tabnews/infra';
+import { getLogger } from '@barso/infra';
 
 const logger = getLogger({
   // pino options

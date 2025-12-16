@@ -1,7 +1,7 @@
 {
-  "name": "@tabnews/helpers",
+  "name": "@barso/helpers",
   "version": "0.4.1",
-  "description": "TabNews helpers",
+  "description": "Barso helpers",
   "license": "MIT",
   "type": "module",
   "main": "src/index.js",
@@ -15,14 +15,14 @@
     "lint": "eslint . && prettier --check .",
     "format": "eslint --fix . && prettier --write ."
   },
-  "author": "TabNews",
+  "author": "aprendendofelipe",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aprendendofelipe/tabnews",
+    "url": "https://github.com/aprendendofelipe/react-stack",
     "directory": "packages/helpers"
   },
   "keywords": [
-    "tabnews",
+    "barso",
     "helpers"
   ],
   "publishConfig": {

@@ -1,7 +1,7 @@
 {
-  "name": "@tabnews/forms",
+  "name": "@barso/forms",
   "version": "0.4.1",
-  "description": "TabNews useForm hook and form validators",
+  "description": "Barso useForm hook and form validators",
   "license": "MIT",
   "type": "module",
   "main": "src/index.js",
@@ -16,21 +16,21 @@
     "format": "eslint --fix . && prettier --write ."
   },
   "dependencies": {
-    "@tabnews/helpers": "^0.4.1",
-    "@tabnews/hooks": "^0.1.7",
+    "@barso/helpers": "^0.4.1",
+    "@barso/hooks": "^0.1.7",
     "validation-br": "^1.5.2"
   },
   "peerDependencies": {
     "react": "^18.2.0"
   },
-  "author": "TabNews",
+  "author": "aprendendofelipe",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aprendendofelipe/tabnews",
+    "url": "https://github.com/aprendendofelipe/react-stack",
     "directory": "packages/forms"
   },
   "keywords": [
-    "tabnews",
+    "barso",
     "form",
     "hook",
     "validator"

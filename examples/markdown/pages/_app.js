@@ -1,5 +1,5 @@
-import { AutoThemeProvider } from '@tabnews/ui';
-import '@tabnews/ui/css';
+import { AutoThemeProvider } from '@barso/ui';
+import '@barso/ui/css';
 
 import { DefaultLayout } from '../components/DefaultLayout';
 
