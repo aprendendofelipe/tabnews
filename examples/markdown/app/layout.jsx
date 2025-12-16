@@ -1,5 +1,5 @@
-import { PrimerRoot } from '@tabnews/ui';
-import '@tabnews/ui/css';
+import { PrimerRoot } from '@barso/ui';
+import '@barso/ui/css';
 
 import { DefaultLayout } from '../components/DefaultLayout.jsx';
 

@@ -1,4 +1,4 @@
-import { isValidEmail, suggestEmail } from '@tabnews/helpers';
+import { isValidEmail, suggestEmail } from '@barso/helpers';
 
 export const email = {
   value: '',

@@ -1,7 +1,7 @@
 'use client';
-import { useForm } from '@tabnews/forms';
-import { Box, Button, Flash, FormField, Heading, TabNav, Text } from '@tabnews/ui';
-import { Link } from '@tabnews/ui/primer';
+import { useForm } from '@barso/forms';
+import { Box, Button, Flash, FormField, Heading, TabNav, Text } from '@barso/ui';
+import { Link } from '@barso/ui/primer';
 import { FaCreditCard, FaPix } from 'react-icons/fa6';
 
 import { SubmittedFields } from './SubmittedFields.jsx';

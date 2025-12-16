@@ -25,7 +25,7 @@ const DEFAULT_CONFIG = {
     getBellLabel,
   },
   selectors: {
-    notificationTrailingAction: 'data-tabnews-ui-notification-action',
+    notificationTrailingAction: 'data-barso-ui-notification-action',
   },
 };
 

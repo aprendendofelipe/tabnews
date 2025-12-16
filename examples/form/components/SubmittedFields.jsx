@@ -1,4 +1,4 @@
-import { Dialog } from '@tabnews/ui';
+import { Dialog } from '@barso/ui';
 
 export function SubmittedFields({ state, updateState }) {
   const value = state.dialog.value;

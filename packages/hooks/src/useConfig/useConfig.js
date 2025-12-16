@@ -1,4 +1,4 @@
-import { splitConfig } from '@tabnews/helpers';
+import { splitConfig } from '@barso/helpers';
 import { useCallback, useMemo } from 'react';
 
 import { useMergedState } from '../useMergedState/index.js';

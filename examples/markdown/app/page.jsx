@@ -1,5 +1,5 @@
 'use client';
-import { MarkdownEditor } from '@tabnews/ui/markdown';
+import { MarkdownEditor } from '@barso/ui/markdown';
 import { useState } from 'react';
 
 import { mdContent, shouldAddNofollow } from '../md-example.js';

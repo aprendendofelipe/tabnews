@@ -1,4 +1,4 @@
-import { deepMerge } from '@tabnews/helpers';
+import { deepMerge } from '@barso/helpers';
 import { useReducer } from 'react';
 
 /**

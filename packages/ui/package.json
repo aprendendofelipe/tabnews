@@ -1,7 +1,7 @@
 {
-  "name": "@tabnews/ui",
+  "name": "@barso/ui",
   "version": "0.6.2",
-  "description": "TabNews UI",
+  "description": "Barso UI",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -59,14 +59,14 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-  "author": "TabNews",
+  "author": "aprendendofelipe",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aprendendofelipe/tabnews",
+    "url": "https://github.com/aprendendofelipe/react-stack",
     "directory": "packages/ui"
   },
   "keywords": [
-    "tabnews",
+    "barso",
     "ui"
   ],
   "publishConfig": {

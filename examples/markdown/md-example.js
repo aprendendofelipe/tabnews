@@ -1,4 +1,4 @@
-import { isTrustedDomain } from '@tabnews/helpers';
+import { isTrustedDomain } from '@barso/helpers';
 
 export const shouldAddNofollow = (url) => !isTrustedDomain(url);
 

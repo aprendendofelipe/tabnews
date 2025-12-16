@@ -1,4 +1,4 @@
-import { configureDocument, Document } from '@tabnews/ui/document';
+import { configureDocument, Document } from '@barso/ui/document';
 
 configureDocument({
   htmlProps: {

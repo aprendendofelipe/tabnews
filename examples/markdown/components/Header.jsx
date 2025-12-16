@@ -1,5 +1,5 @@
 'use client';
-import { Header as PrimerHeader } from '@tabnews/ui/primer';
+import { Header as PrimerHeader } from '@barso/ui/primer';
 import NextLink from 'next/link';
 
 import { ThemeSwitcher } from './ThemeSwitcher.jsx';

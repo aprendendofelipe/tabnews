@@ -14,7 +14,7 @@ The best approach is to create a custom hook in your application (e.g., `useNoti
 
 ### 1. Create a Configuration Hook
 
-This hook will be the brain of your notification system. It will fetch data, define actions, and manage state. The example below is based on the actual implementation found in [`@examples/form`](https://github.com/aprendendofelipe/tabnews/blob/main/examples/form/components/Notifications/Notifications.jsx).
+This hook will be the brain of your notification system. It will fetch data, define actions, and manage state. The example below is based on the actual implementation found in [`@examples/form`](https://github.com/aprendendofelipe/react-stack/blob/main/examples/form/components/Notifications/Notifications.jsx).
 
 **`hooks/useNotificationConfig.js` (example in your application)**
 
@@ -103,7 +103,7 @@ In your main layout, use the created hook to configure the `NotificationsProvide
 
 ```jsx
 'use client';
-import { NotificationsProvider, NotificationMenu } from '@tabnews/ui';
+import { NotificationsProvider, NotificationMenu } from '@barso/ui';
 import { useNotificationConfig } from '../hooks/useNotificationConfig';
 
 // Create a reusable component for the notification menu
@@ -151,7 +151,7 @@ Ideal for headers. It renders a bell icon that, when clicked, opens an overlay w
 Ideal for a dedicated page (e.g., `/notifications`). It renders the list of notifications and consumes the `isLoading` state from the provider to display a spinner.
 
 ```jsx
-import { NotificationList } from '@tabnews/ui';
+import { NotificationList } from '@barso/ui';
 
 export default function NotificationsPage() {
   return (

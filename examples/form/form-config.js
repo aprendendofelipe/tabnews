@@ -18,7 +18,7 @@ import {
   state,
   street,
   username,
-} from '@tabnews/forms';
+} from '@barso/forms';
 
 export const product = {
   cta: 'Encontrou aquele Produto Top que você queria',

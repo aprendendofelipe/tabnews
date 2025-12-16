@@ -1,7 +1,7 @@
 {
-  "name": "@tabnews/infra",
+  "name": "@barso/infra",
   "version": "0.0.7",
-  "description": "TabNews Infra",
+  "description": "Barso Infra",
   "license": "MIT",
   "type": "module",
   "main": "src/index.js",
@@ -17,18 +17,18 @@
   },
   "dependencies": {
     "@axiomhq/js": "1.3.1",
-    "@tabnews/helpers": "^0.4.1",
+    "@barso/helpers": "^0.4.1",
     "@vercel/functions": "2.1.0",
     "pino": "9.7.0"
   },
-  "author": "TabNews",
+  "author": "aprendendofelipe",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aprendendofelipe/tabnews",
+    "url": "https://github.com/aprendendofelipe/react-stack",
     "directory": "packages/infra"
   },
   "keywords": [
-    "tabnews",
+    "barso",
     "infra"
   ],
   "publishConfig": {

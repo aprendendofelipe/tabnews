@@ -1,4 +1,4 @@
-import { MarkdownViewer } from '@tabnews/ui/markdown';
+import { MarkdownViewer } from '@barso/ui/markdown';
 
 import { mdContent, shouldAddNofollow } from '../md-example.js';
 

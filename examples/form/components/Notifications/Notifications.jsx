@@ -1,5 +1,4 @@
 'use client';
-import { CheckIcon, CommentIcon, NoteIcon, SquareCircleIcon, TrashIcon } from '@primer/octicons-react';
 import {
   Button,
   Heading,
@@ -7,8 +6,9 @@ import {
   NotificationMenu,
   NotificationsProvider as Provider,
   useNotifications,
-} from '@tabnews/ui';
-import { Link as PrimerLink } from '@tabnews/ui/primer';
+} from '@barso/ui';
+import { Link as PrimerLink } from '@barso/ui/primer';
+import { CheckIcon, CommentIcon, NoteIcon, SquareCircleIcon, TrashIcon } from '@primer/octicons-react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
