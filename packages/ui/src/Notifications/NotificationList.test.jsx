@@ -27,7 +27,7 @@ describe('ui/Notifications', () => {
     describe('getItemIcon', () => {
       it('renders notification icon', () => {
         const notifications = createNotificationList(1);
-        const getItemIcon = () => <span data-testid="mock-icon">📣</span>;
+        const getItemIcon = () => <MockIcon />;
 
         renderWithContext(<NotificationList />, { notifications, getItemIcon });
 
@@ -256,7 +256,7 @@ describe('ui/Notifications', () => {
 
         it('renders static action icon', () => {
           const notification = createMockNotification();
-          const action = createMockAction({ label: 'Mock Action', icon: <span data-testid="mock-icon">🔔</span> });
+          const action = createMockAction({ label: 'Mock Action', icon: MockIcon });
 
           const { container } = renderWithContext(<NotificationList />, {
             notifications: [notification],
@@ -268,7 +268,7 @@ describe('ui/Notifications', () => {
         });
 
         it('renders icon from action.getIcon(item)', () => {
-          const getIcon = vi.fn(() => <span data-testid="mock-icon">🔔</span>);
+          const getIcon = vi.fn(() => MockIcon);
           const notification = createMockNotification();
           const action = createMockAction({ label: 'Mock Action', getIcon });
 
@@ -684,3 +684,6 @@ function getTrailingButton(container, notification) {
   const trailingAction = container.querySelector(`[${selectors.notificationTrailingAction}]`);
   return trailingAction;
 }
+
+const MockIcon = () => <span data-testid="mock-icon">🔔</span>;
+MockIcon.displayName = 'MockIcon';

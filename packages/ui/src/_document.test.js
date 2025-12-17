@@ -62,8 +62,8 @@ document.documentElement.setAttribute('data-no-flash', true)`,
         },
       });
 
-      const { getByTestId } = renderOnMockRoot(<Document />);
-      const htmlTag = getByTestId('Next Html');
+      renderOnMockRoot(<Document />);
+      const htmlTag = document.documentElement;
 
       expect(htmlTag).toBeDefined();
       expect(htmlTag.getAttribute('lang')).toBe('pt');
@@ -127,29 +127,13 @@ vi.mock('next/script', () => ({ default: hoisted.nextScriptDefault }));
 vi.mock('styled-components', () => ({ ServerStyleSheet: hoisted.ServerStyleSheet }));
 
 function renderOnMockRoot(ui, options) {
-  const mockRoot = document.createElement('mockroot');
-  const container = document.body.appendChild(mockRoot);
+  const container = document.documentElement;
 
-  return suppressDOMNestingWarnings(() =>
-    render(ui, {
+  return {
+    ...render(ui, {
       container,
       ...options,
     }),
-  );
-}
-
-function suppressDOMNestingWarnings(callback) {
-  const originalError = console.error;
-  console.error = (...args) => {
-    if (args[0].includes('cannot appear as a child of') && args[1] === '<html>' && args[2] === 'mockroot') {
-      return;
-    }
-    originalError.call(console, ...args);
+    getByTestId: (id) => container.querySelector(`[data-testid="${id}"]`),
   };
-
-  try {
-    return callback();
-  } finally {
-    console.error = originalError;
-  }
 }
