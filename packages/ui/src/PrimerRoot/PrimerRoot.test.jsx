@@ -40,15 +40,15 @@ describe('ui', () => {
     it('renders core HTML structure', async () => {
       const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
-      const { container, getByTestId } = await renderServerComponent(PrimerRoot, {
+      const { getByTestId } = await renderServerComponent(PrimerRoot, {
         ...defaultProps,
         lang: 'en',
       });
 
       consoleErrorSpy.mockRestore();
 
-      const html = container.querySelector('html');
-      const body = container.querySelector('body');
+      const html = document.documentElement;
+      const body = document.body;
       const children = getByTestId('test-children');
 
       expect(html).toBeInTheDocument();
@@ -69,44 +69,44 @@ describe('ui', () => {
     });
 
     it('renders with default light theme when no color mode is provided', async () => {
-      const { container, getByTestId } = await renderServerComponent(PrimerRoot, defaultProps);
+      const { getByTestId } = await renderServerComponent(PrimerRoot, defaultProps);
 
       const autoThemeProvider = getByTestId('auto-theme-provider');
 
-      expect(container.querySelector('html')).toHaveAttribute('data-color-mode', 'light');
+      expect(document.documentElement).toHaveAttribute('data-color-mode', 'light');
       expect(autoThemeProvider).toHaveAttribute('data-default-color-mode', 'light');
     });
 
     it('uses dark theme when colorMode prop is "dark"', async () => {
       mockCookieStore.get.mockResolvedValueOnce({ value: 'light' });
 
-      const { container } = await renderServerComponent(PrimerRoot, {
+      await renderServerComponent(PrimerRoot, {
         ...defaultProps,
         colorMode: 'dark',
         defaultColorMode: 'light',
       });
 
-      expect(container.querySelector('html')).toHaveAttribute('data-color-mode', 'dark');
+      expect(document.documentElement).toHaveAttribute('data-color-mode', 'dark');
     });
 
     it('uses cookie value for color mode when available', async () => {
       mockCookieStore.get.mockResolvedValueOnce({ value: 'dark' });
 
-      const { container } = await renderServerComponent(PrimerRoot, {
+      await renderServerComponent(PrimerRoot, {
         ...defaultProps,
         defaultColorMode: 'light',
       });
 
-      expect(container.querySelector('html')).toHaveAttribute('data-color-mode', 'dark');
+      expect(document.documentElement).toHaveAttribute('data-color-mode', 'dark');
     });
 
     it('uses defaultColorMode when no cookie or colorMode prop is provided', async () => {
-      const { container } = await renderServerComponent(PrimerRoot, {
+      await renderServerComponent(PrimerRoot, {
         ...defaultProps,
         defaultColorMode: 'dark',
       });
 
-      expect(container.querySelector('html')).toHaveAttribute('data-color-mode', 'dark');
+      expect(document.documentElement).toHaveAttribute('data-color-mode', 'dark');
     });
 
     it('passes preventSSRMismatch prop to AutoThemeProvider', async () => {
@@ -120,25 +120,23 @@ describe('ui', () => {
     });
 
     it('passes additional props to the HTML element', async () => {
-      const { container } = await renderServerComponent(PrimerRoot, {
+      await renderServerComponent(PrimerRoot, {
         ...defaultProps,
         htmlProps: {
           'data-custom-attribute': 'customValue',
         },
       });
 
-      const html = container.querySelector('html');
-      expect(html).toHaveAttribute('data-custom-attribute', 'customValue');
+      expect(document.documentElement).toHaveAttribute('data-custom-attribute', 'customValue');
     });
 
-    it('renders headChildren in the head', async () => {
-      const { container } = await renderServerComponent(PrimerRoot, {
+    it('injects headChildren in the head', async () => {
+      await renderServerComponent(PrimerRoot, {
         ...defaultProps,
         headChildren: <meta name="description" content="Test description" />,
       });
 
-      const head = container.querySelector('head');
-      const meta = head.querySelector('meta[name="description"]');
+      const meta = document.head.querySelector('meta[name="description"]');
 
       expect(meta).toBeInTheDocument();
       expect(meta).toHaveAttribute('content', 'Test description');
@@ -155,5 +153,7 @@ describe('ui', () => {
 async function renderServerComponent(asyncComponent, props) {
   const componentPromise = typeof asyncComponent === 'function' ? asyncComponent(props) : asyncComponent;
   const resolvedComponent = await componentPromise;
-  return render(resolvedComponent);
+  return render(resolvedComponent, {
+    document: global.document,
+  });
 }

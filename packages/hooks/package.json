@@ -19,7 +19,7 @@
     "@barso/helpers": "^0.4.1"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": ">=18.2.0"
   },
   "author": "aprendendofelipe",
   "repository": {
