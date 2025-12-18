@@ -17,6 +17,12 @@ describe('ui', () => {
             canvas: {
               default: '#654321',
             },
+            neutral: {
+              emphasisPlus: '#123456',
+            },
+            fg: {
+              onEmphasis: '#abcdef',
+            },
           },
         },
       });
@@ -48,6 +54,12 @@ describe('ui', () => {
             canvas: {
               default: '#FEDCBA',
             },
+            neutral: {
+              emphasisPlus: '#112233',
+            },
+            fg: {
+              onEmphasis: '#334455',
+            },
           },
         },
       });
@@ -73,13 +85,19 @@ describe('ui', () => {
   });
 
   describe('GlobalStyle', () => {
-    it('renders the correct global style', () => {
+    it('applies the correct global style', () => {
       vi.spyOn(primerReact, 'useTheme').mockReturnValue({
         resolvedColorScheme: 'dark',
         theme: {
           colors: {
             canvas: {
               default: '#789',
+            },
+            neutral: {
+              emphasisPlus: '#456',
+            },
+            fg: {
+              onEmphasis: '#123',
             },
           },
         },
@@ -97,6 +115,8 @@ describe('ui', () => {
       }
       body {
         background: #789;
+        --tooltip-bgColor: #456;
+        --tooltip-fgColor: #123;
       }
     `);
     });
