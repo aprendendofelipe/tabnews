@@ -21,6 +21,8 @@ export function GlobalStyle() {
       }
       body {
         background: ${colors.canvas.default};
+        --tooltip-bgColor: ${colors.neutral.emphasisPlus};
+        --tooltip-fgColor: ${colors.fg.onEmphasis};
       }
     `}</style>
   );
