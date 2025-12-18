@@ -340,10 +340,6 @@
   border-radius: 6px;
 }
 
-.tippy-box[data-theme~='light-border'] > .tippy-backdrop {
-  background-color: #fff;
-}
-
 .tippy-arrow {
   display: none;
 }
