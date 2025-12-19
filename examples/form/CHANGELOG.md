@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.3.3](https://github.com/aprendendofelipe/react-stack/compare/form-example-v0.3.2...form-example-v0.3.3) (2025-12-19)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @barso/forms bumped from 0.4.1 to 0.4.2
+    * @barso/ui bumped from 0.6.2 to 0.6.3
+
 ## [0.3.2](https://github.com/aprendendofelipe/tabnews/compare/form-example-v0.3.1...form-example-v0.3.2) (2025-07-14)
 
 

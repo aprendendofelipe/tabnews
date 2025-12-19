@@ -1,6 +1,6 @@
 {
   "name": "@barso/hooks",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Barso Hooks",
   "license": "MIT",
   "type": "module",
@@ -16,7 +16,7 @@
     "format": "eslint --fix . && prettier --write ."
   },
   "dependencies": {
-    "@barso/helpers": "^0.4.1"
+    "@barso/helpers": "^0.4.2"
   },
   "peerDependencies": {
     "react": ">=18.2.0"

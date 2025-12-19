@@ -1,6 +1,6 @@
 {
   "name": "@barso/forms",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Barso useForm hook and form validators",
   "license": "MIT",
   "type": "module",
@@ -16,8 +16,8 @@
     "format": "eslint --fix . && prettier --write ."
   },
   "dependencies": {
-    "@barso/helpers": "^0.4.1",
-    "@barso/hooks": "^0.1.7",
+    "@barso/helpers": "^0.4.2",
+    "@barso/hooks": "^0.1.8",
     "validation-br": "^1.5.2"
   },
   "peerDependencies": {

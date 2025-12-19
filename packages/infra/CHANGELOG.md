@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.0.8](https://github.com/aprendendofelipe/react-stack/compare/infra-v0.0.7...infra-v0.0.8) (2025-12-19)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @barso/helpers bumped from ^0.4.1 to ^0.4.2
+
 ## [0.0.7](https://github.com/aprendendofelipe/tabnews/compare/infra-v0.0.6...infra-v0.0.7) (2025-07-14)
 
 
