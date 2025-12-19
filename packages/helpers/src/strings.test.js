@@ -116,5 +116,22 @@ describe('helpers', () => {
       expect(truncate(input, 19)).toBe('Truncate this 👩‍❤️‍💋‍👨...');
       expect(truncate(input, 20)).toBe('Truncate this 👩‍❤️‍💋‍👨 s...');
     });
+
+    it('should handle very long strings efficiently and correctly', () => {
+      const longString = '👩‍❤️‍💋‍👨a'.repeat(100_000); // > 1MB
+      const result = truncate(longString, 100);
+
+      expect.soft(result.endsWith('...')).toBeTruthy();
+      expect.soft(result.startsWith('👩‍❤️‍💋‍👨a'.repeat(48))).toBeTruthy();
+      expect.soft(result === '👩‍❤️‍💋‍👨a'.repeat(48) + '👩‍❤️‍💋‍👨' + '...').toBeTruthy();
+
+      // Truncate to a length less than ellipsis
+      const result2 = truncate(longString, 2);
+      expect.soft(result2).toBe('..');
+
+      // Truncate to a length greater than the string
+      const result3 = truncate(longString, 200_000);
+      expect(result3).toBe(longString);
+    }, 100);
   });
 });
