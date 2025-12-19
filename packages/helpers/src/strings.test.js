@@ -32,9 +32,18 @@ describe('helpers', () => {
 
   describe('trimEnd', () => {
     it('should remove invisible characters from the end of a string', () => {
-      const input = 'Hello\u034f\u034f';
-      const result = trimEnd(input);
-      expect(result).toBe('Hello');
+      expect(trimEnd('A ')).toBe('A');
+      expect(trimEnd('B\n')).toBe('B');
+      expect(trimEnd('C\t')).toBe('C');
+      expect(trimEnd('D\r')).toBe('D');
+      expect(trimEnd('E\u034f')).toBe('E');
+      expect(trimEnd('F\u17b4')).toBe('F');
+      expect(trimEnd('G\u17b5')).toBe('G');
+      expect(trimEnd('F\u2800')).toBe('F');
+      expect(trimEnd('H\u115f')).toBe('H');
+      expect(trimEnd('I\u1160')).toBe('I');
+      expect(trimEnd('J\u3164')).toBe('J');
+      expect(trimEnd('K\uffa0')).toBe('K');
     });
 
     it('should return the same string if no invisible characters are at the end', () => {
@@ -42,6 +51,20 @@ describe('helpers', () => {
       const result = trimEnd(input);
       expect(result).toBe('Hello');
     });
+
+    it('should not hang (ReDoS) on long string of invisible chars', () => {
+      const long1 = 'Hello' + '\u3164'.repeat(1_000_000);
+      const long2 = 'A'.repeat(1_000_000) + '\u17b5'.repeat(1_000_000);
+      const long3 = 'B' + '\u034f'.repeat(1_000_000) + 'C';
+      const long4 = '\u2800'.repeat(1_000_000) + 'D';
+      const long5 = 'E'.repeat(1_000_000) + '\u034f' + 'F';
+
+      expect.soft(trimEnd(long1)).toBe('Hello');
+      expect.soft(trimEnd(long2)).toBe('A'.repeat(1_000_000));
+      expect.soft(trimEnd(long3)).toBe(long3);
+      expect.soft(trimEnd(long4)).toBe(long4);
+      expect.soft(trimEnd(long5)).toBe(long5);
+    }, 1_000);
   });
 
   describe('truncate', () => {
