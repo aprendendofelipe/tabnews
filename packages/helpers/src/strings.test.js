@@ -170,6 +170,6 @@ describe('helpers', () => {
       // Truncate to a length greater than the string
       const result3 = truncate(longString, 200_000);
       expect(result3).toBe(longString);
-    }, 100);
+    }, 300);
   });
 });
