@@ -29,8 +29,15 @@ export function truncate(str, maxLength) {
 
   const ellipsis = ELLIPSIS.slice(0, maxLength);
 
-  const graphemes = Array.from(graphemeSegmenter.segment(str), (s) => s.segment);
-  if (graphemes.length < maxLength) return str;
+  const graphemes = [];
 
-  return trimEnd(graphemes.slice(0, maxLength - ellipsis.length).join('')) + ellipsis;
+  for (const s of graphemeSegmenter.segment(str)) {
+    if (graphemes.length > maxLength) {
+      return trimEnd(graphemes.slice(0, maxLength - ellipsis.length).join('')) + ellipsis;
+    }
+
+    graphemes.push(s.segment);
+  }
+
+  return str;
 }
