@@ -3,9 +3,18 @@ import { trimEnd, trimStart, truncate } from './strings.js';
 describe('helpers', () => {
   describe('trimStart', () => {
     it('should remove invisible characters from the start of a string', () => {
-      const input = '\u034f\u034fHello';
-      const result = trimStart(input);
-      expect(result).toBe('Hello');
+      expect(trimStart(' A')).toBe('A');
+      expect(trimStart('\nB')).toBe('B');
+      expect(trimStart('\tC')).toBe('C');
+      expect(trimStart('\rD')).toBe('D');
+      expect(trimStart('\u034fE')).toBe('E');
+      expect(trimStart('\u17b4F')).toBe('F');
+      expect(trimStart('\u17b5G')).toBe('G');
+      expect(trimStart('\u2800F')).toBe('F');
+      expect(trimStart('\u115fH')).toBe('H');
+      expect(trimStart('\u1160I')).toBe('I');
+      expect(trimStart('\u3164J')).toBe('J');
+      expect(trimStart('\uffa0K')).toBe('K');
     });
 
     it('should return the same string if no invisible characters are at the start', () => {
@@ -13,6 +22,12 @@ describe('helpers', () => {
       const result = trimStart(input);
       expect(result).toBe('Hello');
     });
+
+    it('should not hang (ReDoS) on long string of invisible chars', () => {
+      const long = '\u034f'.repeat(1_000_000) + 'Hello';
+      const result = trimStart(long);
+      expect(result).toBe('Hello');
+    }, 200);
   });
 
   describe('trimEnd', () => {

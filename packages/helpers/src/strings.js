@@ -1,13 +1,9 @@
 const invisibleCharRegex = '[\\s\\p{C}\u034f\u17b4\u17b5\u2800\u115f\u1160\u3164\uffa0]';
-const trimStartRegex = new RegExp('^' + invisibleCharRegex, 'u');
+const trimStartRegex = new RegExp('^' + invisibleCharRegex + '+', 'u');
 const trimEndRegex = new RegExp(invisibleCharRegex + '$', 'u');
 
 export function trimStart(str) {
-  while (trimStartRegex.test(str)) {
-    str = str.replace(trimStartRegex, '');
-  }
-
-  return str;
+  return str.replace(trimStartRegex, '');
 }
 
 export function trimEnd(str) {
