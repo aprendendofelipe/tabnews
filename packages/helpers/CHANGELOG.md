@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.4.2](https://github.com/aprendendofelipe/react-stack/compare/helpers-v0.4.1...helpers-v0.4.2) (2025-12-19)
+
+
+### Bug Fixes
+
+* **baseUrl:** improve environment variable resolution for Next.js/Turbo ([6796d52](https://github.com/aprendendofelipe/react-stack/commit/6796d525c2d32ab4026e567f02e0075768500ca4))
+
+
+### Performance Improvements
+
+* **trimStart:** optimize invisible character removal with single regex replace ([5900fa9](https://github.com/aprendendofelipe/react-stack/commit/5900fa9e6e2ad75a47b20be82f9cbcc50ff4b2d0))
+* **truncate:** optimize grapheme truncation for large strings ([c9ea247](https://github.com/aprendendofelipe/react-stack/commit/c9ea2474a9b44a39de5ca30b721b841dddcea2c2))
+
 ## [0.4.1](https://github.com/aprendendofelipe/tabnews/compare/helpers-v0.4.0...helpers-v0.4.1) (2025-07-14)
 
 

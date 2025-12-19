@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.1.8](https://github.com/aprendendofelipe/react-stack/compare/hooks-v0.1.7...hooks-v0.1.8) (2025-12-19)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @barso/helpers bumped from ^0.4.1 to ^0.4.2
+
 ## [0.1.7](https://github.com/aprendendofelipe/tabnews/compare/hooks-v0.1.6...hooks-v0.1.7) (2025-07-14)
 
 

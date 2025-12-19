@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.3](https://github.com/aprendendofelipe/react-stack/compare/ui-v0.6.2...ui-v0.6.3) (2025-12-19)
+
+
+### Features
+
+* **copy-code:** make markdown code block copy button fixed to top-right corner ([#76](https://github.com/aprendendofelipe/react-stack/issues/76)) ([6a812e0](https://github.com/aprendendofelipe/react-stack/commit/6a812e06edba3bb6e2c011c428b48b945e481b0b))
+
+
+### Bug Fixes
+
+* **Editor Tooltip:** define CSS vars on body for markdown tooltips ([27d748c](https://github.com/aprendendofelipe/react-stack/commit/27d748c8c12e42bbc1edf8a412e22f0bdec931d1))
+
 ## [0.6.2](https://github.com/aprendendofelipe/tabnews/compare/ui-v0.6.1...ui-v0.6.2) (2025-07-14)
 
 
