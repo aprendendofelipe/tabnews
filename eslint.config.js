@@ -1,4 +1,4 @@
-import defaultConfig from '@tabnews/config/eslint';
+import defaultConfig from 'barso/eslint';
 
 const config = [
   ...defaultConfig,

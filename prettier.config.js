@@ -1,1 +1,1 @@
-export { default } from '@tabnews/config/prettier';
+export { default } from 'barso/prettier';

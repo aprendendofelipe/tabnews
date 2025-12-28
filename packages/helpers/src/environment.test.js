@@ -11,9 +11,8 @@ describe('helpers/environment', () => {
 
   describe('Local', () => {
     test('Dev', async () => {
-      const { isBuildTime, isEdgeRuntime, isLambdaRuntime, isProduction, isServerlessRuntime } = await import(
-        './index.js'
-      );
+      const { isBuildTime, isEdgeRuntime, isLambdaRuntime, isProduction, isServerlessRuntime } =
+        await import('./index.js');
 
       expect(isBuildTime).toBe(false);
       expect(isEdgeRuntime).toBe(false);
@@ -25,9 +24,8 @@ describe('helpers/environment', () => {
     test('Build', async () => {
       vi.stubEnv('NEXT_PHASE', 'phase-production-build');
 
-      const { isBuildTime, isEdgeRuntime, isLambdaRuntime, isProduction, isServerlessRuntime } = await import(
-        './index.js'
-      );
+      const { isBuildTime, isEdgeRuntime, isLambdaRuntime, isProduction, isServerlessRuntime } =
+        await import('./index.js');
 
       expect(isBuildTime).toBe(true);
       expect(isEdgeRuntime).toBe(false);
@@ -38,9 +36,8 @@ describe('helpers/environment', () => {
 
     test('Production', async () => {
       vi.stubEnv('NODE_ENV', 'production');
-      const { isBuildTime, isEdgeRuntime, isLambdaRuntime, isProduction, isServerlessRuntime } = await import(
-        './index.js'
-      );
+      const { isBuildTime, isEdgeRuntime, isLambdaRuntime, isProduction, isServerlessRuntime } =
+        await import('./index.js');
 
       expect(isBuildTime).toBe(false);
       expect(isEdgeRuntime).toBe(false);
@@ -58,9 +55,8 @@ describe('helpers/environment', () => {
       vi.stubEnv('NEXT_PUBLIC_VERCEL_ENV', 'production');
       vi.stubEnv('VERCEL', '1');
 
-      const { isBuildTime, isEdgeRuntime, isLambdaRuntime, isProduction, isServerlessRuntime } = await import(
-        './index.js'
-      );
+      const { isBuildTime, isEdgeRuntime, isLambdaRuntime, isProduction, isServerlessRuntime } =
+        await import('./index.js');
 
       expect(isBuildTime).toBe(true);
       expect(isEdgeRuntime).toBe(false);
@@ -73,9 +69,8 @@ describe('helpers/environment', () => {
       vi.stubEnv('NEXT_PUBLIC_VERCEL_ENV', 'production');
       vi.stubEnv('VERCEL', '1');
 
-      const { isBuildTime, isEdgeRuntime, isLambdaRuntime, isProduction, isServerlessRuntime } = await import(
-        './index.js'
-      );
+      const { isBuildTime, isEdgeRuntime, isLambdaRuntime, isProduction, isServerlessRuntime } =
+        await import('./index.js');
 
       expect(isBuildTime).toBe(false);
       expect(isEdgeRuntime).toBe(false);
@@ -88,9 +83,8 @@ describe('helpers/environment', () => {
       vi.stubEnv('NEXT_PUBLIC_VERCEL_ENV', 'preview');
       vi.stubEnv('VERCEL', '1');
 
-      const { isBuildTime, isEdgeRuntime, isLambdaRuntime, isProduction, isServerlessRuntime } = await import(
-        './index.js'
-      );
+      const { isBuildTime, isEdgeRuntime, isLambdaRuntime, isProduction, isServerlessRuntime } =
+        await import('./index.js');
 
       expect(isBuildTime).toBe(false);
       expect(isEdgeRuntime).toBe(false);
@@ -113,9 +107,8 @@ describe('helpers/environment', () => {
       vi.stubEnv('NEXT_PUBLIC_VERCEL_ENV', 'production');
       vi.stubEnv('VERCEL', '1');
 
-      const { isBuildTime, isEdgeRuntime, isLambdaRuntime, isProduction, isServerlessRuntime } = await import(
-        './index.js'
-      );
+      const { isBuildTime, isEdgeRuntime, isLambdaRuntime, isProduction, isServerlessRuntime } =
+        await import('./index.js');
 
       expect(isBuildTime).toBe(false);
       expect(isEdgeRuntime).toBe(true);
@@ -128,9 +121,8 @@ describe('helpers/environment', () => {
       vi.stubEnv('NEXT_PUBLIC_VERCEL_ENV', 'preview');
       vi.stubEnv('VERCEL', '1');
 
-      const { isBuildTime, isEdgeRuntime, isLambdaRuntime, isProduction, isServerlessRuntime } = await import(
-        './index.js'
-      );
+      const { isBuildTime, isEdgeRuntime, isLambdaRuntime, isProduction, isServerlessRuntime } =
+        await import('./index.js');
 
       expect(isBuildTime).toBe(false);
       expect(isEdgeRuntime).toBe(true);
