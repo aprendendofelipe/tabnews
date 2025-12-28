@@ -11,7 +11,7 @@ import mermaidLocale from '@bytemd/plugin-mermaid/locales/pt_BR.json';
 import { Editor as ByteMdEditor, Viewer as ByteMdViewer } from '@bytemd/react';
 import { Box, useTheme } from '@primer/react';
 import byteMDLocale from 'bytemd/locales/pt_BR.json';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 
 import {
   anchorHeadersPlugin,
@@ -57,30 +57,15 @@ function usePlugins({ areLinksTrusted, clobberPrefix, shouldAddNofollow }) {
   return plugins;
 }
 
-export function MarkdownViewer({ value: _value, areLinksTrusted, clobberPrefix, shouldAddNofollow, ...props }) {
+export function MarkdownViewer({ areLinksTrusted, clobberPrefix, shouldAddNofollow, ...props }) {
   clobberPrefix = clobberPrefix?.toLowerCase();
   const bytemdPluginList = usePlugins({ areLinksTrusted, clobberPrefix, shouldAddNofollow });
-  const [value, setValue] = useState(_value);
-
-  useEffect(() => {
-    let timeout;
-
-    setValue((value) => {
-      timeout = setTimeout(() => setValue(value));
-      return value + '\n\u0160';
-    });
-
-    return () => clearTimeout(timeout);
-  }, [bytemdPluginList]);
-
-  useEffect(() => setValue(_value), [_value]);
 
   return (
     <ByteMdViewer
       sanitize={sanitize({ clobberPrefix })}
       remarkRehype={{ clobberPrefix }}
       plugins={bytemdPluginList}
-      value={value}
       {...props}
     />
   );
