@@ -1,1 +1,1 @@
-export { npm as default } from '@tabnews/config/lint-staged';
+export { npm as default } from 'barso/lint-staged';

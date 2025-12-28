@@ -1,4 +1,4 @@
-import createConfig from '@tabnews/config/vitest';
+import createConfig from 'barso/vitest';
 
 const config = createConfig({
   test: {
