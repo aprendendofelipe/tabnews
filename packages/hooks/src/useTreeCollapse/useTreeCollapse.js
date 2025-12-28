@@ -1,5 +1,5 @@
 import { getSubtreeSize } from '@barso/helpers';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 
 /**
  * @typedef {Object} TreeNode
@@ -41,68 +41,47 @@ export function useTreeCollapse({
   additionalBudget = 10,
   defaultExpandedId = null,
 } = {}) {
-  const lastParamsRef = useRef({ totalBudget, minimalSubTree, defaultExpandedId });
-
-  const [nodeStates, setNodeStates] = useState(() =>
-    computeNodeStates({
-      minimalSubTree,
-      nodes,
-      totalBudget,
-      defaultExpandedId,
-    }),
+  const [nodeStates, dispatch] = useReducer(
+    (previousState, action = {}) => {
+      switch (action.type) {
+        case 'EXPAND_NODE':
+          return expandChildren({ additionalBudget, minimalSubTree, previousState, ...action });
+        case 'COLLAPSE_NODE':
+          return collapseChildren({ previousState, ...action });
+        case 'UPDATE_STATE':
+          return computeNodeStates({ defaultExpandedId, minimalSubTree, nodes, totalBudget, previousState, ...action });
+        case 'RESET_STATE':
+        default:
+          return computeNodeStates({ defaultExpandedId, minimalSubTree, nodes, totalBudget, ...action });
+      }
+    },
+    { minimalSubTree, nodes, totalBudget, defaultExpandedId },
+    computeNodeStates,
   );
 
+  const lastParamsRef = useRef();
+
   useEffect(() => {
+    if (!lastParamsRef.current) {
+      lastParamsRef.current = { totalBudget, minimalSubTree, defaultExpandedId };
+      return;
+    }
+
     const shouldUsePrevious =
       lastParamsRef.current.totalBudget === totalBudget &&
       lastParamsRef.current.minimalSubTree === minimalSubTree &&
       lastParamsRef.current.defaultExpandedId === defaultExpandedId;
 
     if (shouldUsePrevious) {
-      setNodeStates((previousState) =>
-        computeNodeStates({
-          minimalSubTree,
-          nodes,
-          previousState,
-          totalBudget,
-          defaultExpandedId,
-        }),
-      );
+      dispatch({ type: 'UPDATE_STATE' });
     } else {
       lastParamsRef.current = { totalBudget, minimalSubTree, defaultExpandedId };
-      setNodeStates(
-        computeNodeStates({
-          minimalSubTree,
-          nodes,
-          totalBudget,
-          defaultExpandedId,
-        }),
-      );
+      dispatch({ type: 'RESET_STATE' });
     }
   }, [defaultExpandedId, nodes, minimalSubTree, totalBudget]);
 
-  const handleExpand = useCallback(
-    (targetId) => {
-      setNodeStates((previousState) =>
-        expandChildren({
-          additionalBudget,
-          minimalSubTree,
-          previousState,
-          targetId,
-        }),
-      );
-    },
-    [additionalBudget, minimalSubTree],
-  );
-
-  const handleCollapse = useCallback((targetId) => {
-    setNodeStates((previousState) =>
-      collapseChildren({
-        previousState,
-        targetId,
-      }),
-    );
-  }, []);
+  const handleExpand = (targetId) => dispatch({ type: 'EXPAND_NODE', targetId });
+  const handleCollapse = (targetId) => dispatch({ type: 'COLLAPSE_NODE', targetId });
 
   return {
     handleCollapse,
