@@ -167,7 +167,7 @@ describe('helpers/dom', () => {
       // Simulate the animation frame before the element is added
       triggerAnimationFrame();
 
-      expect(window.requestAnimationFrame).toHaveBeenCalledTimes(1);
+      expect(window.requestAnimationFrame).toHaveBeenCalledOnce();
       expect(el.scrollIntoView).toHaveBeenCalledWith({ behavior: 'auto' });
     });
 

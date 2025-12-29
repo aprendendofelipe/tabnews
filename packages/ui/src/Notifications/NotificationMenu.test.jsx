@@ -115,7 +115,7 @@ describe('ui/Notifications/NotificationMenu', () => {
       fireEvent.click(closeButton);
 
       expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-      expect(onCloseMenu).toHaveBeenCalledTimes(1);
+      expect(onCloseMenu).toHaveBeenCalledOnce();
     });
   });
 
