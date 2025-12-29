@@ -14,4 +14,13 @@ if (typeof document !== 'undefined') {
       removeListener: vi.fn(),
     }),
   });
+
+  // https://github.com/jsdom/jsdom/issues/3998
+  if (!document.adoptedStyleSheets) {
+    Object.defineProperty(document, 'adoptedStyleSheets', {
+      writable: true,
+      configurable: true,
+      value: [],
+    });
+  }
 }

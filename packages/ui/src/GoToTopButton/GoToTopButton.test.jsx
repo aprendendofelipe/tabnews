@@ -7,7 +7,7 @@ import { GoToTopButton } from './GoToTopButton.jsx';
 const IntersectionObserver = global.IntersectionObserver;
 let lastObserver = null;
 
-const MockIntersectionObserver = vi.fn((callback) => {
+const MockIntersectionObserver = vi.fn(function (callback) {
   lastObserver = {
     callback,
     observe: vi.fn(),
