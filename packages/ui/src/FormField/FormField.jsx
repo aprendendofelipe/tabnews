@@ -57,9 +57,10 @@ export const FormField = forwardRef(
     const inputProps = {
       validationStatus: error ? 'error' : isValid ? 'success' : null,
       inputMode,
-      ref,
       ...props,
     };
+
+    inputProps.ref = ref;
 
     if (type === 'password') {
       function focusAfterEnd() {
