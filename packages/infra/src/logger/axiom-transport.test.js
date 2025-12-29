@@ -4,10 +4,10 @@ const mocks = vi.hoisted(() => {
   const waitUntil = vi.fn().mockImplementation((promise) => promise);
   const ingest = vi.fn();
   const flush = vi.fn().mockResolvedValue();
-  const Axiom = vi.fn().mockImplementation(() => ({
-    ingest,
-    flush,
-  }));
+  const Axiom = vi.fn().mockImplementation(function () {
+    this.ingest = ingest;
+    this.flush = flush;
+  });
 
   return {
     ingest,
@@ -169,10 +169,10 @@ describe('axiomTransport', () => {
     it('should continue logging even if an error occurs with Axiom', async () => {
       const error = new Error('test error');
 
-      mocks.Axiom.mockImplementationOnce(({ onError }) => ({
-        ingest: mocks.ingest.mockImplementationOnce(() => onError(error)),
-        flush: mocks.flush,
-      }));
+      mocks.Axiom.mockImplementationOnce(function ({ onError }) {
+        this.ingest = mocks.ingest.mockImplementationOnce(() => onError(error));
+        this.flush = mocks.flush;
+      });
 
       const transport = axiomTransport({ dataset, token });
 

@@ -90,11 +90,11 @@ const hoisted = vi.hoisted(() => {
   const collectStyles = vi.fn();
   const getStyleElement = vi.fn(() => <style>Styled Components Styles</style>);
   const seal = vi.fn();
-  const ServerStyleSheet = vi.fn(() => ({
-    collectStyles,
-    getStyleElement,
-    seal,
-  }));
+  const ServerStyleSheet = vi.fn(function () {
+    this.collectStyles = collectStyles;
+    this.getStyleElement = getStyleElement;
+    this.seal = seal;
+  });
 
   const renderPage = vi.fn((App) => collectStyles(App));
   const getInitialProps = vi.fn(() => ({}));
