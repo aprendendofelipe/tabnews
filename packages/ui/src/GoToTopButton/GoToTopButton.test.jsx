@@ -48,8 +48,7 @@ describe('ui', () => {
       );
       expect(screen.queryByRole('button')).toBeNull();
 
-      expect(lastObserver.observe).toHaveBeenCalledTimes(1);
-      expect(lastObserver.observe).toHaveBeenCalledWith(screen.getByTestId('target'));
+      expect(lastObserver.observe).toHaveBeenCalledExactlyOnceWith(screen.getByTestId('target'));
 
       act(() => lastObserver.callback([{ isIntersecting: false }]));
       expect(screen.getByRole('button')).toBeVisible();
@@ -62,8 +61,7 @@ describe('ui', () => {
 
       render(<GoToTopButton target={targetElement} />, { container: container });
 
-      expect(lastObserver.observe).toHaveBeenCalledTimes(1);
-      expect(lastObserver.observe).toHaveBeenCalledWith(targetElement);
+      expect(lastObserver.observe).toHaveBeenCalledExactlyOnceWith(targetElement);
 
       act(() => lastObserver.callback([{ isIntersecting: false }]));
       expect(screen.getByRole('button')).toBeVisible();
@@ -102,8 +100,7 @@ describe('ui', () => {
 
       window.scrollTo = originalScrollTo;
 
-      expect(scrollToMock).toHaveBeenCalledTimes(1);
-      expect(scrollToMock).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' });
+      expect(scrollToMock).toHaveBeenCalledExactlyOnceWith({ top: 0, behavior: 'smooth' });
     });
 
     it('logs a warning if the target element is not found', () => {
@@ -123,12 +120,12 @@ describe('ui', () => {
         </>,
       );
 
-      expect(MockIntersectionObserver).toHaveBeenCalledTimes(1);
-      expect(lastObserver.observe).toHaveBeenCalledTimes(1);
+      expect(MockIntersectionObserver).toHaveBeenCalledOnce();
+      expect(lastObserver.observe).toHaveBeenCalledOnce();
 
       unmount();
 
-      expect(lastObserver.disconnect).toHaveBeenCalledTimes(1);
+      expect(lastObserver.disconnect).toHaveBeenCalledOnce();
     });
   });
 });

@@ -172,10 +172,10 @@ describe('ui/Notifications', () => {
 
         fireEvent.keyPress(item, { key: 'Enter', code: 'Enter', charCode: 13 });
         expect(onItemSelect).toHaveBeenCalledWith(notifications[0]);
-        expect(onItemSelect).toHaveBeenCalledTimes(1);
+        expect(onItemSelect).toHaveBeenCalledOnce();
 
         fireEvent.keyPress(item, { key: 'Escape', code: 'Escape', charCode: 27 });
-        expect(onItemSelect).toHaveBeenCalledTimes(1); // Escape should not trigger onItemSelect
+        expect(onItemSelect).toHaveBeenCalledOnce(); // Escape should not trigger onItemSelect
 
         fireEvent.keyPress(item, { key: ' ', code: 'Space', charCode: 32 });
         expect(onItemSelect).toHaveBeenCalledWith(notifications[0]);

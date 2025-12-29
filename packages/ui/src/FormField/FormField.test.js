@@ -382,7 +382,7 @@ describe('ui', () => {
           const handleClick = vi.fn();
           render(<Suggestion suggestion={{ value: 'test', onClick: handleClick }} />);
           fireEvent.click(screen.getByRole('button'));
-          expect(handleClick).toHaveBeenCalledTimes(1);
+          expect(handleClick).toHaveBeenCalledOnce();
         });
 
         it('calls ignoreClick when ignore button is clicked', () => {
