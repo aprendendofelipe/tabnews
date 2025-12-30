@@ -9,3 +9,12 @@ export function DefaultHead() {
   // Calling DefaultTags() forces evaluation instead of relying on component mounting.
   return <NextHead>{DefaultTags()}</NextHead>;
 }
+
+export function Head({ title, description }) {
+  return (
+    <NextHead>
+      {title && <title>{title}</title>}
+      {description && <meta name="description" content={description} key="description" />}
+    </NextHead>
+  );
+}
