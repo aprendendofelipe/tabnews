@@ -1,6 +1,6 @@
 {
   "name": "@barso/hooks",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Barso Hooks",
   "license": "MIT",
   "type": "module",

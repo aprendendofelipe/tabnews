@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.9](https://github.com/aprendendofelipe/react-stack/compare/hooks-v0.1.8...hooks-v0.1.9) (2025-12-30)
+
+
+### Features
+
+* **useMediaQuery:** add new `useMediaQuery` hook ([95893fe](https://github.com/aprendendofelipe/react-stack/commit/95893fe4f78bd7613e211143a68a5d55430eaccf))
+
 ## [0.1.8](https://github.com/aprendendofelipe/react-stack/compare/hooks-v0.1.7...hooks-v0.1.8) (2025-12-19)
 
 
