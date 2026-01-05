@@ -1,4 +1,4 @@
-import { isArray, isEqual, isObject, isUndefined } from './index.js';
+import { isArray, isEqual, isObject, isPlainObject, isUndefined } from './index.js';
 
 describe('helpers', () => {
   describe('is', () => {
@@ -58,6 +58,55 @@ describe('helpers', () => {
         expect(isUndefined(null)).toBe(false);
         expect(isUndefined(0)).toBe(false);
         expect(isUndefined('')).toBe(false);
+      });
+    });
+
+    describe('isPlainObject', () => {
+      it('should return true for plain objects', () => {
+        expect(isPlainObject({})).toBe(true);
+        expect(isPlainObject({ foo: 'bar' })).toBe(true);
+        expect(isPlainObject(Object.create(null))).toBe(true);
+        expect(isPlainObject(Object.create(Object.prototype))).toBe(true);
+        expect(isPlainObject(Object.assign({}, { a: 1 }))).toBe(true);
+      });
+
+      it('should return false for primitives', () => {
+        expect(isPlainObject(true)).toBe(false);
+        expect(isPlainObject(undefined)).toBe(false);
+        expect(isPlainObject(1)).toBe(false);
+        expect(isPlainObject('string')).toBe(false);
+        expect(isPlainObject(Symbol('s'))).toBe(false);
+      });
+
+      it('should return false for `null`', () => {
+        expect(isPlainObject(null)).toBe(false);
+      });
+
+      it('should return false for functions and instances', () => {
+        function Foo() {
+          this.abc = {};
+        }
+
+        expect(isPlainObject(Foo)).toBe(false);
+        expect(isPlainObject(new Foo())).toBe(false);
+        expect(isPlainObject(() => {})).toBe(false);
+        expect(isPlainObject(function () {})).toBe(false);
+      });
+
+      it('should return false for arrays', () => {
+        expect(isPlainObject([])).toBe(false);
+        expect(isPlainObject([1, 2, 3])).toBe(false);
+      });
+
+      it('should return false for built-in objects', () => {
+        expect(isPlainObject(new Date())).toBe(false);
+        expect(isPlainObject(new Map())).toBe(false);
+        expect(isPlainObject(new Set())).toBe(false);
+        expect(isPlainObject(/abc/)).toBe(false);
+      });
+
+      it('should return false for objects created with Object.create and a custom prototype', () => {
+        expect(isPlainObject(Object.create({}))).toBe(false);
       });
     });
   });

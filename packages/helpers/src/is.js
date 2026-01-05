@@ -26,3 +26,14 @@ export const isObject = (value) => value !== null && typeof value === 'object' &
  * @returns {boolean} True if the value is undefined, false otherwise.
  */
 export const isUndefined = (value) => typeof value === 'undefined';
+
+/**
+ * Checks if the given value is a plain object (object literal).
+ * @param {*} obj - The value to check.
+ * @returns {boolean} True if the value is a plain object, false otherwise.
+ */
+export const isPlainObject = (obj) => {
+  if (Object.prototype.toString.call(obj) !== '[object Object]') return false;
+  const proto = Object.getPrototypeOf(obj);
+  return proto === null || proto === Object.prototype;
+};
