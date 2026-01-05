@@ -1,4 +1,4 @@
-import { isEqual, isObject, isUndefined } from './is.js';
+import { isEqual, isPlainObject, isUndefined } from './is.js';
 
 /**
  * Deeply merges two objects.
@@ -11,7 +11,7 @@ export function deepMerge(target, source) {
     return target;
   }
 
-  if (!isObject(source) || !isObject(target) || isEqual(target, source)) {
+  if (!isPlainObject(source) || !isPlainObject(target) || isEqual(target, source)) {
     return source;
   }
 
