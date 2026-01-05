@@ -102,8 +102,7 @@ describe('axiomTransport', () => {
 
       await transport.flush();
 
-      expect(mocks.waitUntil).toHaveBeenCalledWith(mocks.flush());
-      expect(mocks.waitUntil).toHaveBeenCalledOnce();
+      expect(mocks.waitUntil).toHaveBeenCalledExactlyOnceWith(mocks.flush());
     });
 
     it('should flush with logs', async () => {
@@ -121,8 +120,7 @@ describe('axiomTransport', () => {
         expect.objectContaining({ level: 'error', msg: 'test log 2' }),
       );
 
-      expect(mocks.waitUntil).toHaveBeenCalledWith(mocks.flush());
-      expect(mocks.waitUntil).toHaveBeenCalledOnce();
+      expect(mocks.waitUntil).toHaveBeenCalledExactlyOnceWith(mocks.flush());
     });
 
     it('should not ingest invalid logs', async () => {
