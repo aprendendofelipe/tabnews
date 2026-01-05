@@ -7,11 +7,9 @@ export function SubmittedFields({ state, updateState }) {
     return null;
   }
 
-  delete value.dialog;
-
   return (
     <Dialog title="Dados Tratados" onClose={() => updateState({ dialog: { value: null } })}>
-      <pre>{JSON.stringify(value, null, 2)}</pre>
+      <pre>{JSON.stringify({ ...value, dialog: undefined }, null, 2)}</pre>
     </Dialog>
   );
 }
