@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.3](https://github.com/aprendendofelipe/react-stack/compare/helpers-v0.4.2...helpers-v0.4.3) (2026-01-05)
+
+
+### Features
+
+* **deepMerge:** enhance merging logic for built-in objects ([8ae0c4b](https://github.com/aprendendofelipe/react-stack/commit/8ae0c4b085322e8a15776ee690d5f466e65e786e))
+* **is:** add `isPlainObject` function to check for plain objects ([a272d3b](https://github.com/aprendendofelipe/react-stack/commit/a272d3b95b353371b7fc9cfc271fe71c6b9f594c))
+
 ## [0.4.2](https://github.com/aprendendofelipe/react-stack/compare/helpers-v0.4.1...helpers-v0.4.2) (2025-12-19)
 
 

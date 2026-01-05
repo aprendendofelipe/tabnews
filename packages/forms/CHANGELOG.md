@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.4.3](https://github.com/aprendendofelipe/react-stack/compare/forms-v0.4.2...forms-v0.4.3) (2026-01-05)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @barso/helpers bumped from ^0.4.2 to ^0.4.3
+    * @barso/hooks bumped from ^0.1.8 to ^0.1.9
+
 ## [0.4.2](https://github.com/aprendendofelipe/react-stack/compare/forms-v0.4.1...forms-v0.4.2) (2025-12-19)
 
 

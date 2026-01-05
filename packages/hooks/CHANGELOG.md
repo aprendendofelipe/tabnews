@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.1.9](https://github.com/aprendendofelipe/react-stack/compare/hooks-v0.1.8...hooks-v0.1.9) (2026-01-05)
+
+
+### Features
+
+* **useMediaQuery:** add new `useMediaQuery` hook ([95893fe](https://github.com/aprendendofelipe/react-stack/commit/95893fe4f78bd7613e211143a68a5d55430eaccf))
+
+
+### Bug Fixes
+
+* **useMediaQuery:** safely access matchMedia with optional chaining ([f9f55ef](https://github.com/aprendendofelipe/react-stack/commit/f9f55efb04efdaa15d207255299bf7231ac804ef))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @barso/helpers bumped from ^0.4.2 to ^0.4.3
+
 ## [0.1.8](https://github.com/aprendendofelipe/react-stack/compare/hooks-v0.1.7...hooks-v0.1.8) (2025-12-19)
 
 
