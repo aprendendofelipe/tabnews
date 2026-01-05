@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.3.4](https://github.com/aprendendofelipe/react-stack/compare/form-example-v0.3.3...form-example-v0.3.4) (2026-01-05)
+
+
+### Features
+
+* **example:** add `Head` component for dynamic title and description management ([3145faf](https://github.com/aprendendofelipe/react-stack/commit/3145faf4775a370fd5f4bd49591c048434f803f5))
+* **example:** add dynamic favicon based on color scheme via `useMediaQuery` hook ([bdfa09e](https://github.com/aprendendofelipe/react-stack/commit/bdfa09ed4f543e2f0c7e3cd5985aa3d4800b72b6))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @barso/forms bumped from 0.4.2 to 0.4.3
+
 ## [0.3.3](https://github.com/aprendendofelipe/react-stack/compare/form-example-v0.3.2...form-example-v0.3.3) (2025-12-19)
 
 
