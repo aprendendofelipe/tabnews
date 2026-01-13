@@ -1,6 +1,6 @@
 {
   "name": "@barso/forms",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "Barso useForm hook and form validators",
   "license": "MIT",
   "type": "module",
@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@barso/helpers": "^0.4.3",
-    "@barso/hooks": "^0.1.9",
+    "@barso/hooks": "^0.1.10",
     "validation-br": "^1.5.2"
   },
   "peerDependencies": {
