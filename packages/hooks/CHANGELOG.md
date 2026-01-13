@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.10](https://github.com/aprendendofelipe/react-stack/compare/hooks-v0.1.9...hooks-v0.1.10) (2026-01-13)
+
+
+### Features
+
+* **useMediaQuery:** enhance hook with debounce, fallback options, and onChange callback ([557f41d](https://github.com/aprendendofelipe/react-stack/commit/557f41df58e46c889c5132d7ed703e84e011270d))
+
 ## [0.1.9](https://github.com/aprendendofelipe/react-stack/compare/hooks-v0.1.8...hooks-v0.1.9) (2026-01-05)
 
 

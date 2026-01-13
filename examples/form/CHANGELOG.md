@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.5](https://github.com/aprendendofelipe/react-stack/compare/form-example-v0.3.4...form-example-v0.3.5) (2026-01-13)
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @barso/forms bumped from 0.4.3 to 0.4.4
+
 ## [0.3.4](https://github.com/aprendendofelipe/react-stack/compare/form-example-v0.3.3...form-example-v0.3.4) (2026-01-05)
 
 
