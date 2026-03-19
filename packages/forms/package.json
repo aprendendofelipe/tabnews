@@ -1,6 +1,6 @@
 {
   "name": "@barso/forms",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "Barso useForm hook and form validators",
   "license": "MIT",
   "type": "module",

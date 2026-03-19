@@ -1,6 +1,6 @@
 {
   "name": "@barso/infra",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Barso Infra",
   "license": "MIT",
   "type": "module",
