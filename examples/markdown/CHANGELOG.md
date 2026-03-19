@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.1.5](https://github.com/aprendendofelipe/react-stack/compare/markdown-example-v0.1.4...markdown-example-v0.1.5) (2026-03-19)
+
+
+### Features
+
+* **deps:** update dependencies across packages ([8e2c64e](https://github.com/aprendendofelipe/react-stack/commit/8e2c64eaee67cd38d13822d6e3d68ba468eda1a8))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @barso/ui bumped from 0.6.3 to 0.6.4
+
 ## [0.1.4](https://github.com/aprendendofelipe/react-stack/compare/markdown-example-v0.1.3...markdown-example-v0.1.4) (2026-01-05)
 
 

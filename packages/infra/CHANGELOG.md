@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.10](https://github.com/aprendendofelipe/react-stack/compare/infra-v0.0.9...infra-v0.0.10) (2026-03-19)
+
+
+### Features
+
+* **deps:** update dependencies across packages ([8e2c64e](https://github.com/aprendendofelipe/react-stack/commit/8e2c64eaee67cd38d13822d6e3d68ba468eda1a8))
+
 ## [0.0.9](https://github.com/aprendendofelipe/react-stack/compare/infra-v0.0.8...infra-v0.0.9) (2026-01-05)
 
 

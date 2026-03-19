@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.5](https://github.com/aprendendofelipe/react-stack/compare/forms-v0.4.4...forms-v0.4.5) (2026-03-19)
+
+
+### Features
+
+* **deps:** update dependencies across packages ([8e2c64e](https://github.com/aprendendofelipe/react-stack/commit/8e2c64eaee67cd38d13822d6e3d68ba468eda1a8))
+
 ## [0.4.4](https://github.com/aprendendofelipe/react-stack/compare/forms-v0.4.3...forms-v0.4.4) (2026-01-13)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.4](https://github.com/aprendendofelipe/react-stack/compare/ui-v0.6.3...ui-v0.6.4) (2026-03-19)
+
+
+### Features
+
+* **deps:** update dependencies across packages ([8e2c64e](https://github.com/aprendendofelipe/react-stack/commit/8e2c64eaee67cd38d13822d6e3d68ba468eda1a8))
+
 ## [0.6.3](https://github.com/aprendendofelipe/react-stack/compare/ui-v0.6.2...ui-v0.6.3) (2025-12-19)
 
 
