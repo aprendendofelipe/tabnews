@@ -16,10 +16,10 @@
     "format": "eslint --fix . && prettier --write ."
   },
   "dependencies": {
-    "@axiomhq/js": "1.3.1",
+    "@axiomhq/js": "1.4.0",
     "@barso/helpers": "^0.4.3",
-    "@vercel/functions": "3.3.4",
-    "pino": "10.1.0"
+    "@vercel/functions": "3.4.3",
+    "pino": "10.3.1"
   },
   "author": "aprendendofelipe",
   "repository": {
