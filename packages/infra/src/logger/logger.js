@@ -21,6 +21,13 @@ export function getLogger(options = {}) {
     return pinoLogger;
   }
 
+  const logLevel = process.env.LOG_LEVEL;
+
+  if (logLevel === 'silent') {
+    const silentLogger = { debug: noop, error: noop, fatal: noop, info: noop, trace: noop, warn: noop, flush: noop };
+    return silentLogger;
+  }
+
   const consoleLogger = {
     ...console,
     info: noop,
@@ -28,7 +35,7 @@ export function getLogger(options = {}) {
     flush: noop,
   };
 
-  if (process.env.LOG_LEVEL === 'info') {
+  if (['info', 'debug'].includes(logLevel)) {
     // eslint-disable-next-line no-console
     consoleLogger.info = console.log;
   }
