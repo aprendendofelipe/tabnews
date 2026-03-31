@@ -1,7 +1,7 @@
 import { noop } from 'packages/helpers';
 
 const productionLevels = ['info', 'warn', 'error', 'fatal'];
-const devLevels = ['trace', 'debug', 'warn', 'error', 'fatal'];
+const devLevels = ['warn', 'error', 'fatal'];
 const onlyDevLevels = ['trace', 'debug'];
 
 const consoleLevels = {
@@ -59,11 +59,13 @@ describe('infra/logger', () => {
 
   describe('Development (via console)', () => {
     beforeAll(() => {
+      vi.stubEnv('NODE_ENV', 'development');
       vi.stubEnv('VERCEL_ENV', '');
       vi.stubEnv('AXIOM_DATASET', '');
     });
 
     afterAll(() => {
+      vi.stubEnv('NODE_ENV', 'test');
       vi.stubEnv('AXIOM_DATASET', dataset);
     });
 
@@ -85,6 +87,44 @@ describe('infra/logger', () => {
 
     it('should not throw error on flush', () => {
       expect(logger.flush).not.toThrow();
+    });
+
+    it('should expose pino-compatible methods', () => {
+      expect(typeof logger.child).toBe('function');
+      expect(typeof logger.bindings).toBe('function');
+      expect(typeof logger.setBindings).toBe('function');
+      expect(typeof logger.isLevelEnabled).toBe('function');
+    });
+
+    it('should merge child bindings and write to console', () => {
+      const childLogger = logger.child({ requestId: 'req-1' });
+
+      childLogger.warn('logger.warn');
+      childLogger.error({ message: 'logger.error' });
+
+      expect(consoleSpy.warn).toHaveBeenCalledWith('logger.warn', { requestId: 'req-1' });
+      expect(consoleSpy.error).toHaveBeenCalledWith({ message: 'logger.error', requestId: 'req-1' });
+    });
+
+    it('should set and get bindings', () => {
+      logger.setBindings({ session: 'abc' });
+
+      expect(logger.bindings()).toStrictEqual({ session: 'abc' });
+    });
+
+    it('should keep info disabled by default', () => {
+      logger.info('logger.info');
+
+      expect(logger.isLevelEnabled('info')).toBe(true);
+      expect(consoleSpy.info).not.toHaveBeenCalled();
+    });
+
+    it('should keep debug disabled by default', () => {
+      expect(logger.isLevelEnabled('debug')).toBe(false);
+    });
+
+    it('should keep trace disabled by default', () => {
+      expect(logger.isLevelEnabled('trace')).toBe(false);
     });
 
     describe('with "LOG_LEVEL" set to "info"', () => {
@@ -122,7 +162,7 @@ describe('infra/logger', () => {
         productionLevels.forEach((level) => {
           expect(stdoutSpy).toHaveBeenCalledWith(
             expect.stringMatching(
-              new RegExp(`{"level":\\d+,"time":\\d+,"environment":"test","msg":"logger.${level}"}`),
+              new RegExp(`{"level":\\d+,"time":\\d+,"environment":"development","msg":"logger.${level}"}`),
             ),
           );
         });
@@ -199,6 +239,46 @@ describe('infra/logger', () => {
 
     it('should not throw error on flush', () => {
       expect(() => logger.flush()).not.toThrow();
+    });
+
+    describe('with "LOG_LEVEL" set to "debug"', () => {
+      beforeAll(() => {
+        vi.stubEnv('LOG_LEVEL', 'debug');
+      });
+
+      afterAll(() => {
+        vi.stubEnv('LOG_LEVEL', '');
+      });
+
+      it('should log debug level', async () => {
+        logger.debug('logger.debug');
+
+        await vi.waitUntil(() => mocks.axiomIngest.mock.calls.length === 1);
+        expect(mocks.axiomIngest).toHaveBeenCalledWith(
+          dataset,
+          expect.objectContaining({ level: 'debug', msg: 'logger.debug' }),
+        );
+      });
+    });
+  });
+
+  describe('Test runtime defaults to silent', () => {
+    beforeAll(() => {
+      vi.stubEnv('NODE_ENV', 'test');
+      vi.stubEnv('VERCEL_ENV', '');
+      vi.stubEnv('AXIOM_DATASET', '');
+      vi.stubEnv('LOG_LEVEL', '');
+    });
+
+    afterAll(() => {
+      vi.stubEnv('AXIOM_DATASET', dataset);
+    });
+
+    it('should silent logger by default', () => {
+      logger.warn('logger.warn');
+
+      expect(logger.isLevelEnabled('warn')).toBe(true);
+      expect(consoleSpy.warn).not.toHaveBeenCalled();
     });
   });
 
