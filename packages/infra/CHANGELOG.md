@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.11](https://github.com/aprendendofelipe/react-stack/compare/infra-v0.0.10...infra-v0.0.11) (2026-03-31)
+
+
+### Features
+
+* **logger:** enhance getLogger to handle silent log level ([448eafd](https://github.com/aprendendofelipe/react-stack/commit/448eafd7609170b00faabd029920af81f50c53b4))
+* **logger:** enhance logger in development mode ([9ee5bdf](https://github.com/aprendendofelipe/react-stack/commit/9ee5bdf826aa63b11c3ab2fd52d733493e5a9910))
+
 ## [0.0.10](https://github.com/aprendendofelipe/react-stack/compare/infra-v0.0.9...infra-v0.0.10) (2026-03-19)
 
 
