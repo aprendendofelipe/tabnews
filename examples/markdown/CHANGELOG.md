@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.1.6](https://github.com/aprendendofelipe/react-stack/compare/markdown-example-v0.1.5...markdown-example-v0.1.6) (2026-07-18)
+
+
+### Features
+
+* **deps:** update Next.js, React, and other dependencies in packages and examples ([e02cdec](https://github.com/aprendendofelipe/react-stack/commit/e02cdecc4ef5e1d53a728594b3d32ed06c0c73f4))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @barso/helpers bumped from 0.4.3 to 0.4.4
+    * @barso/ui bumped from 0.6.4 to 0.6.5
+
 ## [0.1.5](https://github.com/aprendendofelipe/react-stack/compare/markdown-example-v0.1.4...markdown-example-v0.1.5) (2026-03-19)
 
 

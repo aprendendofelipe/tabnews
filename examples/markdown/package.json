@@ -1,6 +1,6 @@
 {
   "name": "markdown-example",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,8 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "@barso/helpers": "0.4.3",
-    "@barso/ui": "0.6.4",
+    "@barso/helpers": "0.4.4",
+    "@barso/ui": "0.6.5",
     "next": "16.2.10",
     "react": "19.2.7",
     "react-dom": "19.2.7"
