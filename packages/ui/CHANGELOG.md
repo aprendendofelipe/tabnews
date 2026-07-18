@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.5](https://github.com/aprendendofelipe/react-stack/compare/ui-v0.6.4...ui-v0.6.5) (2026-07-18)
+
+
+### Features
+
+* **deps:** update Next.js, React, and other dependencies in packages and examples ([e02cdec](https://github.com/aprendendofelipe/react-stack/commit/e02cdecc4ef5e1d53a728594b3d32ed06c0c73f4))
+* **types:** export package declarations ([09bbb3c](https://github.com/aprendendofelipe/react-stack/commit/09bbb3c224125093b036535c2ba10a194ec57670))
+
 ## [0.6.4](https://github.com/aprendendofelipe/react-stack/compare/ui-v0.6.3...ui-v0.6.4) (2026-03-19)
 
 

@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.1.11](https://github.com/aprendendofelipe/react-stack/compare/hooks-v0.1.10...hooks-v0.1.11) (2026-07-18)
+
+
+### Features
+
+* **types:** export package declarations ([09bbb3c](https://github.com/aprendendofelipe/react-stack/commit/09bbb3c224125093b036535c2ba10a194ec57670))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @barso/helpers bumped from ^0.4.3 to ^0.4.4
+
 ## [0.1.10](https://github.com/aprendendofelipe/react-stack/compare/hooks-v0.1.9...hooks-v0.1.10) (2026-01-13)
 
 

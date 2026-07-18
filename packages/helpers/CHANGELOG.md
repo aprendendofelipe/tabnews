@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.4](https://github.com/aprendendofelipe/react-stack/compare/helpers-v0.4.3...helpers-v0.4.4) (2026-07-18)
+
+
+### Features
+
+* **types:** export package declarations ([09bbb3c](https://github.com/aprendendofelipe/react-stack/commit/09bbb3c224125093b036535c2ba10a194ec57670))
+
 ## [0.4.3](https://github.com/aprendendofelipe/react-stack/compare/helpers-v0.4.2...helpers-v0.4.3) (2026-01-05)
 
 

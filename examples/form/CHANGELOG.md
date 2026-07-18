@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.3.7](https://github.com/aprendendofelipe/react-stack/compare/form-example-v0.3.6...form-example-v0.3.7) (2026-07-18)
+
+
+### Features
+
+* **deps:** update Next.js, React, and other dependencies in packages and examples ([e02cdec](https://github.com/aprendendofelipe/react-stack/commit/e02cdecc4ef5e1d53a728594b3d32ed06c0c73f4))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @barso/forms bumped from 0.4.5 to 0.4.6
+    * @barso/ui bumped from 0.6.4 to 0.6.5
+
 ## [0.3.6](https://github.com/aprendendofelipe/react-stack/compare/form-example-v0.3.5...form-example-v0.3.6) (2026-03-19)
 
 
