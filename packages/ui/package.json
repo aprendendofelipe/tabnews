@@ -4,27 +4,34 @@
   "description": "Barso UI",
   "license": "MIT",
   "type": "module",
+  "types": "./src/index.d.ts",
   "exports": {
     ".": {
+      "types": "./src/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
     "./document": {
+      "types": "./src/_document.d.ts",
       "import": "./dist/_document.js",
       "require": "./dist/_document.cjs"
     },
     "./markdown": {
+      "types": "./src/Markdown/index.d.ts",
       "import": "./dist/markdown.js",
       "require": "./dist/markdown.cjs"
     },
     "./primer": {
+      "types": "./src/primer-react.d.ts",
       "import": "./dist/primer.js",
       "require": "./dist/primer.cjs"
     },
     "./css": "./dist/ui.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "src",
+    "!src/**/*.test.*"
   ],
   "scripts": {
     "dev": "vite build --watch",
