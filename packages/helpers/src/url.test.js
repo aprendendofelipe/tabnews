@@ -1,4 +1,4 @@
-import { isTrustedDomain, replaceParams, tryParseUrl } from './index.js';
+import { isTrustedDomain, replaceParams, tryParseUrl } from '.';
 
 describe('helpers/url', () => {
   beforeAll(() => {
@@ -23,7 +23,7 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'next_public_webserver_host1');
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '1');
 
-        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('.');
 
         expect(baseUrl).toBe('http://next_public_webserver_host1:1');
         expect(webserverHostname).toBe('next_public_webserver_host1');
@@ -36,7 +36,7 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'next_public_webserver_host2');
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '2');
 
-        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('.');
 
         expect(baseUrl).toBe('http://next_public_webserver_host2:2');
         expect(webserverHostname).toBe('next_public_webserver_host2');
@@ -48,7 +48,7 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_HOST', 'next_public_webserver_host3');
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3');
 
-        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('.');
 
         expect(baseUrl).toBe('http://next_public_webserver_host3:3');
         expect(webserverHostname).toBe('next_public_webserver_host3');
@@ -68,7 +68,7 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
         vi.stubEnv('VERCEL', '1');
 
-        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('.');
 
         expect(baseUrl).toBe('https://tabnews.com.br');
         expect(webserverHostname).toBe('tabnews.com.br');
@@ -84,7 +84,7 @@ describe('helpers/url', () => {
         vi.stubEnv('VERCEL', '1');
         vi.stubEnv('NEXT_PUBLIC_TRUSTED_DOMAINS', 'curso.dev');
 
-        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('.');
 
         expect(baseUrl).toBe('https://tabnews.com.br');
         expect(webserverHostname).toBe('tabnews.com.br');
@@ -98,7 +98,7 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
         vi.stubEnv('VERCEL', '1');
 
-        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('.');
 
         expect(baseUrl).toBe('https://tabnews.vercel.app');
         expect(webserverHostname).toBe('tabnews.vercel.app');
@@ -113,7 +113,7 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
         vi.stubEnv('VERCEL', '1');
 
-        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('.');
 
         expect(baseUrl).toBe('https://prev-tabnews.vercel.app');
         expect(webserverHostname).toBe('prev-tabnews.vercel.app');
@@ -138,7 +138,7 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
         vi.stubEnv('VERCEL', '1');
 
-        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('.');
 
         expect(baseUrl).toBe('https://www.tabnews.com.br');
         expect(webserverHostname).toBe('www.tabnews.com.br');
@@ -153,7 +153,7 @@ describe('helpers/url', () => {
         vi.stubEnv('NEXT_PUBLIC_WEBSERVER_PORT', '3000');
         vi.stubEnv('VERCEL', '1');
 
-        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('.');
 
         expect(baseUrl).toBe('https://prev-tabnews.vercel.app');
         expect(webserverHostname).toBe('prev-tabnews.vercel.app');
@@ -167,7 +167,7 @@ describe('helpers/url', () => {
         vi.stubGlobal('location', {});
         vi.resetModules();
 
-        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('./index.js');
+        const { baseUrl, trustedDomains, webserverDomain, webserverHostname } = await import('.');
 
         expect(baseUrl).toBe('https://www.tabnews.com.br');
         expect(webserverHostname).toBe('www.tabnews.com.br');
@@ -183,7 +183,7 @@ describe('helpers/url', () => {
     beforeAll(async () => {
       vi.stubEnv('NEXT_PUBLIC_VERCEL_URL', 'base.url');
       vi.resetModules();
-      ({ getDomain } = await import('./index.js'));
+      ({ getDomain } = await import('.'));
     });
 
     it('should return the domain for all protocols', () => {
@@ -216,7 +216,7 @@ describe('helpers/url', () => {
     beforeAll(async () => {
       vi.stubEnv('NEXT_PUBLIC_VERCEL_URL', 'tabnews.com.br');
       vi.resetModules();
-      ({ isExternalLink } = await import('./index.js'));
+      ({ isExternalLink } = await import('.'));
     });
 
     test('returns false for internal URL as string', () => {
@@ -292,7 +292,7 @@ describe('helpers/url', () => {
       vi.resetModules();
       vi.stubEnv('NEXT_PUBLIC_VERCEL_URL', 'base.url');
       vi.stubEnv('NEXT_PUBLIC_TRUSTED_DOMAINS', 'sub.test.com, with.space ,without.space');
-      const { isTrustedDomain } = await import('./index.js');
+      const { isTrustedDomain } = await import('.');
 
       expect(isTrustedDomain('http://base.url')).toBe(true);
       expect(isTrustedDomain('http://sub.test.com')).toBe(true);

@@ -1,8 +1,8 @@
 import { useTheme } from '@primer/react';
 import { render, waitFor } from '@testing-library/react';
 
-import { ColorModeCookieSync } from './AutoThemeProvider.jsx';
-import { AutoThemeProvider, NoFlashGlobalStyle } from './index.js';
+import { AutoThemeProvider, NoFlashGlobalStyle } from '.';
+import { ColorModeCookieSync } from './AutoThemeProvider';
 
 const COLOR_MODE_COOKIE = 'cm';
 

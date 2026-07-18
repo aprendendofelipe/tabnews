@@ -1,9 +1,9 @@
 import { fireEvent, screen, within } from '@testing-library/react';
 import { useState } from 'react';
 
-import { NotificationMenu } from './NotificationMenu.jsx';
-import { NotificationsProvider } from './Provider.jsx';
-import { createNotificationList, renderWithTheme, resetNotificationCount } from './test-utils.js';
+import { NotificationMenu } from './NotificationMenu';
+import { NotificationsProvider } from './Provider';
+import { createNotificationList, renderWithTheme, resetNotificationCount } from './test-utils';
 
 describe('ui/Notifications/NotificationMenu', () => {
   it('renders the bell icon', () => {

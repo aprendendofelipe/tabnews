@@ -2,8 +2,8 @@
 import { BellIcon, XIcon } from '@primer/octicons-react';
 import { AnchoredOverlay, Box, Heading, IconButton, Text } from '@primer/react';
 
-import { NotificationList } from './NotificationList.jsx';
-import { useNotifications } from './Provider.jsx';
+import { NotificationList } from './NotificationList';
+import { useNotifications } from './Provider';
 
 /**
  * @typedef {import('@primer/react').AnchoredOverlayProps} AnchoredOverlayProps

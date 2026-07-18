@@ -1,7 +1,7 @@
-import { DefaultLayout } from '../components/DefaultLayout.jsx';
-import { Head } from '../components/Head/Head.Pages.jsx';
-import { Registration } from '../components/Registration.jsx';
-import { registrationFields, store } from '../form-config.js';
+import { DefaultLayout } from '../components/DefaultLayout';
+import { Head } from '../components/Head/Head.Pages';
+import { Registration } from '../components/Registration';
+import { registrationFields, store } from '../form-config';
 
 export default function RegistrationPage() {
   return (

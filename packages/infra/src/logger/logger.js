@@ -1,7 +1,7 @@
 import { deepMerge, noop } from '@barso/helpers';
 import pino from 'pino';
 
-import { axiomTransport } from './axiom-transport.js';
+import { axiomTransport } from './axiom-transport';
 
 export function getLogger(options = {}) {
   const environment = process.env.VERCEL_ENV || process.env.NODE_ENV;

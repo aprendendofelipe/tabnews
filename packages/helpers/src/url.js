@@ -1,4 +1,4 @@
-import { isProduction, isServerlessRuntime } from './environment.js';
+import { isProduction, isServerlessRuntime } from './environment';
 
 export const baseUrl = getBaseUrl();
 export const webserverHostname = tryParseUrl(baseUrl).hostname;

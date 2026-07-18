@@ -1,1 +1,1 @@
-export * from './useMediaQuery.js';
+export * from './useMediaQuery';

@@ -1,4 +1,4 @@
-import { findPathToNode, getSubtreeDepth, getSubtreeSize } from './index.js';
+import { findPathToNode, getSubtreeDepth, getSubtreeSize } from '.';
 
 describe('helpers/tree', () => {
   describe('findPathToNode', () => {

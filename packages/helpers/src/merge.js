@@ -1,4 +1,4 @@
-import { isEqual, isPlainObject, isUndefined } from './is.js';
+import { isEqual, isPlainObject, isUndefined } from './is';
 
 /**
  * Deeply merges two objects.

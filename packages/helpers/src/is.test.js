@@ -1,4 +1,4 @@
-import { isArray, isEqual, isObject, isPlainObject, isUndefined } from './index.js';
+import { isArray, isEqual, isObject, isPlainObject, isUndefined } from '.';
 
 describe('helpers', () => {
   describe('is', () => {

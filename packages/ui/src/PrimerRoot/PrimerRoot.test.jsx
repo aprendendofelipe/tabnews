@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { cookies } from 'next/headers';
 
-import { PrimerRoot } from './PrimerRoot.jsx';
+import { PrimerRoot } from './PrimerRoot';
 
 vi.mock('next/headers', () => ({
   cookies: vi.fn(),

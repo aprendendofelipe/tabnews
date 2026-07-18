@@ -1,7 +1,7 @@
 'use client';
 import { createContext, useContext } from 'react';
 
-import { getConfig } from './config.js';
+import { getConfig } from './config';
 
 /**
  * @typedef {import('./types.js').NotificationsContextType} NotificationsContextType

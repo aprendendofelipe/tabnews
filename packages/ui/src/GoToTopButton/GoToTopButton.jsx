@@ -14,7 +14,7 @@ export function GoToTopButton({ target }) {
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
-    let targetElement = null;
+    let targetElement;
 
     if (typeof target === 'string') {
       targetElement = document.querySelector(target);

@@ -1,4 +1,4 @@
-import { number } from './index.js';
+import { number } from '.';
 
 describe('forms', () => {
   describe('number field', () => {

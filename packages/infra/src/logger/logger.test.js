@@ -49,7 +49,7 @@ describe('infra/logger', () => {
   beforeEach(async () => {
     vi.clearAllMocks();
     vi.resetModules();
-    logger = await import('../index.js').then((m) => m.getLogger).then((getLogger) => getLogger());
+    logger = await import('..').then((m) => m.getLogger).then((getLogger) => getLogger());
   });
 
   afterAll(() => {
@@ -285,7 +285,7 @@ describe('infra/logger', () => {
   describe('With pino options', () => {
     it('should pass pino options to logger', async () => {
       const options = { base: { key: 'value' } };
-      logger = await import('../index.js').then((m) => m.getLogger).then((getLogger) => getLogger(options));
+      logger = await import('..').then((m) => m.getLogger).then((getLogger) => getLogger(options));
 
       logger.info('logger.info');
 
@@ -295,7 +295,7 @@ describe('infra/logger', () => {
 
     it('should pass redact options to pino', async () => {
       const options = { redact: ['key'] };
-      logger = await import('../index.js').then((m) => m.getLogger).then((getLogger) => getLogger(options));
+      logger = await import('..').then((m) => m.getLogger).then((getLogger) => getLogger(options));
 
       logger.info({ key: 'value' });
 

@@ -1,5 +1,6 @@
 import { isValidEmail, suggestEmail } from '@barso/helpers';
 
+import { email, emailConfirmable, emailConfirmation } from '.';
 import {
   confirmEmail,
   createConfirmation,
@@ -7,8 +8,7 @@ import {
   createSuggestionObject,
   format,
   validateEmail,
-} from './email.js';
-import { email, emailConfirmable, emailConfirmation } from './index.js';
+} from './email';
 
 vi.mock('@barso/helpers', () => ({
   isValidEmail: vi.fn(),

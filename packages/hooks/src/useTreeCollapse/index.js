@@ -1,1 +1,1 @@
-export { computeNodeStates, useTreeCollapse } from './useTreeCollapse.js';
+export { computeNodeStates, useTreeCollapse } from './useTreeCollapse';

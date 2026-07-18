@@ -2,7 +2,7 @@
 import { MarkdownEditor } from '@barso/ui/markdown';
 import { useState } from 'react';
 
-import { mdContent, shouldAddNofollow } from '../md-example.js';
+import { mdContent, shouldAddNofollow } from '../md-example';
 
 export default function EditorPage() {
   const [value, setValue] = useState(mdContent);

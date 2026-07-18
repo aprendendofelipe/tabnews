@@ -1,8 +1,8 @@
 import { render } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { NotificationsProvider } from './Provider.jsx';
-import { ThemeProvider } from '../ThemeProvider/index.js';
+import { ThemeProvider } from '../ThemeProvider';
+import { NotificationsProvider } from './Provider';
 
 let notificationCount = 0;
 

@@ -1,6 +1,6 @@
 import { act, renderHook, waitFor } from '@testing-library/react';
 
-import { useForm } from './index.js';
+import { useForm } from '.';
 
 describe('useForm', () => {
   const initialConfig = {

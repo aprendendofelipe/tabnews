@@ -18,8 +18,8 @@ import {
   copyCodeToClipboardPlugin,
   externalLinksPlugin,
   removeDuplicateClobberPrefix,
-} from './plugins/index.js';
-import { EditorStyles } from './styles/index.jsx';
+} from './plugins';
+import { EditorStyles } from './styles';
 import './styles/editor.css';
 import './styles/viewer.css';
 

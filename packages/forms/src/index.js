@@ -1,2 +1,2 @@
-export { useForm } from './useForm.js';
-export * from './fields/index.js';
+export { useForm } from './useForm';
+export * from './fields';

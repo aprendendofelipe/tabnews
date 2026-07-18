@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
 
-import { StyledComponentsRegistry } from './SCRegistry.jsx';
+import { StyledComponentsRegistry } from './SCRegistry';
 
 const hoisted = vi.hoisted(() => ({
   useServerInsertedHTML: vi.fn(),

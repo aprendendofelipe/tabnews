@@ -1,4 +1,4 @@
-import { DefaultLayout } from '../components/DefaultLayout.jsx';
+import { DefaultLayout } from '../components/DefaultLayout';
 import { Notifications } from '../components/Notifications';
 
 export default function NotificationsPage() {

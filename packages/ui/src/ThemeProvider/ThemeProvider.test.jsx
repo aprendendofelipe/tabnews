@@ -1,7 +1,7 @@
 import * as primerReact from '@primer/react';
 import { render, screen } from '@testing-library/react';
 
-import { GlobalStyle, ThemeProvider } from './index.js';
+import { GlobalStyle, ThemeProvider } from '.';
 
 describe('ui', () => {
   describe('ThemeProvider', () => {

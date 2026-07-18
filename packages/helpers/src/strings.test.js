@@ -1,4 +1,4 @@
-import { trimEnd, trimStart, truncate } from './strings.js';
+import { trimEnd, trimStart, truncate } from './strings';
 
 describe('helpers', () => {
   describe('trimStart', () => {

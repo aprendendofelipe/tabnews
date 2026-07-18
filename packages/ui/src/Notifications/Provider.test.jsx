@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
 
-import { NotificationsProvider, useNotifications } from './index.js';
-import { createNotificationList } from './test-utils.js';
+import { NotificationsProvider, useNotifications } from '.';
+import { createNotificationList } from './test-utils';
 
 describe('ui/Notifications', () => {
   describe('useNotifications', () => {

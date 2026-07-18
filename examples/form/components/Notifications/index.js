@@ -1,1 +1,1 @@
-export { Notifications, NotificationCenter, NotificationsProvider } from './Notifications.jsx';
+export { Notifications, NotificationCenter, NotificationsProvider } from './Notifications';

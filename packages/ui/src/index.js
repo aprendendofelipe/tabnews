@@ -1,11 +1,11 @@
-export * from './AutoThemeProvider/index.js';
-export { COLOR_MODE_COOKIE } from './constants/public.js';
-export * from './FormField/index.js';
-export * from './GoToTopButton/index.js';
-export { NotificationList, NotificationMenu, NotificationsProvider, useNotifications } from './Notifications/index.js';
-export { PrimerRoot } from './PrimerRoot/PrimerRoot.jsx';
-export { StyledComponentsRegistry } from './SCRegistry/SCRegistry.jsx';
-export * from './ThemeProvider/index.js';
+export * from './AutoThemeProvider';
+export { COLOR_MODE_COOKIE } from './constants/public';
+export * from './FormField';
+export * from './GoToTopButton';
+export { NotificationList, NotificationMenu, NotificationsProvider, useNotifications } from './Notifications';
+export { PrimerRoot } from './PrimerRoot/PrimerRoot';
+export { StyledComponentsRegistry } from './SCRegistry/SCRegistry';
+export * from './ThemeProvider';
 export {
   ActionList,
   ActionMenu,

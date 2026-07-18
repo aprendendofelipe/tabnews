@@ -1,16 +1,16 @@
 import { act, fireEvent, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 
-import { getConfig } from './config.js';
-import { NotificationList } from './index.js';
-import { focusSiblingIfRemoved } from './NotificationList.jsx';
+import { NotificationList } from '.';
+import { getConfig } from './config';
+import { focusSiblingIfRemoved } from './NotificationList';
 import {
   createMockAction,
   createMockNotification,
   createNotificationList,
   renderWithContext,
   resetNotificationCount,
-} from './test-utils.js';
+} from './test-utils';
 
 describe('ui/Notifications', () => {
   describe('NotificationList', () => {
@@ -62,8 +62,14 @@ describe('ui/Notifications', () => {
     });
 
     describe('read state styling', () => {
-      const readColor = 'var(--fgColor-disabled)';
-      const unreadColor = 'var(--fgColor-default)';
+      // Workaround: after upgrading jsdom to `v29.1.1`, CSS custom property
+      // names become lowercased (e.g. `--fgColor-default` becomes
+      // `--fgcolor-default`), even though custom property names are
+      // case-sensitive per spec. Real browsers preserve the original case.
+      // Normalizing with `.toLowerCase()` here just to keep the assertion
+      // stable under jsdom.
+      const readColor = 'var(--fgColor-disabled)'.toLowerCase();
+      const unreadColor = 'var(--fgColor-default)'.toLowerCase();
 
       it('applies read style when isItemRead returns true', () => {
         const notifications = createNotificationList(1);

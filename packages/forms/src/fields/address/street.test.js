@@ -1,4 +1,4 @@
-import { street } from './index.js';
+import { street } from '.';
 
 describe('forms', () => {
   describe('street field', () => {

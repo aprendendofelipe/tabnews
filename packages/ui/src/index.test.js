@@ -1,7 +1,7 @@
 /* eslint-disable import/namespace */
-import * as document from './_document.jsx';
-import * as ui from './index.js';
-import * as markdown from './Markdown/index.js';
+import * as ui from '.';
+import * as document from './_document';
+import * as markdown from './Markdown';
 
 const exportedByIndex = [
   'ActionList',

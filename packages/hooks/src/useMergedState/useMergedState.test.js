@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react';
 
-import { useMergedState } from './index.js';
+import { useMergedState } from '.';
 
 describe('hooks', () => {
   describe('useMergedState', () => {

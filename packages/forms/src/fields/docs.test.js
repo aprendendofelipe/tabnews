@@ -1,4 +1,4 @@
-import { brDocs } from './docs.js';
+import { brDocs } from './docs';
 
 describe('forms', () => {
   describe('brDocs', () => {

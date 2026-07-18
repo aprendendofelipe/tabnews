@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react';
 
-import { GoToTopButton } from './GoToTopButton.jsx';
+import { GoToTopButton } from './GoToTopButton';
 
 const IntersectionObserver = global.IntersectionObserver;
 let lastObserver = null;
