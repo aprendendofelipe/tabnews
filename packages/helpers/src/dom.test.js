@@ -1,4 +1,4 @@
-import { isTopLeftInUpperLeftViewport, scrollToElementWithRetry } from './index.js';
+import { isTopLeftInUpperLeftViewport, scrollToElementWithRetry } from '.';
 
 describe('helpers/dom', () => {
   beforeAll(() => {

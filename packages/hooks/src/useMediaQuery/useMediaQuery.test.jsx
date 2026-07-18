@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react';
 import { renderToString } from 'react-dom/server';
 
-import { useMediaQuery } from './index.js';
+import { useMediaQuery } from '.';
 
 describe('useMediaQuery', () => {
   describe('renderHook', () => {

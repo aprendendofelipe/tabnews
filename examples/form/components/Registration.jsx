@@ -2,7 +2,7 @@ import { useForm } from '@barso/forms';
 import { Box, Button, Flash, FormField, Heading, Text } from '@barso/ui';
 import { Link } from '@barso/ui/primer';
 
-import { SubmittedFields } from './SubmittedFields.jsx';
+import { SubmittedFields } from './SubmittedFields';
 
 export function Registration({ fields, store }) {
   const { state, getFieldProps, handleSubmit, updateState } = useForm(fields);

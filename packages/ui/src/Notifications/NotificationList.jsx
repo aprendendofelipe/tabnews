@@ -3,7 +3,7 @@ import { KebabHorizontalIcon } from '@primer/octicons-react';
 import { ActionList, ActionMenu, Box, IconButton } from '@primer/react';
 import { createElement, isValidElement, useRef, useState } from 'react';
 
-import { useNotifications } from './Provider.jsx';
+import { useNotifications } from './Provider';
 
 /**
  * @typedef {import('@primer/react').ActionMenuProps} PrimerActionMenuProps

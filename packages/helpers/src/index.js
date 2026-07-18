@@ -1,12 +1,12 @@
-export { isTopLeftInUpperLeftViewport, scrollToElementWithRetry } from './dom.js';
-export * from './email.js';
-export { isBuildTime, isEdgeRuntime, isLambdaRuntime, isProduction, isServerlessRuntime } from './environment.js';
-export * from './is.js';
-export * from './merge.js';
-export * from './noop.js';
-export * from './splitConfig.js';
-export * from './strings.js';
-export { findPathToNode, getSubtreeDepth, getSubtreeSize } from './tree.js';
+export { isTopLeftInUpperLeftViewport, scrollToElementWithRetry } from './dom';
+export * from './email';
+export { isBuildTime, isEdgeRuntime, isLambdaRuntime, isProduction, isServerlessRuntime } from './environment';
+export * from './is';
+export * from './merge';
+export * from './noop';
+export * from './splitConfig';
+export * from './strings';
+export { findPathToNode, getSubtreeDepth, getSubtreeSize } from './tree';
 export {
   baseUrl,
   getBaseUrl,
@@ -18,4 +18,4 @@ export {
   tryParseUrl,
   webserverDomain,
   webserverHostname,
-} from './url.js';
+} from './url';

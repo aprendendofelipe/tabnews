@@ -1,4 +1,4 @@
-import { removeDuplicateClobberPrefix } from './remove-duplicate-clobber-prefix.js';
+import { removeDuplicateClobberPrefix } from './remove-duplicate-clobber-prefix';
 
 describe('ui', () => {
   describe('removeDuplicateClobberPrefix', () => {

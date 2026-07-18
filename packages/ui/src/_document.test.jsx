@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import React from 'react';
 
-import { configureDocument, Document } from './_document.jsx';
+import { configureDocument, Document } from './_document';
 
 describe('ui', () => {
   describe('_document', () => {

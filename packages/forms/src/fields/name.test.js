@@ -1,4 +1,4 @@
-import { fullName, username } from './index.js';
+import { fullName, username } from '.';
 
 describe('forms', () => {
   describe('fullName field', () => {

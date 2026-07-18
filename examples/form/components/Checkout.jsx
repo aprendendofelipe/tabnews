@@ -4,7 +4,7 @@ import { Box, Button, Flash, FormField, Heading, TabNav, Text } from '@barso/ui'
 import { Link } from '@barso/ui/primer';
 import { FaCreditCard, FaPix } from 'react-icons/fa6';
 
-import { SubmittedFields } from './SubmittedFields.jsx';
+import { SubmittedFields } from './SubmittedFields';
 
 export function Checkout({ fields, product, store }) {
   const { state, getFieldProps, handleSubmit, updateState } = useForm(fields);

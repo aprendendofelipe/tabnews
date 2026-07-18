@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react';
 
-import { computeNodeStates, useTreeCollapse } from './index.js';
+import { computeNodeStates, useTreeCollapse } from '.';
 
 describe('hooks/useTreeCollapse', () => {
   const subChildren = [

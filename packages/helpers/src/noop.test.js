@@ -1,4 +1,4 @@
-import { identity, noop, returnNull } from './index.js';
+import { identity, noop, returnNull } from '.';
 
 describe('helpers', () => {
   describe('No-Op and Identity Functions', () => {

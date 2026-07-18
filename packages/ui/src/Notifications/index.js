@@ -1,3 +1,3 @@
-export { NotificationList } from './NotificationList.jsx';
-export { NotificationMenu } from './NotificationMenu.jsx';
-export { NotificationsProvider, useNotifications } from './Provider.jsx';
+export { NotificationList } from './NotificationList';
+export { NotificationMenu } from './NotificationMenu';
+export { NotificationsProvider, useNotifications } from './Provider';

@@ -1,7 +1,7 @@
 import { noop } from 'packages/helpers';
 
-import { format, getAddress, onValidChange, prepare, validateOnBlurAndSubmit } from './cep.js';
-import { cep } from './index.js';
+import { cep } from '.';
+import { format, getAddress, onValidChange, prepare, validateOnBlurAndSubmit } from './cep';
 
 describe('forms', () => {
   describe('cep field', () => {

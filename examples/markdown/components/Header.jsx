@@ -2,7 +2,7 @@
 import { Header as PrimerHeader } from '@barso/ui/primer';
 import NextLink from 'next/link';
 
-import { ThemeSwitcher } from './ThemeSwitcher.jsx';
+import { ThemeSwitcher } from './ThemeSwitcher';
 
 export function Header() {
   return (

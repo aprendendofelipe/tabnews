@@ -35,7 +35,7 @@ describe('axiomTransport', () => {
     vi.resetModules();
 
     consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(noop);
-    axiomTransport = await import('./index.js').then((m) => m.axiomTransport);
+    axiomTransport = await import('.').then((m) => m.axiomTransport);
   });
 
   beforeEach(() => {

@@ -2,9 +2,9 @@
 /* eslint-disable @next/next/no-head-element */
 import { cookies } from 'next/headers';
 
-import { AutoThemeProvider } from '../AutoThemeProvider/AutoThemeProvider.jsx';
-import { COLOR_MODE_COOKIE } from '../constants/public.js';
-import { StyledComponentsRegistry } from '../SCRegistry/SCRegistry.jsx';
+import { AutoThemeProvider } from '../AutoThemeProvider';
+import { COLOR_MODE_COOKIE } from '../constants/public';
+import { StyledComponentsRegistry } from '../SCRegistry/SCRegistry';
 
 export async function PrimerRoot({ children, colorMode, defaultColorMode, headChildren, htmlProps, lang, ...props }) {
   const cookieStore = await cookies();

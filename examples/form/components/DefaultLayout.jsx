@@ -1,6 +1,6 @@
 import { Box, GoToTopButton } from '@barso/ui';
 
-import { Header } from './Header.jsx';
+import { Header } from './Header';
 
 export function DefaultLayout({ children, containerWidth }) {
   return (

@@ -1,1 +1,1 @@
-export { axiomTransport, getLogger } from './logger/index.js';
+export { axiomTransport, getLogger } from './logger';

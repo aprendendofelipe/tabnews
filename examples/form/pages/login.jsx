@@ -1,6 +1,6 @@
-import { DefaultLayout } from '../components/DefaultLayout.jsx';
-import { Login } from '../components/Login.jsx';
-import { loginFields, store } from '../form-config.js';
+import { DefaultLayout } from '../components/DefaultLayout';
+import { Login } from '../components/Login';
+import { loginFields, store } from '../form-config';
 
 export default function LoginPage() {
   return (

@@ -13,7 +13,7 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-import { getNotifications } from './mocks.js';
+import { getNotifications } from './mocks';
 
 const labels = {
   notifications: 'Notificações',
@@ -101,6 +101,7 @@ function useNotificationConfig() {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     loadMore();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

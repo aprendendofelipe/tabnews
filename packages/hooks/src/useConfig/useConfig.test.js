@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react';
 
-import { useConfig } from './index.js';
+import { useConfig } from '.';
 
 describe('hooks', () => {
   describe('useConfig', () => {

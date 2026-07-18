@@ -2,8 +2,8 @@
 import { useTheme } from '@primer/react';
 import { useEffect, useLayoutEffect, useState } from 'react';
 
-import { COLOR_MODE_COOKIE } from '../constants/public.js';
-import { ThemeProvider } from '../ThemeProvider/index.js';
+import { COLOR_MODE_COOKIE } from '../constants/public';
+import { ThemeProvider } from '../ThemeProvider';
 
 // script to be called before interactive in _document.js
 // if (['auto','night'].includes(localStorage.getItem('colorMode')))

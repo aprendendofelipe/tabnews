@@ -1,7 +1,7 @@
 import { PrimerRoot } from '@barso/ui';
 import '@barso/ui/css';
 
-import { DefaultLayout } from '../components/DefaultLayout.jsx';
+import { DefaultLayout } from '../components/DefaultLayout';
 
 export default function Layout({ children }) {
   return (

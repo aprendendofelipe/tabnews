@@ -1,7 +1,7 @@
 import { splitConfig } from '@barso/helpers';
 import { useCallback, useMemo } from 'react';
 
-import { useMergedState } from '../useMergedState/index.js';
+import { useMergedState } from '../useMergedState';
 
 /**
  * Custom hook to manage configuration and state processing.
