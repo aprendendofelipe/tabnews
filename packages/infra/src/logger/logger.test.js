@@ -16,19 +16,19 @@ const consoleLevels = {
 const dataset = 'test-dataset';
 const token = 'test-token';
 
+const mocks = vi.hoisted(() => ({
+  axiomIngest: vi.fn(),
+  flush: vi.fn().mockResolvedValue(),
+}));
+
+vi.mock('@axiomhq/js', () => ({
+  Axiom: vi.fn().mockImplementation(function () {
+    this.ingest = mocks.axiomIngest;
+    this.flush = mocks.flush;
+  }),
+}));
+
 describe('infra/logger', () => {
-  const mocks = vi.hoisted(() => ({
-    axiomIngest: vi.fn(),
-    flush: vi.fn().mockResolvedValue(),
-  }));
-
-  vi.mock('@axiomhq/js', () => ({
-    Axiom: vi.fn().mockImplementation(function () {
-      this.ingest = mocks.axiomIngest;
-      this.flush = mocks.flush;
-    }),
-  }));
-
   let stdoutSpy;
   const consoleSpy = {};
 
