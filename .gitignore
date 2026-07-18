@@ -20,3 +20,7 @@ dist
 
 # Tests
 coverage
+
+# Type definitions
+packages/**/*.d.ts
+packages/**/*.d.ts.map

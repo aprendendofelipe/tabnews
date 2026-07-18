@@ -5,6 +5,7 @@
   "license": "MIT",
   "type": "module",
   "main": "src/index.js",
+  "types": "src/index.d.ts",
   "files": [
     "src",
     "!src/**/*.test.*"

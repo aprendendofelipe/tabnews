@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "npx lerna run dev --parallel",
-    "build": "npm run build --workspace packages/ui",
+    "build": "npm run build:types && npm run build --workspace packages/ui",
+    "build:types": "find packages -name '*.d.ts' -o -name '*.d.ts.map' | xargs rm -f; tsc -p tsconfig.build.json",
     "build:examples:form": "npm run build && npm run build --workspace examples/form",
     "start:examples:form": "npm run start --workspace examples/form",
     "build:examples:markdown": "npm run build && npm run build --workspace examples/markdown",
@@ -17,7 +18,7 @@
     "lint": "eslint . --max-warnings 0 && prettier --check .",
     "format": "eslint --fix . && prettier --write .",
     "commit": "cz",
-    "prepare": "husky",
+    "prepare": "npm run build:types && husky",
     "pre-commit": "lint-staged"
   },
   "config": {
