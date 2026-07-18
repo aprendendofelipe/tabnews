@@ -17,9 +17,9 @@
     "format": "eslint --fix . && prettier --write ."
   },
   "dependencies": {
-    "@axiomhq/js": "1.4.0",
+    "@axiomhq/js": "1.8.0",
     "@barso/helpers": "^0.4.3",
-    "@vercel/functions": "3.4.3",
+    "@vercel/functions": "3.7.5",
     "pino": "10.3.1"
   },
   "author": "aprendendofelipe",
