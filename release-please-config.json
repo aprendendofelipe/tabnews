@@ -2,11 +2,11 @@
   "packages": {
     "examples/form": {},
     "examples/markdown": {},
-    "packages/forms": { "release-as": "0.5.1" },
-    "packages/helpers": { "release-as": "0.5.1" },
-    "packages/hooks": { "release-as": "0.2.1" },
-    "packages/infra": { "release-as": "0.1.1" },
-    "packages/ui": { "release-as": "0.7.1" }
+    "packages/forms": {},
+    "packages/helpers": {},
+    "packages/hooks": {},
+    "packages/infra": {},
+    "packages/ui": {}
   },
   "plugins": ["node-workspace"],
   "bump-minor-pre-major": true,
