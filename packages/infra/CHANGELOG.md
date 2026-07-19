@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.1.0](https://github.com/aprendendofelipe/react-stack/compare/infra-v0.0.12...infra-v0.1.0) (2026-07-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* configure build pipeline for `@barso` packages
+
+### Build System
+
+* configure build pipeline for `[@barso](https://github.com/barso)` packages ([aaa29c5](https://github.com/aprendendofelipe/react-stack/commit/aaa29c5ffa37ebd4748b8602d8e746ae745c1126))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @barso/helpers bumped from ^0.4.4 to ^0.5.0
+
 ## [0.0.12](https://github.com/aprendendofelipe/react-stack/compare/infra-v0.0.11...infra-v0.0.12) (2026-07-18)
 
 
