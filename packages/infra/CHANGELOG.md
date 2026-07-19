@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.1.1](https://github.com/aprendendofelipe/react-stack/compare/infra-v0.1.0...infra-v0.1.1) (2026-07-19)
+
+
+### Bug Fixes
+
+* rebuild packages ([7ea66f9](https://github.com/aprendendofelipe/react-stack/commit/7ea66f95feca0871d110915d75b57cecc41cb9d5))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @barso/helpers bumped from ^0.5.0 to ^0.5.1
+
 ## [0.1.0](https://github.com/aprendendofelipe/react-stack/compare/infra-v0.0.12...infra-v0.1.0) (2026-07-19)
 
 

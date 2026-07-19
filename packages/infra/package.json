@@ -1,6 +1,6 @@
 {
   "name": "@barso/infra",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Barso Infra",
   "license": "MIT",
   "type": "module",
@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@axiomhq/js": "1.8.0",
-    "@barso/helpers": "^0.5.0",
+    "@barso/helpers": "^0.5.1",
     "@vercel/functions": "3.7.5",
     "pino": "10.3.1"
   },
