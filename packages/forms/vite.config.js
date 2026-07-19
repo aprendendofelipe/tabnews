@@ -7,20 +7,8 @@ export default defineConfig(
   mergeConfig(getBaseConfig(), {
     plugins: [preserveDirectives()],
     build: {
-      lib: {
-        entry: {
-          index: './src/index.js',
-          _document: './src/_document.jsx',
-          markdown: './src/Markdown/index.js',
-          primer: './src/primer-react.js',
-        },
-      },
       rollupOptions: {
         output: {
-          globals: {
-            react: 'React',
-            'react-dom': 'ReactDOM',
-          },
           preserveModules: true,
           preserveModulesRoot: 'src',
         },

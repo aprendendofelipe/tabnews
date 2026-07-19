@@ -6,5 +6,18 @@
     "emitDeclarationOnly": true,
     "declarationMap": true
   },
-  "include": ["packages/**/*"]
+  "include": ["packages/**/*"],
+  "exclude": [
+    "node_modules",
+    "worktrees",
+    ".worktrees",
+    "**/dist",
+    "**/*.d.ts",
+    "**/*.d.ts.map",
+    "**/*.test.*",
+    "**/test-utils.*",
+    "**/tests/**/*",
+    "**/vite.config.*",
+    "vite.lib.config.*"
+  ]
 }
