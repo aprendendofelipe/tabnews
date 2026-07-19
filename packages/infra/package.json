@@ -4,13 +4,23 @@
   "description": "Barso Infra",
   "license": "MIT",
   "type": "module",
-  "main": "src/index.js",
-  "types": "src/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
   "files": [
+    "dist",
     "src",
     "!src/**/*.test.*"
   ],
   "scripts": {
+    "build": "vite build",
     "test": "tn test",
     "test:run": "tn test run",
     "lint": "eslint . && prettier --check .",
