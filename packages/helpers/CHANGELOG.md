@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.5.0](https://github.com/aprendendofelipe/react-stack/compare/helpers-v0.4.4...helpers-v0.5.0) (2026-07-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* configure build pipeline for `@barso` packages
+
+### Build System
+
+* configure build pipeline for `[@barso](https://github.com/barso)` packages ([aaa29c5](https://github.com/aprendendofelipe/react-stack/commit/aaa29c5ffa37ebd4748b8602d8e746ae745c1126))
+
 ## [0.4.4](https://github.com/aprendendofelipe/react-stack/compare/helpers-v0.4.3...helpers-v0.4.4) (2026-07-18)
 
 
