@@ -8,6 +8,7 @@
     "packages/infra": {},
     "packages/ui": {}
   },
+  "extra-files": ["vite.lib.config.js"],
   "plugins": ["node-workspace"],
   "bump-minor-pre-major": true,
   "bump-patch-for-minor-pre-major": true,
