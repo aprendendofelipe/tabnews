@@ -13,6 +13,8 @@ yarn.*
 .cache
 .next
 dist
+.worktrees
+worktrees
 
 # OS & Editor
 .DS_Store
