@@ -29,7 +29,7 @@
   "dependencies": {
     "@axiomhq/js": "1.8.0",
     "@barso/helpers": "^0.5.1",
-    "@vercel/functions": "3.7.5",
+    "@vercel/functions": "3.7.6",
     "pino": "10.3.1"
   },
   "author": "aprendendofelipe",
