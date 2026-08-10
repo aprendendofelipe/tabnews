@@ -1,3 +1,5 @@
+
+
 # Packages for Next/React Applications
 
 (_[🇧🇷 Versão em português](#bibliotecas-para-aplica%C3%A7%C3%B5es-nextreact-)_)
@@ -9,6 +11,14 @@ This repository currently contains packages under the `@barso` scope:
 - [`@barso/hooks`](https://www.npmjs.com/package/@barso/hooks): Custom React hooks.
 - [`@barso/infra`](https://www.npmjs.com/package/@barso/infra): Infrastructure utilities, such as logging.
 - [`@barso/ui`](https://www.npmjs.com/package/@barso/ui): UI components.
+
+### Installation
+
+Install the desired package using npm:
+
+```bash
+npm install @barso/ui
+```
 
 Until the versions below, this repository was also the home for the `@tabnews` packages:
 
